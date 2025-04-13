@@ -1,66 +1,77 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
-@use '@angular/material' as mat;
-@plugin 'tailwind-scrollbar';
+@use "@angular/material" as mat;
 /* @custom-variant dark (&:where(.dark, .dark *)); */
 
 @font-face {
-    font-family: "iranSanc-r";
-    src: url("../public/fonts/IRANSansXFaNum-Regular.woff2");
-    font-style: normal;
-    font-weight: 400;
+  font-family: "iranSanc-r";
+  src: url("../public/fonts/IRANSansXFaNum-Regular.woff2");
+  font-style: normal;
+  font-weight: 400;
 }
 @font-face {
-    font-family: "iranSanc-db";
-    src: url("../public/fonts/IRANSansXFaNum-DemiBold.woff2");
-    font-style: normal;
-    font-weight: 600;
+  font-family: "iranSanc-db";
+  src: url("../public/fonts/IRANSansXFaNum-DemiBold.woff2");
+  font-style: normal;
+  font-weight: 600;
 }
 
-
-
 @theme {
-    --color-main-blue : #0052CC;
-    --color-light-blue : #DDEBFF;
-    --color-main-black : #313131;
-    --color-dashboard-bg : #F6F6F6;
-    --color-main-white : #FEFEFE;
-    --color-main-dark : #463F3A;
+  --color-main-blue: #0052cc;
+  --color-light-blue: #ddebff;
+  --color-main-black: #313131;
+  --color-dashboard-bg: #f6f6f6;
+  --color-main-white: #fefefe;
+  --color-main-dark: #463f3a;
 
-    --color-primary-50 : #eff6ff;
-    --color-primary-100 : #dbeafe;
-    --color-primary-200 : #bfdbfe;
-    --color-primary-300 : #93c5fd;
-    --color-primary-400 : #60a5fa;
-    --color-primary-500 : #3b82f6;
-    --color-primary-600 : #2563eb;
-    --color-primary-700 : #1d4ed8;
-    --color-primary-800 : #1e40af;
-    --color-primary-900 : #1e3a8a;
-    --color-primary-950 : #172554;
-  
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
 
-    --font-iranSansRegular : "iranSanc-r";
-    --font-iranSansDemiBold : "iranSanc-db";
+  --font-iranSansRegular: "iranSanc-r";
+  --font-iranSansDemiBold: "iranSanc-db";
 
-    --breakpoint-xs : 480px;
+  --breakpoint-xs: 480px;
 }
 
 body {
-    @apply !font-iranSansRegular
+  @apply !font-iranSansRegular;
 }
 
 .activedLink {
-    @apply bg-main-blue text-main-white rounded-lg
+  @apply bg-main-blue text-main-white rounded-lg;
 }
 
 .activedButton {
-    @apply  *:text-main-blue inline-flex items-center gap-1 font-iranSansDemiBold bg-main-white *:text-sm
+  @apply *:text-main-blue inline-flex items-center gap-1 font-iranSansDemiBold bg-main-white *:text-sm;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

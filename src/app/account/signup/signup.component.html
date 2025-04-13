@@ -25,27 +25,153 @@
               <mat-form-field class="w-full">
                 <mat-label>نام</mat-label>
                 <input matInput type="text" placeholder="نام  را وارد کنید"  formControlName="firstName"/>
+                @if (personalFormgroup.get("firstName")?.touched && personalFormgroup.get("firstName")?.errors) {
+                  <mat-error>
+
+                    @if (personalFormgroup.get("firstName")?.errors?.["required"]) {
+                      <span>مقداری وارد نشده</span>
+                    }@else if (personalFormgroup.get("firstName")?.errors?.["minlength"]) {
+                      <span>حداقل کاراکتر مجاز ۴ عدد</span>
+  
+                    }@else if (personalFormgroup.get("firstName")?.errors?.["maxlength"]) {
+                      <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                    }
+                  </mat-error>
+
+           
+                }
               </mat-form-field>
               <mat-form-field class="w-full">
                 <mat-label>نام خانوادگی</mat-label>
                 <input matInput type="text" placeholder="نام خانوادگی را وارد کنید"  formControlName="lastName"/>
+
+                @if (personalFormgroup.get("lastName")?.touched && personalFormgroup.get("lastName")?.errors) {
+                  <mat-error>
+
+                    @if (personalFormgroup.get("lastName")?.errors?.["required"]) {
+                      <span>مقداری وارد نشده</span>
+                    }@else if (personalFormgroup.get("lastName")?.errors?.["minlength"]) {
+                      <span>حداقل کاراکتر مجاز ۴ عدد</span>
+  
+                    }@else if (personalFormgroup.get("lastName")?.errors?.["maxlength"]) {
+                      <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                    }
+                  </mat-error>
+
+           
+                }
+                
               </mat-form-field>
               <mat-form-field class="w-full">
                 <mat-label>شماره ملی</mat-label>
                 <input matInput type="text" placeholder="شماره ملی را وارد کنید"  formControlName="nationalCode"/>
+
+                @if (personalFormgroup.get("nationalCode")?.touched && personalFormgroup.get("nationalCode")?.errors) {
+                  <mat-error>
+
+                    @if (personalFormgroup.get("nationalCode")?.errors?.["required"]) {
+                      <span>مقداری وارد نشده</span>
+                    }
+                    
+                    <!-- @else if (personalFormgroup.get("nationalCode")?.errors?.["minlength"]) {
+                      <span>حداقل کاراکتر مجاز ۳ عدد</span>
+  
+                    }@else if (personalFormgroup.get("nationalCode")?.errors?.["maxlength"]) {
+                      <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                    } -->
+                  </mat-error>
+
+           
+                }
+                
               </mat-form-field>
               <mat-form-field class="w-full">
                 <mat-label>شماره همراه</mat-label>
                 <input matInput type="text" placeholder="شماره همراه را وارد کنید"  formControlName="mobileNumber"/>
+             
+
+                @if (personalFormgroup.get("mobileNumber")?.touched && personalFormgroup.get("mobileNumber")?.errors) {
+                  <mat-error>
+
+                    @if (personalFormgroup.get("mobileNumber")?.errors?.["required"]) {
+                      <span>مقداری وارد نشده</span>
+                      
+
+                    } 
+                    
+                    @else if (personalFormgroup.get("mobileNumber")?.errors?.["pattern"]) {
+                      <span>فرمت شماره به درستی وارد نشده</span>
+                    }
+                    
+                    <!-- @else if (personalFormgroup.get("mobileNumber")?.errors?.["minlength"]) {
+                      <span>حداقل کاراکتر مجاز ۳ عدد</span>
+  
+                    }@else if (personalFormgroup.get("mobileNumber")?.errors?.["maxlength"]) {
+                      <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                    } -->
+                  </mat-error>
+
+           
+                }
+                
+                
+                
               </mat-form-field>
       
               <mat-form-field class="w-full" >
                 <mat-label>نام کاربری</mat-label>
                 <input matInput type="text" placeholder="نام کاربری را وارد کنید"  formControlName="userName"/>
+
+                @if (personalFormgroup.get("userName")?.touched && personalFormgroup.get("userName")?.errors) {
+                  <mat-error>
+
+                    @if (personalFormgroup.get("userName")?.errors?.["required"]) {
+                      <span>مقداری وارد نشده</span>
+                    }@else if (personalFormgroup.get("userName")?.errors?.["minlength"]) {
+                      <span>حداقل کاراکتر مجاز ۴ عدد</span>
+  
+                    }@else if (personalFormgroup.get("userName")?.errors?.["maxlength"]) {
+                      <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                    }
+                  </mat-error>
+
+           
+                }
+                
+                
               </mat-form-field>
               <mat-form-field class="w-full" >
                 <mat-label>رمز عبور</mat-label>
                 <input matInput type="text"  placeholder="رمز عبور را وارد کنید" formControlName="password"/>
+
+                @if (personalFormgroup.get("password")?.touched && personalFormgroup.get("password")?.errors) {
+                  <mat-error>
+
+                    @if (personalFormgroup.get("password")?.errors?.["required"]) {
+                      <span>مقداری وارد نشده</span>
+                    } @else if (personalFormgroup.get("password")?.errors?.["pattern"]) {
+                      <span>رمز باید شامل حداق یک حرف بزرگ ، یک کاراکتر خاص و یک عدد باشد</span>
+  
+                    }
+                    
+                    @else if (personalFormgroup.get("password")?.errors?.["minlength"]) {
+                      <span>حداقل کاراکتر مجاز ۳ عدد</span>
+  
+                    }@else if (personalFormgroup.get("password")?.errors?.["maxlength"]) {
+                      <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                    }
+                  </mat-error>
+
+           
+                }
+                
+                
               </mat-form-field>
 
               <section class="example-section" class="flex items-center  w-full gap-4 ">
@@ -62,51 +188,228 @@
               <form
               action="" [formGroup]="legalFormGroup"
               (ngSubmit)="onlegalFormSubmit()"
-              class="flex flex-col items-center justify-center gap-2 mt-5"
+              class=" sm:grid  gap-2 mt-5 p-2" 
             >
               <mat-form-field class="w-full">
                 <mat-label>نام سازمان</mat-label>
                 <input matInput type="text" placeholder="نام سازمان را وارد کنید"  formControlName="name"/>
+
+                @if (legalFormGroup.get("name")?.touched && legalFormGroup.get("name")?.errors) {
+                  <mat-error>
+
+                    @if (legalFormGroup.get("name")?.errors?.["required"]) {
+                      <span>مقداری وارد نشده</span>
+                    }@else if (legalFormGroup.get("name")?.errors?.["minlength"]) {
+                      <span>حداقل کاراکتر مجاز ۴ عدد</span>
+  
+                    }@else if (legalFormGroup.get("name")?.errors?.["maxlength"]) {
+                      <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                    }
+                  </mat-error>
+
+           
+                }
               </mat-form-field>
+          
               <mat-form-field class="w-full">
                 <mat-label>آدرس</mat-label>
                 <input matInput type="text" placeholder="آدرس را وارد کنید"  formControlName="address"/>
+                @if (legalFormGroup.get("address")?.touched && legalFormGroup.get("address")?.errors) {
+                  <mat-error>
+
+                    @if (legalFormGroup.get("address")?.errors?.["required"]) {
+                      <span>مقداری وارد نشده</span>
+                    }@else if (legalFormGroup.get("address")?.errors?.["minlength"]) {
+                      <span>حداقل کاراکتر مجاز ۴ عدد</span>
+  
+                    }@else if (legalFormGroup.get("address")?.errors?.["maxlength"]) {
+                      <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                    }
+                  </mat-error>
+
+           
+                }
               </mat-form-field>
+        
               <mat-form-field class="w-full">
                 <mat-label>کد پستی</mat-label>
                 <input matInput type="number" placeholder="شماره ملی را وارد کنید"  formControlName="postalCode"/>
+
+                @if (legalFormGroup.get("postalCode")?.touched && legalFormGroup.get("postalCode")?.errors) {
+                  <mat-error>
+
+                    @if (legalFormGroup.get("postalCode")?.errors?.["required"]) {
+                      <span>مقداری وارد نشده</span>
+                    }
+                  </mat-error>
+
+           
+                }
+                
               </mat-form-field>
               <mat-form-field class="w-full">
                 <mat-label>شماره همراه</mat-label>
-                <input matInput type="number" placeholder="شماره همراه را وارد کنید"  formControlName="mobileNumber"/>
+                <input matInput type="text" placeholder="مثال : ۰۹۰۳۱۳۵۷۲۶۲"  formControlName="mobileNumber"/>
+
+                @if (legalFormGroup.get("mobileNumber")?.touched && legalFormGroup.get("mobileNumber")?.errors) {
+                  <mat-error>
+
+                    @if (legalFormGroup.get("mobileNumber")?.errors?.["required"]) {
+                      <span>مقداری وارد نشده</span>
+  
+                    } @else if (legalFormGroup.get("mobileNumber")?.errors?.["pattern"]) {
+                      <span>فرمت شماره درست وارد نشده</span>
+
+                    }
+                  </mat-error>
+
+           
+                }
+                
+                
               </mat-form-field>
               <mat-form-field class="w-full" >
                 <mat-label>شناسه ملی</mat-label>
                 <input matInput type="number" placeholder="شناسه ملی را وارد کنید"  formControlName="nationalId"/>
+
+                @if (legalFormGroup.get("nationalId")?.touched && legalFormGroup.get("nationalId")?.errors) {
+                  <mat-error>
+
+                    @if (legalFormGroup.get("nationalId")?.errors?.["required"]) {
+                      <span>مقداری وارد نشده</span>
+                    }@else if (legalFormGroup.get("nationalId")?.errors?.["minlength"]) {
+                      <span>حداقل کاراکتر مجاز ۴ عدد</span>
+  
+                    }@else if (legalFormGroup.get("nationalId")?.errors?.["maxlength"]) {
+                      <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                    }
+                  </mat-error>
+
+           
+                }
               </mat-form-field>
               <mat-form-field class="w-full" >
                 <mat-label>کد اقتصادی</mat-label>
                 <input matInput type="number"  placeholder="کد اقتصادی را وارد کنید" formControlName="economicCode"/>
+
+                @if (legalFormGroup.get("economicCode")?.touched && legalFormGroup.get("economicCode")?.errors) {
+                  <mat-error>
+
+                    @if (legalFormGroup.get("economicCode")?.errors?.["required"]) {
+                      <span>مقداری وارد نشده</span>
+                    }@else if (legalFormGroup.get("economicCode")?.errors?.["minlength"]) {
+                      <span>حداقل کاراکتر مجاز ۴ عدد</span>
+  
+                    }@else if (legalFormGroup.get("economicCode")?.errors?.["maxlength"]) {
+                      <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                    }
+                  </mat-error>
+
+           
+                }
+                
               </mat-form-field>
               <mat-form-field class="w-full" >
                 <mat-label>رمز عبور</mat-label>
                 <input matInput type="text"  placeholder="رمز عبور را وارد کنید" formControlName="password"/>
+
+                @if (legalFormGroup.get("password")?.touched && legalFormGroup.get("password")?.errors) {
+                  <mat-error>
+
+                    @if (legalFormGroup.get("password")?.errors?.["required"]) {
+                      <span>مقداری وارد نشده</span>
+                    }@else if (legalFormGroup.get("password")?.errors?.["minlength"]) {
+                      <span>حداقل کاراکتر مجاز ۴ عدد</span>
+  
+                    }@else if (legalFormGroup.get("password")?.errors?.["maxlength"]) {
+                      <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                    }@else if(legalFormGroup.get("password")?.errors?.["pattern"]) {
+                      <span>رمز باید شامل حداق یک حرف بزرگ ، یک کاراکتر خاص و یک عدد باشد</span>
+                    }
+
+                  </mat-error>
+
+           
+                }
               </mat-form-field>
               <mat-form-field class="w-full" >
                 <mat-label>نام کاربری</mat-label>
                 <input matInput type="text"  placeholder="نام کاربری را وارد کنید" formControlName="userName"/>
+
+                <mat-error>
+
+                  @if (legalFormGroup.get("userName")?.errors?.["required"]) {
+                    <span>مقداری وارد نشده</span>
+                  }@else if (legalFormGroup.get("userName")?.errors?.["minlength"]) {
+                    <span>حداقل کاراکتر مجاز ۴ عدد</span>
+  
+                  }@else if (legalFormGroup.get("userName")?.errors?.["maxlength"]) {
+                    <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                  }
+
+                </mat-error>
+                
+                
+  
+                
+                
               </mat-form-field>
               <mat-form-field class="w-full" >
                 <mat-label>نام </mat-label>
                 <input matInput type="text"  placeholder="نام را وارد کنید" formControlName="firstName"/>
+
+                <mat-error>
+                  @if (legalFormGroup.get("firstName")?.errors?.["required"]) {
+                    <span>مقداری وارد نشده</span>
+                  }@else if (legalFormGroup.get("firstName")?.errors?.["minlength"]) {
+                    <span>حداقل کاراکتر مجاز ۴ عدد</span>
+  
+                  }@else if (legalFormGroup.get("firstName")?.errors?.["maxlength"]) {
+                    <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                  }
+                </mat-error>
+          
               </mat-form-field>
               <mat-form-field class="w-full" >
                 <mat-label>نام خانوادگی</mat-label>
                 <input matInput type="text"  placeholder="نام خانوادگی را وارد کنید" formControlName="lastName"/>
+                <mat-error>
+                  @if (legalFormGroup.get("lastName")?.errors?.["required"]) {
+                    <span>مقداری وارد نشده</span>
+                  }@else if (legalFormGroup.get("lastName")?.errors?.["minlength"]) {
+                    <span>حداقل کاراکتر مجاز ۴ عدد</span>
+  
+                  }@else if (legalFormGroup.get("lastName")?.errors?.["maxlength"]) {
+                    <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                  }
+                </mat-error>
+
               </mat-form-field>
-              <mat-form-field class="w-full" >
+
+              <mat-form-field class="w-full  col-span-2"  >
+                
                 <mat-label>کد ملی</mat-label>
                 <input matInput type="number"  placeholder="کد ملی را وارد کنید" formControlName="nationalCode"/>
+                <mat-error>
+                  @if (legalFormGroup.get("nationalCode")?.errors?.["required"]) {
+                    <span>مقداری وارد نشده</span>
+                  }@else if (legalFormGroup.get("nationalCode")?.errors?.["minlength"]) {
+                    <span>حداقل کاراکتر مجاز ۴ عدد</span>
+  
+                  }@else if (legalFormGroup.get("nationalCode")?.errors?.["maxlength"]) {
+                    <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                  }
+                </mat-error>
+          
               </mat-form-field>
 
 

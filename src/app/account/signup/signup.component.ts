@@ -27,7 +27,7 @@ personalFormgroup = new FormGroup({
   "mobileNumber" : new FormControl("" , [Validators.required , Validators.pattern(/^09\d{9}$/)]),
   "isForeigner" : new FormControl("" , []),
   "userName" : new FormControl("" , [Validators.required , Validators.minLength(4) , Validators.maxLength(12)]),
-  "password" : new FormControl("" , [Validators.required , Validators.minLength(4) , Validators.maxLength(12)]),
+  "password" : new FormControl("" , [Validators.required , Validators.minLength(4) , Validators.maxLength(12) , Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{3,}$/)]),
 })
 
 

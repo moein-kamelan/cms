@@ -27,10 +27,32 @@ mat-label , input {
 .mat-mdc-tab-body-content.mat-tab-body-content-can-animate {
     height: 340px ;
 }
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 8px;
 
-.mat-mdc-tab-body-content.mat-tab-body-content-can-animate::-webkit-scrollbar-track {
-    background-color: #6a13f7 !important;
-}
-.mat-mdc-tab-body-content.mat-tab-body-content-can-animate::-webkit-scrollbar-thumb {
-    background-color: #eec305 !important;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+mat-error span {
+    font-family: "iranSanc-r" !important;
+    color: white;
+    font-size: 10px;
+
 }
