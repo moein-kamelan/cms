@@ -3,7 +3,7 @@ import { AccountComponent } from './account/account.component';
 import { Page404Component } from './page404/page404.component';
 
 export const routes: Routes = [
-  { path: '', title: 'users', redirectTo: 'account/login', pathMatch: 'full' },
+  { path: '', title: 'users', redirectTo: 'account/signup', pathMatch: 'full' },
   {
     path: 'account',
     title: 'account',

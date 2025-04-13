@@ -1,87 +1,147 @@
-<section class="bg-gray-50 dark:bg-gray-900 h-full" >
+<section class="bg-gray-50 dark:bg-gray-900 h-full">
+  <div
+    class="flex flex-col items-center justify-center px-2 py-4 mx-auto md:h-screen lg:py-0 h-full"
+  >
     <div
-      class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 h-full"
+      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
     >
-   
-      <div
-        class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
-      >
-        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-          <h1
-            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
-          >
-            Create new account
-          </h1>
-          <!-- <form class="space-y-4 md:space-y-6" action="#">
-            <div>
-              <label
-                for="email"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Your email</label
-              >
-              <input
-                type="email"
-                name="email"
-                id="email"
-                class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="name@company.com"
-                required=""
-              />
-            </div>
-            <div>
-              <label
-                for="password"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Password</label
-              >
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="••••••••"
-                class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required=""
-              />
-            </div>
-            <div class="flex items-center justify-between">
-              <div class="flex items-start">
-                <div class="flex items-center h-5">
-                  <input
-                    id="remember"
-                    aria-describedby="remember"
-                    type="checkbox"
-                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                    required=""
-                  />
-                </div>
-                <div class="ml-3 text-sm">
-                  <label for="remember" class="text-gray-500 dark:text-gray-300"
-                    >Remember me</label
-                  >
-                </div>
+      <div class="!p-4 space-y-4 md:space-y-6 sm:p-8">
+        <h1
+          class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white mb-2"
+        >
+          ساختن حساب جدید
+        </h1>
+        <div>
+          <mat-tab-group animationDuration="300ms" class="border-b-2 border-b-amber-200 " (selectedIndexChange)="onChangeTab($event)">
+            <mat-tab label="شخص حقیقی" class="flex items-center justify-center">
+                <div class="fields-container flex flex-col items-center justify-center gap-2 mt-5">
+                <form
+                  action="" [formGroup]="personalFormgroup"
+                  (ngSubmit)="onPersonalSubmit()"
+                  class=""
+                  class="grid grid-cols-2 gap-2"
+                >
+
+              <mat-form-field class="w-full">
+                <mat-label>نام</mat-label>
+                <input matInput type="text" placeholder="نام  را وارد کنید"  formControlName="firstName"/>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <mat-label>نام خانوادگی</mat-label>
+                <input matInput type="text" placeholder="نام خانوادگی را وارد کنید"  formControlName="lastName"/>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <mat-label>شماره ملی</mat-label>
+                <input matInput type="text" placeholder="شماره ملی را وارد کنید"  formControlName="nationalCode"/>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <mat-label>شماره همراه</mat-label>
+                <input matInput type="text" placeholder="شماره همراه را وارد کنید"  formControlName="mobileNumber"/>
+              </mat-form-field>
+      
+              <mat-form-field class="w-full" >
+                <mat-label>نام کاربری</mat-label>
+                <input matInput type="text" placeholder="نام کاربری را وارد کنید"  formControlName="userName"/>
+              </mat-form-field>
+              <mat-form-field class="w-full" >
+                <mat-label>رمز عبور</mat-label>
+                <input matInput type="text"  placeholder="رمز عبور را وارد کنید" formControlName="password"/>
+              </mat-form-field>
+
+              <section class="example-section" class="flex items-center  w-full gap-4 ">
+                <h4 class="text-main-black dark:text-white text-sm">ایا اتباع خارجی هستید؟</h4>
+                <mat-checkbox formControlName="isForeigner"></mat-checkbox>
+              </section>
+
+                </form>
+
+        
               </div>
-            
-              
-            </div>
-            <button
-              type="submit"
-              class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+            </mat-tab>
+            <mat-tab label="شخص حقوقی">
+              <form
+              action="" [formGroup]="legalFormGroup"
+              (ngSubmit)="onlegalFormSubmit()"
+              class="flex flex-col items-center justify-center gap-2 mt-5"
             >
-              register now
-            </button>
-            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-              
-You already have an account?
-              <a
-                routerLink="/account/login"
-                class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                >login</a
-              >
-            </p>
-          </form> -->
-          
-          
-          <form class="example-form">
+              <mat-form-field class="w-full">
+                <mat-label>نام سازمان</mat-label>
+                <input matInput type="text" placeholder="نام سازمان را وارد کنید"  formControlName="name"/>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <mat-label>آدرس</mat-label>
+                <input matInput type="text" placeholder="آدرس را وارد کنید"  formControlName="address"/>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <mat-label>کد پستی</mat-label>
+                <input matInput type="number" placeholder="شماره ملی را وارد کنید"  formControlName="postalCode"/>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <mat-label>شماره همراه</mat-label>
+                <input matInput type="number" placeholder="شماره همراه را وارد کنید"  formControlName="mobileNumber"/>
+              </mat-form-field>
+              <mat-form-field class="w-full" >
+                <mat-label>شناسه ملی</mat-label>
+                <input matInput type="number" placeholder="شناسه ملی را وارد کنید"  formControlName="nationalId"/>
+              </mat-form-field>
+              <mat-form-field class="w-full" >
+                <mat-label>کد اقتصادی</mat-label>
+                <input matInput type="number"  placeholder="کد اقتصادی را وارد کنید" formControlName="economicCode"/>
+              </mat-form-field>
+              <mat-form-field class="w-full" >
+                <mat-label>رمز عبور</mat-label>
+                <input matInput type="text"  placeholder="رمز عبور را وارد کنید" formControlName="password"/>
+              </mat-form-field>
+              <mat-form-field class="w-full" >
+                <mat-label>نام کاربری</mat-label>
+                <input matInput type="text"  placeholder="نام کاربری را وارد کنید" formControlName="userName"/>
+              </mat-form-field>
+              <mat-form-field class="w-full" >
+                <mat-label>نام </mat-label>
+                <input matInput type="text"  placeholder="نام را وارد کنید" formControlName="firstName"/>
+              </mat-form-field>
+              <mat-form-field class="w-full" >
+                <mat-label>نام خانوادگی</mat-label>
+                <input matInput type="text"  placeholder="نام خانوادگی را وارد کنید" formControlName="lastName"/>
+              </mat-form-field>
+              <mat-form-field class="w-full" >
+                <mat-label>کد ملی</mat-label>
+                <input matInput type="number"  placeholder="کد ملی را وارد کنید" formControlName="nationalCode"/>
+              </mat-form-field>
+
+
+
+
+ 
+            </form>
+
+
+            
+            
+            
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+  
+
+        
+        <button
+        type="submit"
+        class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 font-iranSansDemiBold"
+      >
+        تایید ثبت نام
+      </button>
+      
+        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+          ایا از قبل حساب کاربری دارید؟
+          <a
+            routerLink="/account/login"
+            class="font-medium text-primary-600 hover:underline dark:text-primary-500 fontbold"
+            >ورود</a
+          >
+        </p>
+
+        <!-- <form class="example-form">
             <mat-form-field class="example-full-width">
               <mat-label>Email</mat-label>
               <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
@@ -94,10 +154,8 @@ You already have an account?
                 <mat-error>Email is <strong>required</strong></mat-error>
               }
             </mat-form-field>
-          </form>
-        </div>
+          </form> -->
       </div>
     </div>
-  </section>
-  
-
+  </div>
+</section>

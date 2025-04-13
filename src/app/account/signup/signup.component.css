@@ -1,0 +1,36 @@
+.mdc-label {
+    color: white ;
+    font-family: "iranSanc-r";
+}
+.mdc-tab__text-label {
+    color: white !important;
+    font-family: "iranSanc-r";
+
+}
+
+
+/* ::ng-deep .custom-tabs .mat-tab-label {
+    color: var(--mat-sys-on-surface);
+    font-weight: 500;
+  }
+  
+  ::ng-deep .custom-tabs .mat-tab-label.mat-tab-label-active {
+    color: var(--mat-sys-primary); 
+} */
+
+mat-label , input {
+    font-family: "iranSanc-r" !important;
+
+
+}
+
+.mat-mdc-tab-body-content.mat-tab-body-content-can-animate {
+    height: 340px ;
+}
+
+.mat-mdc-tab-body-content.mat-tab-body-content-can-animate::-webkit-scrollbar-track {
+    background-color: #6a13f7 !important;
+}
+.mat-mdc-tab-body-content.mat-tab-body-content-can-animate::-webkit-scrollbar-thumb {
+    background-color: #eec305 !important;
+}
