@@ -3,7 +3,7 @@ export interface Personal {
         "lastName": "string",
         "nationalCode": "string",
         "mobileNumber": "string",
-        "isForeigner": true,
+        "isForeigner": boolean,
         "userName": "string",
         "password": "string"
     

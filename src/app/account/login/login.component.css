@@ -35,3 +35,16 @@ mat-label , input {
 .mat-mdc-tab-body-content.mat-tab-body-content-can-animate::-webkit-scrollbar-thumb {
     background-color: #eec305 !important;
 }
+mat-error span {
+    font-family: "iranSanc-r" !important;
+    color: white;
+    font-size: 10px;
+
+}
+
+.invalid-btn {
+    background-color: #ccc !important;
+    color: #666 !important;
+    cursor: not-allowed;
+    box-shadow: none !important;
+  }

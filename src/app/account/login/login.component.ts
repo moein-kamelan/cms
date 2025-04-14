@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../../material.module';
 import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -11,50 +11,23 @@ import { from } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
-
-  @ViewChild("legalFormButton") legalFormButton! : ElementRef<HTMLButtonElement> 
-  @ViewChild("personalFormButton") personalFormButton! : ElementRef<HTMLButtonElement>
+export class LoginComponent implements OnInit {
+  loginFormGroup!:FormGroup
 
 isLegal:boolean = false
   
   constructor() { }
 
-  loginFormGroup = new FormGroup(
-    {
-      "userName" : new FormControl('', [Validators.required]),
-      "password" : new FormControl("" , [Validators.required])
-    }
-  )
-
-personalFormgroup = new FormGroup({
-  "firstName" : new FormControl("" , [Validators.required , Validators.minLength(4) , Validators.maxLength(12) ]  ),
-  "lastName" : new FormControl("" , [Validators.required , Validators.minLength(4) , Validators.maxLength(12)]),
-  "nationalCode" : new FormControl("" , [Validators.required , ]),
-  "mobileNumber" : new FormControl("" , [Validators.required , Validators.pattern(/^09\d{9}$/)]),
-  "isForeigner" : new FormControl("" , []),
-  "userName" : new FormControl("" , [Validators.required , Validators.minLength(4) , Validators.maxLength(12)]),
-  "password" : new FormControl("" , [Validators.required , Validators.minLength(4) , Validators.maxLength(12)]),
-})
-
-
-
-
-legalFormGroup = new FormGroup(
-  {
-    "name" : new FormControl("" , [Validators.required ,  Validators.minLength(4) , Validators.maxLength(12)]),
-    "address" : new FormControl("" , [Validators.required ,  Validators.minLength(4) , Validators.maxLength(12)]),
-    "postalCode" : new FormControl("" , [Validators.required ,  Validators.minLength(4) , Validators.maxLength(12)]),
-    "mobileNumber" : new FormControl("" , [Validators.required , Validators.pattern(/^09\d{9}$/)]),
-    "nationalId" : new FormControl("" , [Validators.required]),
-    "nationalCode" : new FormControl("" , [Validators.required]),
-    "economicCode" : new FormControl("" , [Validators.required]),
-    "password" : new FormControl("" , [Validators.required ,  Validators.minLength(4) , Validators.maxLength(12)]),
-    "userName" : new FormControl("" , [Validators.required ,  Validators.minLength(4) , Validators.maxLength(12)]),
-    "firstName" : new FormControl("" , [Validators.required ,  Validators.minLength(4) , Validators.maxLength(12)]),
-    "lastName" : new FormControl("" , [Validators.required ,  Validators.minLength(4) , Validators.maxLength(12)]),
+  ngOnInit(): void {
+    this.loginFormGroup = new FormGroup(
+      {
+        "userName" : new FormControl('', [Validators.required , Validators.minLength(4) , Validators.maxLength(12)]),
+        "password" : new FormControl("" , [Validators.required , Validators.minLength(4) , Validators.maxLength(12) , Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{3,}$/)] )
+      }
+    )
   }
-)
+
+  
 
 onChangeTab(index: number) {
 
@@ -64,34 +37,14 @@ onChangeTab(index: number) {
     this.isLegal = true
     
   }
-  
-
-  
-  
+    
 }
 
 
 onsubmit() {
-if(this.isLegal) {
-  this.legalFormButton.nativeElement.click()
-} else {
-  this.personalFormButton.nativeElement.click()
-}
+
 }
 
-onlegalFormSubmit() {
-  console.log("hello");
-  
-  
-
-  
-  }
-
-  onPersonalSubmit() {
-    console.log("hello");
-    
-    
-    }
   
 
 }

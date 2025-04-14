@@ -11,29 +11,61 @@
         >
           ورود به حساب کاربری
         </h1>
+              
+                <div>
 
 
-        
-        
-        
-        
-        
-        <div>
-          <form action="" [formGroup]="loginFormGroup">
+
+
+
+          <form  [formGroup]="loginFormGroup" class="grid gap-2">
 
 
             <mat-form-field class="w-full">
               <mat-label>نام کاربری</mat-label>
-              <input matInput type="text" placeholder="نام کاربری را وارد کنید"  formControlName="userName"/>
+              <input matInput type="password" placeholder="نام کاربری را وارد کنید"  formControlName="userName"/>
+
+              
+              @if(loginFormGroup.get("userName")?.touched && loginFormGroup.get("password")?.errors) {
+                <mat-error>
+                  @if(loginFormGroup.get("userName")?.errors?.["required"]) {
+                    <span>مقداری وارد نشده</span>
+                  }@else if (loginFormGroup.get("userName")?.errors?.["minlength"]) {
+                    <span>حداقل کاراکتر مجاز 4 عدد </span>
+                  }@else if (loginFormGroup.get("userName")?.errors?.["maxlength"]) {
+                    <span>حداکثر کاراکتر مجاز 12 عدد</span>
+                  }
+                  
+                </mat-error>
+                
+       
+              }
+              
             </mat-form-field>
+
+            
             <mat-form-field class="w-full">
-              <mat-label>نام خانوادگی</mat-label>
-              <input matInput type="text" placeholder="پسورد را وارد کنید"  formControlName="password"/>
+              <mat-label>رمز عبور</mat-label>
+              <input matInput type="text" placeholder="رمز عبور را وارد کنید"  formControlName="password"/>
+
+              @if(loginFormGroup.get("password")?.touched && loginFormGroup.get("password")?.errors) {
+                <mat-error>
+                  @if(loginFormGroup.get("password")?.errors?.["required"]) {
+                    <span>مقداری وارد نشده</span>
+                  }@else if (loginFormGroup.get("password")?.errors?.["minlength"]) {
+                    <span>حداقل کاراکتر مجاز 4 عدد </span>
+                  }@else if (loginFormGroup.get("password")?.errors?.["maxlength"]) {
+                    <span>حداکثر کاراکتر مجاز 12 عدد</span>
+                  }@else if (loginFormGroup.get("password")?.errors?.["pattern"]) {
+                    <span>رمز باید شامل حروف بزرگ و کوچک . عدد و علامت باشد</span>
+                  }
+                  
+                </mat-error>
+              }
+              
+              
             </mat-form-field>
-
-
-            
-            
+                        
           </form>
 
           
@@ -63,6 +95,8 @@
         
         <button
         type="submit"
+        [ngClass]="{'invalid-btn' : !loginFormGroup.valid }"
+        [disabled]="!loginFormGroup.valid"
         class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 font-iranSansDemiBold"
       >
         ورود
