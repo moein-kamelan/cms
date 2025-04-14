@@ -16,9 +16,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { from } from 'rxjs';
+import { catchError, from, of } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-signup',
   imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
@@ -28,8 +28,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class SignupComponent implements OnInit {
   @ViewChild('legalFormButton') legalFormButton!: ElementRef<HTMLButtonElement>;
-  @ViewChild('personalFormButton')
-  personalFormButton!: ElementRef<HTMLButtonElement>;
+  @ViewChild('personalFormButton') personalFormButton!: ElementRef<HTMLButtonElement>;
 
   legalFormGroup!: FormGroup;
   personalFormGroup!: FormGroup;
@@ -37,6 +36,8 @@ export class SignupComponent implements OnInit {
   isLegal: boolean = false;
 
   ngOnInit(): void {
+    console.log("personalFormButton" , this.personalFormButton);
+    
     this.personalFormGroup = new FormGroup({
       firstName: new FormControl('', [
         Validators.required,
@@ -61,10 +62,10 @@ export class SignupComponent implements OnInit {
       ]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(8),
         Validators.maxLength(12),
         Validators.pattern(
-          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{3,}$/
+          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/
         ),
       ]),
     });
@@ -94,10 +95,10 @@ export class SignupComponent implements OnInit {
       economicCode: new FormControl('', [Validators.required]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(8),
         Validators.maxLength(12),
         Validators.pattern(
-          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{3,}$/
+          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/
         ),
       ]),
       userName: new FormControl('', [
@@ -140,9 +141,13 @@ export class SignupComponent implements OnInit {
 
   onlegalFormSubmit() {
     console.log('this.legalFormGroup.value =>', this.legalFormGroup.value);
-    this.authService.createLegalAccount(this.legalFormGroup.value).subscribe({
+    this.authService.createLegalAccount(this.legalFormGroup.value).pipe(catchError((err) => {
+      console.log("err in catch err" , err);
+      return of(null);
+    })).subscribe({
       next: (res) => {
         console.log(res);
+
       },
       error : (err) => {
         console.log(err);
@@ -156,7 +161,11 @@ export class SignupComponent implements OnInit {
       'this.personalFormGroup.value =>',
       this.personalFormGroup.value
     );
-    this.authService.createPersonalAccount(this.personalFormGroup.value).subscribe({
+    this.authService.createPersonalAccount(this.personalFormGroup.value).pipe(catchError((err) => {
+      console.log("err in catch err" , err.error.validationErrors[0].message);
+      
+      return of(null);
+    })).subscribe({
       next: (res) => {
         console.log(res);
       },

@@ -158,16 +158,16 @@
 
                     @if (personalFormGroup.get("password")?.errors?.["required"]) {
                       <span>مقداری وارد نشده</span>
-                    } @else if (personalFormGroup.get("password")?.errors?.["pattern"]) {
-                      <span>رمز باید شامل حداق یک حرف بزرگ ، یک کاراکتر خاص و یک عدد باشد</span>
-  
-                    }
+                    } 
                     
                     @else if (personalFormGroup.get("password")?.errors?.["minlength"]) {
-                      <span>حداقل کاراکتر مجاز ۳ عدد</span>
+                      <span>حداقل کاراکتر مجاز 8 عدد</span>
   
                     }@else if (personalFormGroup.get("password")?.errors?.["maxlength"]) {
                       <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+  
+                    }@else if (personalFormGroup.get("password")?.errors?.["pattern"]) {
+                      <span>رمز باید شامل حداق یک حرف بزرگ ، یک کاراکتر خاص و یک عدد باشد</span>
   
                     }
                   </mat-error>
@@ -339,7 +339,7 @@
                       <span>حداقل کاراکتر مجاز ۴ عدد</span>
   
                     }@else if (legalFormGroup.get("password")?.errors?.["maxlength"]) {
-                      <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+                      <span>حداکثر کاراکتر مجاز 8 عدد</span>
   
                     }@else if(legalFormGroup.get("password")?.errors?.["pattern"]) {
                       <span>رمز باید شامل حداق یک حرف بزرگ ، یک کاراکتر خاص و یک عدد باشد</span>
