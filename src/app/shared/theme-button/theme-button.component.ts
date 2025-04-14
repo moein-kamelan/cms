@@ -9,7 +9,6 @@ import { MaterialModule } from '../../material.module';
   encapsulation : ViewEncapsulation.None
 })
 export class ThemeButtonComponent {
-  @ViewChild("darkIcon") darkIcon!:ElementRef 
   isDark:boolean = false
 
   constructor(private renderer : Renderer2) {
@@ -24,12 +23,9 @@ console.log(this.isDark);
 
 if(this.isDark) {
   this.renderer.addClass(document.body , "dark")
-  this.renderer.addClass(this.darkIcon.nativeElement , "text-white")
   
 } else {
   this.renderer.removeClass(document.body , "dark")
-  this.renderer.addClass(this.darkIcon.nativeElement , "text-black")
-  console.log(this.darkIcon.nativeElement);
   
 
 }

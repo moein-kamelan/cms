@@ -20,10 +20,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { catchError, from, of } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { ThemeButtonComponent } from "../../shared/theme-button/theme-button.component";
 @Component({
   selector: 'app-signup',
-  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, ThemeButtonComponent],
+  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
   encapsulation: ViewEncapsulation.None,
@@ -85,14 +84,15 @@ export class SignupComponent implements OnInit {
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
+        Validators.pattern(/^\d{10}$/)
       ]),
       mobileNumber: new FormControl('', [
         Validators.required,
         Validators.pattern(/^09\d{9}$/),
       ]),
-      nationalId: new FormControl('', [Validators.required]),
-      nationalCode: new FormControl('', [Validators.required]),
-      economicCode: new FormControl('', [Validators.required]),
+      nationalId: new FormControl('', [Validators.required ,   Validators.pattern(/^(?!([0-9])\1{10})\d{11}$/)]),
+      nationalCode: new FormControl('', [Validators.required , Validators.pattern(/^(?!(\d)\1{9})\d{10}$/)]),
+      economicCode: new FormControl('', [Validators.required , Validators.pattern(/^\d{12}$/)]),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(8),

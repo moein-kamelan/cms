@@ -249,6 +249,8 @@
 
                     @if (legalFormGroup.get("postalCode")?.errors?.["required"]) {
                       <span>مقداری وارد نشده</span>
+                    } @else if (legalFormGroup.get("postalCode")?.errors?.["pattern"]) {
+                      <span>باید عدد ۹ رقمی وارد کنید</span>
                     }
                   </mat-error>
 
@@ -289,11 +291,8 @@
 
                     @if (legalFormGroup.get("nationalId")?.errors?.["required"]) {
                       <span>مقداری وارد نشده</span>
-                    }@else if (legalFormGroup.get("nationalId")?.errors?.["minlength"]) {
-                      <span>حداقل کاراکتر مجاز ۴ عدد</span>
-  
-                    }@else if (legalFormGroup.get("nationalId")?.errors?.["maxlength"]) {
-                      <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+                    }@else if (legalFormGroup.get("nationalId")?.errors?.["pattern"]) {
+                      <span>باید عدد ۱۱ رقمی وارد کنید</span>
   
                     }
                   </mat-error>
@@ -312,11 +311,8 @@
 
                     @if (legalFormGroup.get("economicCode")?.errors?.["required"]) {
                       <span>مقداری وارد نشده</span>
-                    }@else if (legalFormGroup.get("economicCode")?.errors?.["minlength"]) {
-                      <span>حداقل کاراکتر مجاز ۴ عدد</span>
-  
-                    }@else if (legalFormGroup.get("economicCode")?.errors?.["maxlength"]) {
-                      <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+                    }@else if (legalFormGroup.get("economicCode")?.errors?.["pattern"]) {
+                      <span>باید عدد ۱۲ رقمی وارد کنید</span>
   
                     }
                   </mat-error>
@@ -419,11 +415,8 @@
                 <mat-error>
                   @if (legalFormGroup.get("nationalCode")?.errors?.["required"]) {
                     <span>مقداری وارد نشده</span>
-                  }@else if (legalFormGroup.get("nationalCode")?.errors?.["minlength"]) {
-                    <span>حداقل کاراکتر مجاز ۴ عدد</span>
-  
-                  }@else if (legalFormGroup.get("nationalCode")?.errors?.["maxlength"]) {
-                    <span>حداکثر کاراکتر مجاز ۱۲ عدد</span>
+                  }@else if (legalFormGroup.get("nationalCode")?.errors?.["pattern"]) {
+                    <span>باید عدد ۱۰ رقمی وارد کنید</span>
   
                   }
                 </mat-error>
