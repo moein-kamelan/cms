@@ -1,0 +1,7 @@
+.dark-icon {
+    color: #fff;
+}
+
+html.dark .dark-icon {
+    color: #000 !important;
+}

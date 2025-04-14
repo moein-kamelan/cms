@@ -19,6 +19,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import {MatIconModule} from "@angular/material/icon"
+
 
 @NgModule({
   imports: [
@@ -32,6 +34,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatCheckboxModule,
     MatSelectModule,
     MatButtonModule,
+    MatIconModule
   ],
   exports: [
     CommonModule,
@@ -44,6 +47,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatCheckboxModule,
     MatSelectModule,
     MatButtonModule,
+    MatIconModule
   ],
 })
 export class MaterialModule {}

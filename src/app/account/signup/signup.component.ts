@@ -20,9 +20,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { catchError, from, of } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { ThemeButtonComponent } from "../../shared/theme-button/theme-button.component";
 @Component({
   selector: 'app-signup',
-  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, ThemeButtonComponent],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
   encapsulation: ViewEncapsulation.None,
