@@ -4,6 +4,7 @@ import {
   OnInit,
   ViewChild,
   ViewEncapsulation,
+  inject,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../../material.module';
@@ -27,8 +28,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   encapsulation: ViewEncapsulation.None,
 })
 export class SignupComponent implements OnInit {
-  @ViewChild('legalFormButton') legalFormButton!: ElementRef<HTMLButtonElement>;
-  @ViewChild('personalFormButton') personalFormButton!: ElementRef<HTMLButtonElement>;
+  private _snackBar = inject(MatSnackBar);
 
   legalFormGroup!: FormGroup;
   personalFormGroup!: FormGroup;
@@ -36,7 +36,6 @@ export class SignupComponent implements OnInit {
   isLegal: boolean = false;
 
   ngOnInit(): void {
-    console.log("personalFormButton" , this.personalFormButton);
     
     this.personalFormGroup = new FormGroup({
       firstName: new FormControl('', [
@@ -133,9 +132,9 @@ export class SignupComponent implements OnInit {
 
   onsubmit() {
     if (this.isLegal) {
-      this.legalFormButton.nativeElement.click();
+      this.onlegalFormSubmit()
     } else {
-      this.personalFormButton.nativeElement.click();
+      this.onPersonalSubmit()
     }
   }
 
@@ -143,6 +142,9 @@ export class SignupComponent implements OnInit {
     console.log('this.legalFormGroup.value =>', this.legalFormGroup.value);
     this.authService.createLegalAccount(this.legalFormGroup.value).pipe(catchError((err) => {
       console.log("err in catch err" , err);
+      this._snackBar.open( "کاربری با این نام قبلا وجود داشته", "تلاش دوباره" , {
+      });
+      
       return of(null);
     })).subscribe({
       next: (res) => {
@@ -163,6 +165,8 @@ export class SignupComponent implements OnInit {
     );
     this.authService.createPersonalAccount(this.personalFormGroup.value).pipe(catchError((err) => {
       console.log("err in catch err" , err.error.validationErrors[0].message);
+      this._snackBar.open( "کاربری با این نام قبلا وجود داشته", "تلاش دوباره" , {
+      });
       
       return of(null);
     })).subscribe({

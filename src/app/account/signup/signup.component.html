@@ -18,7 +18,7 @@
                 <form
                    [formGroup]="personalFormGroup"
                   (ngSubmit)="onPersonalSubmit()"
-                                   class="grid sm:grid-cols-2 gap-2 w-full"
+                                   class="grid sm:grid-cols-2 gap-2 w-full p-2"
                 >
 
               <mat-form-field class="w-full">
@@ -242,7 +242,7 @@
         
               <mat-form-field class="w-full">
                 <mat-label>کد پستی</mat-label>
-                <input matInput type="number" placeholder="کد پستی را وارد کنید"  formControlName="postalCode"/>
+                <input matInput type="text" placeholder="کد پستی را وارد کنید"  formControlName="postalCode"/>
 
                 @if (legalFormGroup.get("postalCode")?.touched && legalFormGroup.get("postalCode")?.errors) {
                   <mat-error>
@@ -282,7 +282,7 @@
 
               <mat-form-field class="w-full" >
                 <mat-label>شناسه ملی</mat-label>
-                <input matInput type="number" placeholder="شناسه ملی را وارد کنید"  formControlName="nationalId"/>
+                <input matInput type="text" placeholder="شناسه ملی را وارد کنید"  formControlName="nationalId"/>
 
                 @if (legalFormGroup.get("nationalId")?.touched && legalFormGroup.get("nationalId")?.errors) {
                   <mat-error>
@@ -305,7 +305,7 @@
 
               <mat-form-field class="w-full" >
                 <mat-label>کد اقتصادی</mat-label>
-                <input matInput type="number"  placeholder="کد اقتصادی را وارد کنید" formControlName="economicCode"/>
+                <input matInput type="text"  placeholder="کد اقتصادی را وارد کنید" formControlName="economicCode"/>
 
                 @if (legalFormGroup.get("economicCode")?.touched && legalFormGroup.get("economicCode")?.errors) {
                   <mat-error>
@@ -412,10 +412,10 @@
 
               </mat-form-field>
 
-              <mat-form-field class="w-full  col-span-2"  >
+              <mat-form-field class="w-full  col-span-2" appearance="fill" >
                 
                 <mat-label>کد ملی</mat-label>
-                <input matInput type="number"  placeholder="کد ملی را وارد کنید" formControlName="nationalCode"/>
+                <input matInput type="text"  placeholder="کد ملی را وارد کنید" formControlName="nationalCode"/>
                 <mat-error>
                   @if (legalFormGroup.get("nationalCode")?.errors?.["required"]) {
                     <span>مقداری وارد نشده</span>

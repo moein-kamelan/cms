@@ -21,7 +21,11 @@ export class AuthService {
     });
   }
   createLegalAccount(person: Legal) {
-    return this.http.post(`${this.baseURL}/Account/LegalRegister`, person);
+    return this.http.post(`${this.baseURL}/Account/LegalRegister`, JSON.stringify(person) , {
+      headers : {
+        "Content-Type" : "application/json"
+      }
+    });
   }
 
   loginPerson(infos: Login) {}
