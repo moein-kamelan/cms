@@ -1,4 +1,4 @@
-<section class="bg-gray-50 dark:bg-gray-900 h-full">
+<section class="bg-gray-50 dark:bg-gray-900 h-screen">
   <div
     class="flex flex-col items-center justify-center px-2 py-4 mx-auto md:h-screen lg:py-0 h-full"
   >
@@ -7,7 +7,7 @@
     >
       <div class="!p-4 space-y-4 md:space-y-6 sm:p-8">
         <h1
-          class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white mb-6"
+          class="text-xl font-iranSansDemiBold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white mb-6"
         >
           ورود به حساب کاربری
         </h1>
@@ -18,23 +18,20 @@
 
 
 
-          <form  [formGroup]="loginFormGroup" class="grid gap-2">
+          <form  [formGroup]="loginFormGroup" (ngSubmit)="submitLoginForm()" class="grid gap-2">
 
 
             <mat-form-field class="w-full">
               <mat-label>نام کاربری</mat-label>
-              <input matInput type="password" placeholder="نام کاربری را وارد کنید"  formControlName="userName"/>
+              <input matInput type="text" placeholder="نام کاربری را وارد کنید"  formControlName="userName"/>
 
               
               @if(loginFormGroup.get("userName")?.touched && loginFormGroup.get("password")?.errors) {
                 <mat-error>
                   @if(loginFormGroup.get("userName")?.errors?.["required"]) {
                     <span>مقداری وارد نشده</span>
-                  }@else if (loginFormGroup.get("userName")?.errors?.["minlength"]) {
-                    <span>حداقل کاراکتر مجاز 4 عدد </span>
-                  }@else if (loginFormGroup.get("userName")?.errors?.["maxlength"]) {
-                    <span>حداکثر کاراکتر مجاز 12 عدد</span>
                   }
+                  
                   
                 </mat-error>
                 
@@ -46,18 +43,12 @@
             
             <mat-form-field class="w-full">
               <mat-label>رمز عبور</mat-label>
-              <input matInput type="text" placeholder="رمز عبور را وارد کنید"  formControlName="password"/>
+              <input matInput type="password" placeholder="رمز عبور را وارد کنید"  formControlName="password"/>
 
               @if(loginFormGroup.get("password")?.touched && loginFormGroup.get("password")?.errors) {
                 <mat-error>
                   @if(loginFormGroup.get("password")?.errors?.["required"]) {
                     <span>مقداری وارد نشده</span>
-                  }@else if (loginFormGroup.get("password")?.errors?.["minlength"]) {
-                    <span>حداقل کاراکتر مجاز 4 عدد </span>
-                  }@else if (loginFormGroup.get("password")?.errors?.["maxlength"]) {
-                    <span>حداکثر کاراکتر مجاز 12 عدد</span>
-                  }@else if (loginFormGroup.get("password")?.errors?.["pattern"]) {
-                    <span>رمز باید شامل حروف بزرگ و کوچک . عدد و علامت باشد</span>
                   }
                   
                 </mat-error>
@@ -65,6 +56,19 @@
               
               
             </mat-form-field>
+
+            <button
+            type="submit"
+            
+            [ngClass]="{'invalid-btn' : !loginFormGroup.valid }"
+            [disabled]="!loginFormGroup.valid"
+            class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+          >
+          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent w-full">
+
+            ورود
+          </span>
+          </button>
                         
           </form>
 
@@ -76,6 +80,7 @@
           <div class="flex items-center gap-2">
             <div class="flex items-center h-5">
               <input
+              #rememberInput
                 id="remember"
                 aria-describedby="remember"
                 type="checkbox"
@@ -93,14 +98,7 @@
         </div>
 
         
-        <button
-        type="submit"
-        [ngClass]="{'invalid-btn' : !loginFormGroup.valid }"
-        [disabled]="!loginFormGroup.valid"
-        class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 font-iranSansDemiBold"
-      >
-        ورود
-      </button>
+
       
         <p class="text-sm font-light text-gray-500 dark:text-gray-400">
           هنوز حساب کاربری ندارید ؟

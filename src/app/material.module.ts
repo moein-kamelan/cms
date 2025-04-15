@@ -20,7 +20,7 @@ import { inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from "@angular/material/icon"
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   imports: [
@@ -34,7 +34,8 @@ import {MatIconModule} from "@angular/material/icon"
     MatCheckboxModule,
     MatSelectModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule , 
+    MatSlideToggleModule
   ],
   exports: [
     CommonModule,
@@ -47,7 +48,8 @@ import {MatIconModule} from "@angular/material/icon"
     MatCheckboxModule,
     MatSelectModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule , 
+    MatSlideToggleModule
   ],
 })
 export class MaterialModule {}

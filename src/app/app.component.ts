@@ -6,7 +6,7 @@ import { ThemeButtonComponent } from "./shared/theme-button/theme-button.compone
   selector: 'app-root',
   imports: [RouterOutlet, ThemeButtonComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'cms';

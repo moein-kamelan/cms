@@ -5,7 +5,7 @@ import { MaterialModule } from '../../material.module';
   selector: 'app-theme-button',
   imports: [MaterialModule],
   templateUrl: './theme-button.component.html',
-  styleUrl: './theme-button.component.css',
+  styleUrl: './theme-button.component.scss',
   encapsulation : ViewEncapsulation.None
 })
 export class ThemeButtonComponent {

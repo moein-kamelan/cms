@@ -50,15 +50,17 @@ mat-label , input {
     background: #555;
   }
 
-mat-error span {
-    font-family: "iranSanc-r" !important;
-    color: white;
-    font-size: 8px;
 
-}
-.invalid-btn {
+.invalid-btn:disabled {
   background-color: #ccc !important;
   color: #666 !important;
   cursor: not-allowed;
   box-shadow: none !important;
+}
+
+app-error-message  {
+  font-family: "iranSanc-r" !important;
+  color: white;
+  font-size: 8px;
+
 }

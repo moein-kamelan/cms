@@ -1,50 +1,85 @@
-import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../../material.module';
-import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { inject } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  NgForm,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { from } from 'rxjs';
+import { catchError, from, of } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterModule , MaterialModule , FormsModule, ReactiveFormsModule ],
+  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
-  loginFormGroup!:FormGroup
+  loginFormGroup!: FormGroup;
+  private _snackBar = inject(MatSnackBar);
+  @ViewChild('rememberInput') rememberInput!: ElementRef;
 
-isLegal:boolean = false
-  
-  constructor() { }
+  isLegal: boolean = false;
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.loginFormGroup = new FormGroup(
-      {
-        "userName" : new FormControl('', [Validators.required , Validators.minLength(4) , Validators.maxLength(12)]),
-        "password" : new FormControl("" , [Validators.required , Validators.minLength(4) , Validators.maxLength(12) , Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{3,}$/)] )
-      }
-    )
+    this.loginFormGroup = new FormGroup({
+      userName: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+    });
   }
 
-  
+  submitLoginForm() {
+    console.log(this.loginFormGroup.value);
+    this.authService
+      .loginPerson(this.loginFormGroup.value)
+      .pipe(
+        catchError((err) => {
+          console.log(err);
 
-onChangeTab(index: number) {
-
-  if(index === 0) {
-    this.isLegal = false
-  } else if(index === 1) { 
-    this.isLegal = true
-    
+          if (err.status === 400) {
+            this._snackBar.open(err.message, 'تلاش دوباره', {
+              verticalPosition: 'top',
+            });
+          } else {
+            this._snackBar.open('خطای غیر منتظره ایی رخ داده', 'تلاش دوباره', {
+              verticalPosition: 'top',
+            });
+          }
+          return of(null);
+        })
+      )
+      .subscribe((res: any) => {
+        console.log(res);
+        if (res!.statusCode === 200) {
+          const isRememberMeOn = this.rememberInput.nativeElement.checked;
+          sessionStorage.setItem('token', res.data);
+          console.log(
+            'token in sessionStorage =>',
+            sessionStorage.getItem('token')
+          );
+          if (isRememberMeOn) {
+            localStorage.setItem('token', res.data);
+            console.log(
+              'token in localStorage =>',
+              localStorage.getItem('token')
+            );
+          }
+        }
+      });
   }
-    
-}
-
-
-onsubmit() {
-
-}
-
-  
-
 }

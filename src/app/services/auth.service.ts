@@ -28,5 +28,13 @@ export class AuthService {
     });
   }
 
-  loginPerson(infos: Login) {}
+  loginPerson(personInfos: Login) {
+    console.log(personInfos);
+    return this.http.post(`${this.baseURL}/Account/Login`, JSON.stringify(personInfos) , {
+      headers : {
+        "Content-Type" : "application/json"
+      }
+
+    }
+  )}
 }

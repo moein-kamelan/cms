@@ -1,13 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+// فونت‌های فارسی
 @font-face {
   font-family: "iranSanc-r";
   src: url("../public/fonts/IRANSansXFaNum-Regular.woff2");
   font-style: normal;
   font-weight: 400;
 }
+
 @font-face {
   font-family: "iranSanc-db";
   src: url("../public/fonts/IRANSansXFaNum-DemiBold.woff2");
@@ -15,6 +17,7 @@
   font-weight: 600;
 }
 
+// متغیرهای تِم سفارشی
 @theme {
   --color-main-blue: #0052cc;
   --color-light-blue: #ddebff;
@@ -41,10 +44,14 @@
   --breakpoint-xs: 480px;
 }
 
+// بدنه
 body {
-  @apply !font-iranSansRegular;
+  margin: 0;
+  height: 100%;
+  font-family: "iranSanc-r", Roboto, "Helvetica Neue", sans-serif;
 }
 
+// کلاس‌های کمکی
 .activedLink {
   @apply bg-main-blue text-main-white rounded-lg;
 }
@@ -52,26 +59,19 @@ body {
 .activedButton {
   @apply *:text-main-blue inline-flex items-center gap-1 font-iranSansDemiBold bg-main-white *:text-sm;
 }
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+.mat-mdc-snack-bar-label {
+  font-family: "iranSanc-r";
 }
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+// اسلاید-تاگل override نمونه‌ای
+:root {
+  @include mat.slide-toggle-overrides((
+    track-outline-color: orange,
+    disabled-unselected-track-outline-color: red,
+  ));
 }
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
+
+
 
