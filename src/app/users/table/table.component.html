@@ -1,0 +1,85 @@
+<div class="relative overflow-x-auto">
+  <table
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-3xl overflow-hidden border-gray-200 dark:border-gray-700"
+  >
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400 *:text-white *:dark:text-white"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">ID</th>
+        <th scope="col" class="px-6 py-3">نام</th>
+        <th scope="col" class="px-6 py-3">نام خانوادگی</th>
+        <th scope="col" class="px-6 py-3">نام کاربری</th>
+        <th scope="col" class="px-6 py-3">نام سازمانی</th>
+        <th scope="col" class="px-6 py-3"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (user of users; track $index) {
+
+      <tr
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200"
+      >
+        <td scope="row" >
+          <a routerLink="/users/userDetails" class="w-full h-full inline-block px-6 py-4 ">
+            {{ user.id }}
+          </a>
+        </td>
+        <td scope="row" >
+            <a routerLink="/users/userDetails" class="w-full h-full inline-block px-6 py-4">
+                {{ user.firstName }}
+
+              </a>
+        </td>
+        <td scope="row" >
+          <a routerLink="/users/userDetails" class="w-full h-full inline-block px-6 py-4">
+            {{ user.lastName }}
+
+
+          </a>
+        </td>
+        <td scope="row" >
+            <a routerLink="/users/userDetails" class="w-full h-full inline-block px-6 py-4">
+                {{ user.userName }}
+
+    
+    
+              </a>
+        </td>
+        <td scope="row" >
+            <a routerLink="/users/userDetails" class="w-full h-full inline-block px-6 py-4">
+          {{ user.organizationName }}
+                  
+    
+              </a>
+        </td>
+        <td scope="row" class="px-6 py-4">
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" class="divide-y-4 divide-gray-200">
+            <a routerLink="/users/usersCRUD" mat-menu-item>
+              <mat-icon>add</mat-icon>
+              <span class="menu-text">ایجاد</span>
+            </a>
+
+            <a routerLink="/users/usersCRUD" mat-menu-item>
+              <mat-icon>edit</mat-icon>
+              <span class="menu-text">ویرایش</span>
+            </a>
+            
+            <button  mat-menu-item (click)="openDeleteDialog(user.id)">
+              <mat-icon>delete</mat-icon>
+              <span class="menu-text">حذف</span>
+            </button>
+          </mat-menu>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

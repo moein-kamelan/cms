@@ -21,7 +21,10 @@ currentUser : any = null
   }
 
   ngOnInit(): void {
-    this.usersService.fetchCurrentUser().subscribe((user) => {
+    this.usersService.GetCurrentUser
+
+
+().subscribe((user) => {
       this.currentUser = user;
       console.log('this.currentUser:', this.currentUser)
       

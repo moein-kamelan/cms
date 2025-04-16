@@ -19,11 +19,17 @@ import {
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { catchError, from, of } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import { ErrorMessageComponent } from "../../shared/error-message/error-message.component";
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorMessageComponent } from '../../shared/error-message/error-message.component';
 @Component({
   selector: 'app-signup',
-  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, ErrorMessageComponent],
+  imports: [
+    RouterModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ErrorMessageComponent,
+  ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
   encapsulation: ViewEncapsulation.None,
@@ -37,7 +43,6 @@ export class SignupComponent implements OnInit {
   isLegal: boolean = false;
 
   ngOnInit(): void {
-    
     this.personalFormGroup = new FormGroup({
       firstName: new FormControl('', [
         Validators.required,
@@ -49,7 +54,10 @@ export class SignupComponent implements OnInit {
         Validators.minLength(4),
         Validators.maxLength(12),
       ]),
-      nationalCode: new FormControl('', [Validators.required , Validators.pattern(/^(?!(\d)\1{9})\d{10}$/)]),
+      nationalCode: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^(?!(\d)\1{9})\d{10}$/),
+      ]),
       mobileNumber: new FormControl('', [
         Validators.required,
         Validators.pattern(/^09\d{9}$/),
@@ -83,16 +91,25 @@ export class SignupComponent implements OnInit {
       ]),
       postalCode: new FormControl('', [
         Validators.required,
-     
-        Validators.pattern(/^\d{10}$/)
+
+        Validators.pattern(/^\d{10}$/),
       ]),
       mobileNumber: new FormControl('', [
         Validators.required,
         Validators.pattern(/^09\d{9}$/),
       ]),
-      nationalId: new FormControl('', [Validators.required ,   Validators.pattern(/^(?!([0-9])\1{10})\d{11}$/)]),
-      nationalCode: new FormControl('', [Validators.required , Validators.pattern(/^(?!(\d)\1{9})\d{10}$/)]),
-      economicCode: new FormControl('', [Validators.required , Validators.pattern(/^\d{12}$/)]),
+      nationalId: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^(?!([0-9])\1{10})\d{11}$/),
+      ]),
+      nationalCode: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^(?!(\d)\1{9})\d{10}$/),
+      ]),
+      economicCode: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^\d{12}$/),
+      ]),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(8),
@@ -133,36 +150,40 @@ export class SignupComponent implements OnInit {
 
   onsubmit() {
     if (this.isLegal) {
-      this.onlegalFormSubmit()
+      this.onlegalFormSubmit();
     } else {
-      this.onPersonalSubmit()
+      this.onPersonalSubmit();
     }
   }
 
   onlegalFormSubmit() {
     console.log('this.legalFormGroup.value =>', this.legalFormGroup.value);
-    this.authService.createLegalAccount(this.legalFormGroup.value).pipe(catchError((err) => {
-      console.log("err in catch err" , err);
+    this.authService
+      .createLegalAccount(this.legalFormGroup.value)
+      .pipe(
+        catchError((err) => {
+          console.log('err in catch err', err);
 
+          if (err.status === 400) {
+            this._snackBar.open(
+              err.error.validationErrors[0].message,
+              'تلاش دوباره',
+              {
+                verticalPosition: 'top',
+              }
+            );
+          } else {
+            this._snackBar.open('خطای غیر منتظره ایی رخ داده', 'تلاش دوباره', {
+              verticalPosition: 'top',
+            });
+          }
 
-
-  if(err.status === 400) {
-        this._snackBar.open( err.error.validationErrors[0].message , "تلاش دوباره" ,  {
-          verticalPosition : "top"
-        });
-      } else {
-        this._snackBar.open( "خطای غیر منتظره ایی رخ داده" , "تلاش دوباره" ,  {
-          verticalPosition : "top"
-        });
-      }
-
-      
-      return of(null);
-    })).subscribe( (res) => {
+          return of(null);
+        })
+      )
+      .subscribe((res) => {
         console.log(res);
-
-      }
-    );;
+      });
   }
 
   onPersonalSubmit() {
@@ -170,26 +191,31 @@ export class SignupComponent implements OnInit {
       'this.personalFormGroup.value =>',
       this.personalFormGroup.value
     );
-    this.authService.createPersonalAccount(this.personalFormGroup.value).pipe(catchError((err) => {
-      
-      if(err.status === 400) {
-        this._snackBar.open( err.error.validationErrors[0].message , "تلاش دوباره" ,  {
-          verticalPosition : "top"
-        });
-      } else {
-        this._snackBar.open( "خطای غیر منتظره ایی رخ داده" , "تلاش دوباره" ,  {
-          verticalPosition : "top"
-        });
-      }
-      
-    
-      
-      return of(null);
-    })).subscribe({
-      next: (res) => {
-        console.log(res);
-      },
-     
-    });;
+    this.authService
+      .createPersonalAccount(this.personalFormGroup.value)
+      .pipe(
+        catchError((err) => {
+          if (err.status === 400) {
+            this._snackBar.open(
+              err.error.validationErrors[0].message,
+              'تلاش دوباره',
+              {
+                verticalPosition: 'top',
+              }
+            );
+          } else {
+            this._snackBar.open('خطای غیر منتظره ایی رخ داده', 'تلاش دوباره', {
+              verticalPosition: 'top',
+            });
+          }
+
+          return of(null);
+        })
+      )
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+      });
   }
 }

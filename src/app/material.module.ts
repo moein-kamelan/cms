@@ -21,7 +21,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from "@angular/material/icon"
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-
+import {MatMenuModule} from '@angular/material/menu';
 @NgModule({
   imports: [
     CommonModule,
@@ -35,7 +35,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatSelectModule,
     MatButtonModule,
     MatIconModule , 
-    MatSlideToggleModule
+    MatSlideToggleModule ,
+    MatMenuModule
   ],
   exports: [
     CommonModule,
@@ -49,7 +50,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatSelectModule,
     MatButtonModule,
     MatIconModule , 
-    MatSlideToggleModule
+    MatSlideToggleModule ,
+    MatMenuModule
   ],
 })
 export class MaterialModule {}

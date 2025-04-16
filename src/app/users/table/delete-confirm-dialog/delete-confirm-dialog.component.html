@@ -1,0 +1,8 @@
+<h2 mat-dialog-title class="!text-red-900">تأیید حذف</h2>
+<mat-dialog-content class="!text-iranSansRegular">
+  آیا مطمئن هستید که می‌خواهید این مورد را حذف کنید؟
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="flex items-center gap-4 " >
+  <button mat-button (click)="onCancel()" class="cursor-pointer text-gray-700">لغو</button>
+  <button mat-button color="warn" (click)="onConfirm()" class="p-4 bg-red-400 cursor-pointer text-gray-700 rounded-xl">حذف</button>
+</mat-dialog-actions>

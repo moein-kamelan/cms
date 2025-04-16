@@ -74,4 +74,11 @@ body {
 
 
 
+ .mdc-tab__text-label{
+  font-family: "iranSanc-r";
+color: blue !important;
+}
 
+.dark .mdc-tab__text-label{
+  color: red !important;
+}
