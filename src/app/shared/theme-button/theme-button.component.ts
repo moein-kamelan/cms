@@ -18,7 +18,6 @@ export class ThemeButtonComponent {
 changeTheme() {
 this.isDark = !this.isDark
 
-console.log(this.isDark);
 
 
 if(this.isDark) {

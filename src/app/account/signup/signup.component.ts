@@ -158,11 +158,10 @@ export class SignupComponent implements OnInit {
 
       
       return of(null);
-    })).subscribe({
-      next: (res) => {
+    })).subscribe( (res) => {
         console.log(res);
 
-      }}
+      }
     );;
   }
 
@@ -172,7 +171,6 @@ export class SignupComponent implements OnInit {
       this.personalFormGroup.value
     );
     this.authService.createPersonalAccount(this.personalFormGroup.value).pipe(catchError((err) => {
-      console.log("err in catch err" , err.error.validationErrors[0].message)
       
       if(err.status === 400) {
         this._snackBar.open( err.error.validationErrors[0].message , "تلاش دوباره" ,  {

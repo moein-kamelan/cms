@@ -46,10 +46,7 @@ export class ErrorMessageComponent implements OnInit{
 @Input() exactlength : number = 0
 
 ngOnInit(): void {
-  console.log(this.control);
   
-  console.log(this.minlength);
-  console.log(this.maxlength);
   
 }
 
