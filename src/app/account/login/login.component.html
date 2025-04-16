@@ -1,11 +1,11 @@
-<section class="bg-gray-50 dark:bg-gray-900 h-screen">
+<section class="bg-gray-50 dark:bg-gray-900 h-screen bg-gradient-to-r from-purple-500 to-cyan-600">
   <div
-    class="flex flex-col items-center justify-center px-2 py-4 mx-auto md:h-screen lg:py-0 h-full"
+    class="flex flex-col items-center justify-center px-2 py-4 mx-auto md:h-screen lg:py-0 h-full "
   >
     <div
-      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
     >
-      <div class="!p-4 space-y-4 md:space-y-6 sm:p-8">
+      <div class="!p-4 space-y-4 md:space-y-6 sm:p-8 border border-black rounded-2xl dark:border-none rounded-lg">
         <h1
           class="text-xl font-iranSansDemiBold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white mb-6"
         >
@@ -18,10 +18,10 @@
 
 
 
-          <form  [formGroup]="loginFormGroup" (ngSubmit)="submitLoginForm()" class="grid gap-2">
+          <form  [formGroup]="loginFormGroup" (ngSubmit)="submitLoginForm()" class="grid ">
 
 
-            <mat-form-field class="w-full">
+            <mat-form-field class="w-full mb-2">
               <mat-label>نام کاربری</mat-label>
               <input matInput type="text" placeholder="نام کاربری را وارد کنید"  formControlName="userName"/>
 
@@ -62,9 +62,9 @@
             
             [ngClass]="{'invalid-btn' : !loginFormGroup.valid }"
             [disabled]="!loginFormGroup.valid"
-            class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+            class="relative inline-flex items-center justify-center p-0.5 mt-6  overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
           >
-          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent w-full">
+          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent w-full dark:text-white text-black text-iranSansDemiBold">
 
             ورود
           </span>

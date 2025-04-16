@@ -5,7 +5,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../material.module';
 import { inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -29,12 +29,13 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginFormGroup!: FormGroup;
+
   private _snackBar = inject(MatSnackBar);
   @ViewChild('rememberInput') rememberInput!: ElementRef;
 
   isLegal: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService , private router:Router) {}
 
   ngOnInit(): void {
     this.loginFormGroup = new FormGroup({
@@ -79,6 +80,7 @@ export class LoginComponent implements OnInit {
               localStorage.getItem('token')
             );
           }
+          this.router.navigate(["/users"])
         }
       });
   }

@@ -1,20 +1,20 @@
-<section class="bg-gray-50 dark:bg-gray-900 h-screen">
+<section class="bg-gray-50 dark:bg-gray-900 h-screen bg-gradient-to-r from-purple-500 to-cyan-600">
   <div
     class="flex flex-col items-center justify-center px-2 py-4 mx-auto md:h-screen lg:py-0 h-full"
   >
     <div
       class="w-full bg-white rounded-lg shadow-4xl border md:mt-0 sm:max-w-4xl xl:p-0 dark:bg-gray-800 dark:border-gray-700"
     >
-      <div class="!p-4 space-y-4 md:space-y-6 sm:p-8">
+      <div class="!p-4 space-y-4 md:space-y-6 sm:p-8 rounded-2xl border-black">
         <h1
           class="text-xl font-iranSansDemiBold leading-tight tracking-tight text-gray-900 md:text-4xl dark:text-white mb-2"
         >
-          ساختن حساب جدید
+          ایجاد حساب جدید
         </h1>
         <div>
           <mat-tab-group
             animationDuration="300ms"
-            class="border-b-2 border-b-amber-200"
+            class="border-b-2 border-b-indigo-500 dark:border-b-amber-200"
             (selectedIndexChange)="onChangeTab($event)"
           >
             <mat-tab label="شخص حقیقی" class="flex items-center justify-center">
@@ -143,12 +143,8 @@
                     </h4>
                   </section>
 
-                  <button
-                    mat-button
-                    type="submit"
-                    #personalFormButton
-                    hidden
-                  ></button>
+               
+
                 </form>
               </div>
             </mat-tab>
@@ -350,12 +346,7 @@
                   </mat-error>
                 </mat-form-field>
 
-                <button
-                  mat-button
-                  type="submit"
-                  #legalFormButton
-                  hidden
-                ></button>
+               
               </form>
             </mat-tab>
           </mat-tab-group>
@@ -371,7 +362,7 @@
             class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 w-80"
           >
             <span
-              class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent w-full text-black dark:text-white disabled:text-red-500 hover:text-white"
+              class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent w-full text-black dark:text-white disabled:text-red-500 hover:text-white text-iranSansDemiBold"
             >
               تایید ثبت نام
             </span>
