@@ -3,12 +3,13 @@ import { Personal } from '../models/personal';
 import { HttpClient } from '@angular/common/http';
 import { Legal } from '../models/legal';
 import { Login } from '../models/login';
+import { environment } from '../../environments/environments';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  baseURL: string = 'http://172.27.60.183:11680';
+  baseURL: string = environment.baseURL;
   constructor(private http: HttpClient) {}
 
   createPersonalAccount(person: Personal) {

@@ -13,7 +13,7 @@ export const routes: Routes = [
       import('./account/account.module').then((m) => m.AccountModule),
   },
   {
-    path : "users" , title : "usersList" ,  canActivate : [authGuard] , loadChildren : () => import("./users/users.module").then(m => m.UsersModule)
+    path : "users" , title : "usersList" , loadChildren : () => import("./users/users.module").then(m => m.UsersModule)
   },
   
   {path : "**" , title : "page404", component : Page404Component }

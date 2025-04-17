@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environments';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  readonly baseURL: string = 'http://172.27.60.183:11680';
+ baseURL: string = environment.baseURL;
   token: string | null =
     localStorage.getItem('token') || sessionStorage.getItem('token');
 

@@ -13,7 +13,7 @@
         </a>
       </div>
       <div class="flex lg:hidden">
-        <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 dark:text-white">
+        <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 dark:text-white" (click)="openMobileMenu(moblieMenu , overlay) ">
           <span class="sr-only">Open main menu</span>
           <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -24,7 +24,7 @@
 
   
         <a routerLink="/users" class="text-sm/6 font-semibold text-gray-900 dark:text-white">لیست کاربران</a>
-        <a routerLink="/users/usersCRUD" class="text-sm/6 font-semibold text-gray-900 dark:text-white">ایجاد و ویرایش کاربر</a>
+        
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end ">
         <a (click)="logout()" routerLink="/account/login" class="text-sm/6 font-semibold text-gray-900 dark:text-white flex items-center gap-4">خروج<mat-icon>logout</mat-icon></a>
@@ -33,19 +33,19 @@
     <!-- Mobile menu, show/hide based on menu open state. -->
     <div class="lg:hidden" role="dialog" aria-modal="true">
       <!-- Background backdrop, show/hide based on slide-over state. -->
-      <div class="fixed inset-0 z-10 hidden"></div>
-      <div class="hidden fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white dark:bg-gray-600 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 shadow-2xl" #moblieMenu>
+      <div class="fixed inset-0 bg-gray-700/40 z-10 hidden"  (click)="closeMobileMenu(moblieMenu , overlay)" #overlay></div>
+      <div class=" fixed inset-y-0 right-0 z-100 w-full overflow-y-auto bg-white dark:bg-gray-600 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 shadow-2xl" #moblieMenu>
         <div class="flex items-center justify-between">
 
           
-          <a href="#" class="-m-1.5 p-1.5 flex items-center justify-center gap-4 font-bold ">
+          <a routerLink="/users" class="-m-1.5 p-1.5 flex items-center justify-center gap-4 font-bold ">
             <div class="flex items-center justify-center size-12 bg-indigo-400 rounded-full">
             <img class="size-8 text-white" src="user-logo.png" alt="logo">
   
             </div>
             <span class="text-sm text-indigo-400">پنل مدیریت کاربران</span>
           </a>
-          <button (click)="closeMobileMenu(moblieMenu)" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700 dark:text-white">
+          <button (click)="closeMobileMenu(moblieMenu , overlay)" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700 dark:text-white">
             <span class="sr-only">Close menu</span>
             <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -61,7 +61,7 @@
    
               </div>
               <a routerLink="/users" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white hover:text-gray-900">لیست کاربران</a>
-              <a routerLink="/users/usersCRUD" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50  dark:text-white hover:text-gray-900">ایجاد و ویرایش کاربر</a>
+              
             </div>
             <div class="py-6">
               <div>

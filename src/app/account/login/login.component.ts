@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  OnDestroy,
   OnInit,
   ViewChild,
   ViewEncapsulation,
@@ -18,7 +19,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { catchError, from, of } from 'rxjs';
+import { catchError, from, of, Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -27,7 +28,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit , OnDestroy {
   loginFormGroup!: FormGroup;
 
   private _snackBar = inject(MatSnackBar);
@@ -35,8 +36,8 @@ export class LoginComponent implements OnInit {
 
   isLegal: boolean = false;
 
-  constructor(private authService: AuthService , private router:Router) {}
-
+  constructor(private authService: AuthService, private router: Router) {}
+  private isLoginSub !: Subscription 
   ngOnInit(): void {
     this.loginFormGroup = new FormGroup({
       userName: new FormControl('', [Validators.required]),
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
 
   submitLoginForm() {
     console.log(this.loginFormGroup.value);
-    this.authService
+    this.isLoginSub = this.authService
       .loginPerson(this.loginFormGroup.value)
       .pipe(
         catchError((err) => {
@@ -80,8 +81,17 @@ export class LoginComponent implements OnInit {
               localStorage.getItem('token')
             );
           }
-          this.router.navigate(["/users"])
+          this.router.navigate(['/users']);
         }
       });
   }
+
+  ngOnDestroy(): void {
+
+    this.isLoginSub?.unsubscribe()
+      
+  }
+
+  
+  
 }

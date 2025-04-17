@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  OnDestroy,
   OnInit,
   ViewChild,
   ViewEncapsulation,
@@ -17,7 +18,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { catchError, from, of } from 'rxjs';
+import { catchError, from, of, Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorMessageComponent } from '../../shared/error-message/error-message.component';
@@ -34,7 +35,7 @@ import { ErrorMessageComponent } from '../../shared/error-message/error-message.
   styleUrl: './signup.component.scss',
   encapsulation: ViewEncapsulation.None,
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit , OnDestroy{
   private _snackBar = inject(MatSnackBar);
 
   legalFormGroup!: FormGroup;
@@ -156,9 +157,10 @@ export class SignupComponent implements OnInit {
     }
   }
 
+  private createLegalPersonSub!: Subscription;
   onlegalFormSubmit() {
     console.log('this.legalFormGroup.value =>', this.legalFormGroup.value);
-    this.authService
+    this.createLegalPersonSub = this.authService
       .createLegalAccount(this.legalFormGroup.value)
       .pipe(
         catchError((err) => {
@@ -186,12 +188,14 @@ export class SignupComponent implements OnInit {
       });
   }
 
+  private createPersonalSub!: Subscription;
+
   onPersonalSubmit() {
     console.log(
       'this.personalFormGroup.value =>',
       this.personalFormGroup.value
     );
-    this.authService
+   this.createPersonalSub = this.authService
       .createPersonalAccount(this.personalFormGroup.value)
       .pipe(
         catchError((err) => {
@@ -218,4 +222,11 @@ export class SignupComponent implements OnInit {
         },
       });
   }
+
+  
+ngOnDestroy(): void {
+    this.createLegalPersonSub?.unsubscribe()
+    this.createPersonalSub?.unsubscribe()
+}  
+  
 }

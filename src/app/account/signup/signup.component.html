@@ -153,7 +153,7 @@
                 [formGroup]="legalFormGroup"
                 #legalFrom="ngForm"
                 (ngSubmit)="onlegalFormSubmit()"
-                class="sm:grid sm:grid-cols-2 lg:grid-cols-4 max-sm:space-y-3.5 gap-5 mt-5 p-2"
+                class="sm:grid  lg:grid-cols-4 max-sm:space-y-3.5 gap-y-2 gap-x-5 mt-5 p-2"
               >
                 <mat-form-field class="w-full">
                   <mat-label>نام سازمان</mat-label>
@@ -369,7 +369,7 @@
           </button>
         </div>
 
-        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+        <p class=" font-light text-gray-500 dark:text-gray-400 text-lg">
           ایا از قبل حساب کاربری دارید؟
           <a
             routerLink="/account/login"
