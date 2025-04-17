@@ -5,7 +5,7 @@ import { HeaderComponent } from "../../shared/header/header.component";
   selector: 'app-user-details',
   imports: [HeaderComponent],
   templateUrl: './user-details.component.html',
-  styleUrl: './user-details.component.scss'
+  styleUrl: './user-details.component.css'
 })
 export class UserDetailsComponent {
 

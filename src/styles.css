@@ -1,8 +1,6 @@
-@use '@angular/material' as mat;
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-// فونت‌های فارسی
 @font-face {
   font-family: "iranSanc-r";
   src: url("../public/fonts/IRANSansXFaNum-Regular.woff2");
@@ -17,7 +15,6 @@
   font-weight: 600;
 }
 
-// متغیرهای تِم سفارشی
 @theme {
   --color-main-blue: #0052cc;
   --color-light-blue: #ddebff;
@@ -44,14 +41,12 @@
   --breakpoint-xs: 480px;
 }
 
-// بدنه
 body {
   margin: 0;
   height: 100%;
   font-family: "iranSanc-r", Roboto, "Helvetica Neue", sans-serif;
 }
 
-// کلاس‌های کمکی
 .activedLink {
   @apply bg-main-blue text-main-white rounded-lg;
 }
@@ -60,11 +55,15 @@ body {
   @apply *:text-main-blue inline-flex items-center gap-1 font-iranSansDemiBold bg-main-white *:text-sm;
 }
 
+.activePage {
+  @apply flex items-center justify-center px-4 h-10 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white
+}
+
+
 .mat-mdc-snack-bar-label {
   font-family: "iranSanc-r";
 }
 
-// اسلاید-تاگل override نمونه‌ای
 :root {
   @include mat.slide-toggle-overrides((
     track-outline-color: orange,

@@ -5,8 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PageCountPipe implements PipeTransform {
 
-  transform(value: unknown, pageCount: number): unknown {
-    return new Array(pageCount)
+  transform(value: unknown, pageCount: number): number[] {
+    return Array.from({ length: pageCount }, (_, i) => i + 1)
   }
 
 }

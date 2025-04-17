@@ -5,7 +5,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-account',
   imports: [RouterOutlet],
   templateUrl: './account.component.html',
-  styleUrl: './account.component.scss'
+  styleUrl: './account.component.css'
 })
 export class AccountComponent {
 

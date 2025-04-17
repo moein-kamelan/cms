@@ -10,11 +10,11 @@
       ایجاد کاربر جدید
       </span>
       </a>
-<app-table [users]="hardCdeUsers"></app-table>
+<app-table [users]="currentItems"></app-table>
     
 
     <div class="pagination-container flex items justify-center mb-8">
-      <app-pagination [pageCount] = "pageCount" ></app-pagination>
+      <app-pagination [pageCount] = "pageCount" [CurrentPage] = "paginationInfos.pageNumber"  (incrementPageCount)="incrementPageCount()" (decrementPageCount)="decrementPageCount()" (changePageCount)="changePageCount($event)" (changePagePerPage)="onChangeItemPerPage($event)"></app-pagination>
     </div>
   </div>
 </main>

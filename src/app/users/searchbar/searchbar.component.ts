@@ -4,7 +4,7 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
   selector: 'app-searchbar',
   imports: [],
   templateUrl: './searchbar.component.html',
-  styleUrl: './searchbar.component.scss',
+  styleUrl: './searchbar.component.css',
 })
 export class SearchbarComponent {
   @ViewChild('searchOptionButton') searchOptionButton!: ElementRef;

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-create-new-user',
   imports: [],
   templateUrl: './create-new-user.component.html',
-  styleUrl: './create-new-user.component.scss'
+  styleUrl: './create-new-user.component.css'
 })
 export class CreateNewUserComponent {
 

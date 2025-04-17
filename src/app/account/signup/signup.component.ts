@@ -32,7 +32,7 @@ import { ErrorMessageComponent } from '../../shared/error-message/error-message.
     ErrorMessageComponent,
   ],
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.scss',
+  styleUrl: './signup.component.css',
   encapsulation: ViewEncapsulation.None,
 })
 export class SignupComponent implements OnInit , OnDestroy{

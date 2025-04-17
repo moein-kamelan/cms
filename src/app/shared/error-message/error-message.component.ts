@@ -26,7 +26,7 @@ import { MaterialModule } from '../../material.module';
     } } }
     </p>
   `,
-  styleUrl: './error-message.component.scss',
+  styleUrl: './error-message.component.css',
 })
 export class ErrorMessageComponent implements OnInit {
   @Input() control: AbstractControl | null = null;

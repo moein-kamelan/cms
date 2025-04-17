@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-header',
   imports: [MaterialModule, RouterModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit , OnDestroy {
   @ViewChild('openNavMenuButton') openNavMenuButton!: ElementRef;

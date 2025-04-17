@@ -29,7 +29,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-table',
   imports: [CommonModule, MaterialModule, RouterModule, MatDialogModule],
   templateUrl: './table.component.html',
-  styleUrl: './table.component.scss',
+  styleUrl: './table.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent implements OnChanges , OnDestroy {

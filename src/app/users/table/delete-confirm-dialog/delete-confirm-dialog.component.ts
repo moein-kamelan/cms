@@ -18,7 +18,7 @@ import { UsersService } from '../../../services/users.service';
     MatDialogContent,
     MatDialogTitle],
   templateUrl: './delete-confirm-dialog.component.html',
-  styleUrl: './delete-confirm-dialog.component.scss'
+  styleUrl: './delete-confirm-dialog.component.css'
 })
 export class DeleteConfirmDialogComponent {
   constructor(
