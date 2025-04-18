@@ -1,9 +1,9 @@
-<div class="relative overflow-x-auto min-h-[478px]">
+<div class="relative overflow-x-auto min-h-[510px]">
   <table
     class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-3xl overflow-hidden border-gray-200 dark:border-gray-700"
   >
     <thead
-      class="text-xs text-gray-700 uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400 *:text-white *:dark:text-white"
+      class="text-xs text-gray-700 uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400 *:text-white *:dark:text-white whitespace-nowrap"
     >
       <tr>
         <th scope="col" class="px-6 py-3">ID</th>
@@ -18,28 +18,28 @@
       @for (user of users; track $index) {
 
       <tr
-        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200"
+        class="bg-white border-b dark:bg-rose-900 dark:border-gray-700 border-gray-200 dark:hover:bg-rose-700 hover:bg-gray-300"
       >
         <td scope="row" >
-          <a routerLink="/users/userDetails" class="w-full h-full inline-block px-6 py-4 ">
+          <a routerLink="['/users/userDetails' , user.id]" class="w-full h-full inline-block px-6 py-4 ">
             {{ user.id }}
           </a>
         </td>
         <td scope="row" >
-            <a routerLink="/users/userDetails" class="w-full h-full inline-block px-6 py-4">
+            <a [routerLink]="['/users/userDetails' , user.id]" class="w-full h-full inline-block px-6 py-4">
                 {{ user.firstName }}
 
               </a>
         </td>
         <td scope="row" >
-          <a routerLink="/users/userDetails" class="w-full h-full inline-block px-6 py-4">
+          <a [routerLink]="['/users/userDetails' , user.id]" class="w-full h-full inline-block px-6 py-4">
             {{ user.lastName }}
 
 
           </a>
         </td>
         <td scope="row" >
-            <a routerLink="/users/userDetails" class="w-full h-full inline-block px-6 py-4">
+            <a [routerLink]="['/users/userDetails' , user.id]" class="w-full h-full inline-block px-6 py-4">
                 {{ user.userName }}
 
     
@@ -47,7 +47,7 @@
               </a>
         </td>
         <td scope="row" >
-            <a routerLink="/users/userDetails" class="w-full h-full inline-block px-6 py-4">
+            <a [routerLink]="['/users/userDetails' , user.id]" class="w-full h-full inline-block px-6 py-4">
           {{ user.organizationName }}
                   
     
@@ -64,7 +64,7 @@
           <mat-menu #menu="matMenu" class="divide-y-4 divide-gray-200">
         
 
-            <a routerLink="/users/editNewUser" mat-menu-item>
+            <a [routerLink]="['/users/editNewUser' , user.id]" mat-menu-item>
               <mat-icon>edit</mat-icon>
               <span class="menu-text">ویرایش</span>
             </a>

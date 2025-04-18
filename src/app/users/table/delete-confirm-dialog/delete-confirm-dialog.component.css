@@ -1,0 +1,6 @@
+ h2[mat-dialog-title] {
+    background-color: red;
+}
+.dark h2[mat-dialog-title] {
+    background-color: green;
+}

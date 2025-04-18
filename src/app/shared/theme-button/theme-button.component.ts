@@ -9,22 +9,27 @@ import { MaterialModule } from '../../material.module';
   encapsulation : ViewEncapsulation.None
 })
 export class ThemeButtonComponent {
-  isDark:boolean = false
+  themeStatus = localStorage.getItem("theme") || "light"
 
   constructor(private renderer : Renderer2) {
 
   }
   
 changeTheme() {
-this.isDark = !this.isDark
 
 
 
-if(this.isDark) {
+if(this.themeStatus === "light") {
+  console.log("hello");
+  
   this.renderer.addClass(document.body , "dark")
+  this.themeStatus = "dark"
+  localStorage.setItem("theme" , "dark")
   
 } else {
   this.renderer.removeClass(document.body , "dark")
+  this.themeStatus = "light"
+  localStorage.setItem("theme" , "light")
   
 
 }

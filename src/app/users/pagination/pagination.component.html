@@ -27,11 +27,12 @@
     </ul>
   </nav> -->
   
-<div class="pagination-container flex items-center justify-center gap-12">
+<div class="pagination-container flex max-sm:flex-col items-center justify-center gap-12">
 
   
   <div >
-    <label for="visitors" class="flex items-center justify-center gap-5 text-nowrap">تعداد آیتم برای هر صفحه : ( حداکثر 6 )
+    <label for="visitors" class="flex items-center justify-center gap-5 text-nowrap max-sm:flex-col">
+      <span>تعداد آیتم برای هر صفحه : ( حداکثر 6 )</span>
       <input type="number" min="1" max="6" maxlength="6" id="visitors" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required  value="5" (change)="changeItemPerPage(pagePerPageInput)" #pagePerPageInput/>
     </label>
    

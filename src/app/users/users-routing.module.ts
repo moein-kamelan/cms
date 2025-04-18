@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UsersComponent } from './users.component';
-import { UserDetailsComponent } from './user-details/user-details.component';
-import { CreateNewUserComponent } from '../create-new-user/create-new-user.component';
-import { EditNewUserComponent } from '../edit-new-user/edit-new-user.component';
+
+
+
+
 
 const routes: Routes = [
   {
-    path : "" ,  title : "usersList" , component : UsersComponent 
+    path : "" ,  title : "usersList" , loadComponent: () => import('./users.component').then(m => m.UsersComponent) 
   },
   {
-    path : "createNewUser" , title : "createNewUser" , component : CreateNewUserComponent
+    path : "createNewUser" , title : "createNewUser" , loadComponent: () => import('../create-new-user/create-new-user.component').then(m => m.CreateNewUserComponent)
   },
   {
-    path : "editNewUser" , title : "editNewUser" , component : EditNewUserComponent
+    path : "editNewUser/:id" , title : "editNewUser" , loadComponent: () => import('../edit-new-user/edit-new-user.component').then(m => m.EditNewUserComponent)
   },
   {
-    path : "userDetails" , title : "userDetails", component : UserDetailsComponent
+    path : "userDetails/:id" , title : "userDetails", loadComponent: () => import('./user-details/user-details.component').then(m => m.UserDetailsComponent)
   }
 ];
 

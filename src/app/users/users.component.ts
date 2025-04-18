@@ -7,6 +7,7 @@ import { TableComponent } from './table/table.component';
 import { Subscription } from 'rxjs';
 import { MaterialModule } from '../material.module';
 import { RouterModule } from '@angular/router';
+import { SearchOptions } from '../enums/search-options';
 
 @Component({
   selector: 'app-users',
@@ -22,7 +23,9 @@ import { RouterModule } from '@angular/router';
   styleUrl: './users.component.css',
 })
 export class UsersComponent implements OnInit, OnDestroy , AfterViewInit {
+
   users: any = [];
+  
   hardCdeUsers: any = [
     {
       id: 1,
@@ -150,6 +153,40 @@ export class UsersComponent implements OnInit, OnDestroy , AfterViewInit {
       this.paginationInfos.pageSize
     );
     this.updatePageAndItems()
+  }
+
+  onChangeSearchbar(searchText : string) {
+    console.log('searchText:', searchText)
+    
+  }
+
+  onChangeSearchOption(searchOption : string) {
+    console.log("searchOption => " , searchOption);
+    console.log(SearchOptions.lastName);
+    
+    switch(searchOption) {
+      case SearchOptions.firstName : {
+        
+
+        break
+      }
+      case SearchOptions.lastName : {
+        
+
+        break
+      }
+      case SearchOptions.userName : {
+        
+
+        break
+      }
+      case SearchOptions.organizationName : {
+        
+
+        break
+      }
+    }
+    
   }
 
   ngOnDestroy(): void {

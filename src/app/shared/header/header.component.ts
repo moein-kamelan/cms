@@ -40,8 +40,8 @@ export class HeaderComponent implements OnInit , OnDestroy {
   }
 
   logout() {
-    localStorage.clear();
-    sessionStorage.clear();
+    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
   }
 
 ngOnDestroy(): void {

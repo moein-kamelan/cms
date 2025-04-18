@@ -46,6 +46,7 @@ export class TableComponent implements OnChanges , OnDestroy {
   openDeleteDialog(userID: any) {
     const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
       width: '400px',
+      panelClass : "dark" ,
       data: { id: userID },
     });
 

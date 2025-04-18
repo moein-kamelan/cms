@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 import { AccountComponent } from './account/account.component';
-import { Page404Component } from './page404/page404.component';
+
 import { UsersComponent } from './users/users.component';
 import { authGuard } from './account/auth.guard';
 
 export const routes: Routes = [
-  { path: '', title: 'users', redirectTo: 'account/signup', pathMatch: 'full' },
+  { path: '', title: 'users', redirectTo: 'users', pathMatch: 'full' },
   {
     path: 'account',
     title: 'account',
@@ -13,8 +13,8 @@ export const routes: Routes = [
       import('./account/account.module').then((m) => m.AccountModule),
   },
   {
-    path : "users" , title : "usersList" , loadChildren : () => import("./users/users.module").then(m => m.UsersModule)
+    path : "users" , title : "usersList"  ,loadChildren : () => import("./users/users.module").then(m => m.UsersModule)
   },
   
-  {path : "**" , title : "page404", component : Page404Component }
+  {path : "**" , title : "page404", loadComponent: () => import('./page404/page404.component').then(m => m.Page404Component) }
 ];
