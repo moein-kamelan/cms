@@ -18,11 +18,7 @@
     color: var(--mat-sys-primary); 
 } */
 
-mat-label , input {
-    font-family: "iranSanc-r" !important;
 
-
-}
 
 .mat-mdc-tab-body-content.mat-tab-body-content-can-animate {
     height: 340px ;
@@ -62,5 +58,10 @@ app-error-message  {
   font-family: "iranSanc-r" !important;
   color: white;
   font-size: 8px;
+
+}
+
+.addressTextarea::placeholder {
+  font-family: "iranSanc-r" !important;
 
 }

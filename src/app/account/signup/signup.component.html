@@ -1,4 +1,7 @@
-<section class="bg-gray-50 dark:bg-gray-900 h-screen bg-gradient-to-r from-purple-500 to-cyan-600">
+<section class="h-screen bg-gray-50 dark:bg-gray-900
+                bg-gradient-to-r from-purple-500 to-cyan-600
+                dark:bg-gradient-to-br dark:from-rose-900 dark:to-slate-900">
+
   <div
     class="flex flex-col items-center justify-center px-2 py-4 mx-auto md:h-screen lg:py-0 h-full"
   >
@@ -85,10 +88,10 @@
                       placeholder="مثال : 09031357262"
                       formControlName="mobileNumber"
                     />
-
                     <mat-error>
                       <app-error-message
                         [control]="personalFormGroup.get('mobileNumber')"
+                        [isMobileNumber]="true"
                       ></app-error-message>
                     </mat-error>
                   </mat-form-field>
@@ -122,7 +125,7 @@
                     <mat-error>
                       <app-error-message
                         [control]="personalFormGroup.get('password')"
-                        [minlength]="4"
+                        [minlength]="8"
                         [maxlength]="12"
                       ></app-error-message>
                     </mat-error>
@@ -199,11 +202,13 @@
                     type="text"
                     placeholder="مثال : ۰۹۰۳۱۳۵۷۲۶۲"
                     formControlName="mobileNumber"
+                    
                   />
 
                   <mat-error>
                     <app-error-message
                       [control]="legalFormGroup.get('mobileNumber')"
+                      [isMobileNumber]="true"
                     ></app-error-message>
                   </mat-error>
                 </mat-form-field>
@@ -237,7 +242,7 @@
                   <mat-error>
                     <app-error-message
                       [control]="legalFormGroup.get('password')"
-                      [minlength]="4"
+                      [minlength]="8"
                       [maxlength]="12"
                     ></app-error-message>
                   </mat-error>
@@ -336,6 +341,7 @@
                     matInput
                     placeholder="آدرس را وارد کنید"
                     formControlName="address"
+                    class="addressTextarea"
                   ></textarea>
                   <mat-error>
                     <app-error-message

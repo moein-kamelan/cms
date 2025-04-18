@@ -82,4 +82,25 @@ color: blue !important;
   color: red !important;
 }
 
+mat-label , mat-error , .mat-mdc-form-field.mat-mdc-form-field-type-mat-input{ 
+  font-family: "iranSanc-r";
+
+}
+
+.dark mat-label , .dark .mat-mdc-form-field-required-marker.mdc-floating-label--required::after , .dark input::placeholder  {
+  color: #000;
+}
+
+
+.invalid-btn:disabled {
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed;
+  box-shadow: none !important;
+}
+
+.dark .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled {
+background: gray;
+color: #000;
+}
 
