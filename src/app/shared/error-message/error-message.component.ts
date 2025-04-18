@@ -18,21 +18,30 @@ import { MaterialModule } from '../../material.module';
 
     }@else if (control?.hasError("pattern")) { @if(exactlength) {
     <ng-container>باید {{ exactlength }} رقمی باشد</ng-container>
-    }@else {
-    <ng-container
+    }@else if(isMobileNumber) {
+      <ng-container>
+      فرمت شماره درست نمیباشد
+      </ng-container>
+   
+    } @else {
+      <ng-container
       >رمز باید شامل حداقل یک حرف بزرگ ، یک کاراکتر خاص و یک عدد
       باشد</ng-container
     >
-    } } }
+
+    }
+   } }
     </p>
   `,
   styleUrl: './error-message.component.css',
 })
-export class ErrorMessageComponent implements OnInit {
+export class ErrorMessageComponent  {
   @Input() control: AbstractControl | null = null;
   @Input() minlength: number = 0;
   @Input() maxlength: number = 0;
   @Input() exactlength: number = 0;
+  @Input() isMobileNumber : boolean = false
 
-  ngOnInit(): void {}
+
+
 }

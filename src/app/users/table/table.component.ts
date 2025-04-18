@@ -61,6 +61,32 @@ export class TableComponent implements OnChanges , OnDestroy {
     });
   }
 
+  sortList(sortOption : string) {
+    console.log('sortOption:', sortOption)
+    
+    switch(sortOption) {
+      case "firstName" : {
+
+        break
+      }
+      case "lastName" : {
+
+        break
+      }
+      case "userName" : {
+
+        break
+      }
+      case "organizationName" : {
+        
+        break
+      }
+    }
+    
+    
+    
+  }
+
 ngOnDestroy(): void {
     this.dialogSub?.unsubscribe()
 }  
