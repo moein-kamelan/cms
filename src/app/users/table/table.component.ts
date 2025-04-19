@@ -38,7 +38,6 @@ export class TableComponent implements OnChanges , OnDestroy {
   constructor(private dialog: MatDialog, private useresService: UsersService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('this.users in table => ', this.users);
   }
 
   private dialogSub!: Subscription;
@@ -57,6 +56,7 @@ export class TableComponent implements OnChanges , OnDestroy {
         this.useresService.DeleteUserById(result).subscribe((res) => {
           console.log(res);
         });
+
       }
     });
   }

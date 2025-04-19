@@ -104,3 +104,7 @@ background: gray;
 color: #000;
 }
 
+.dark input {
+background-color: gray !important;
+}
+

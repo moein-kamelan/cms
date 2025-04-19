@@ -68,6 +68,10 @@ export class LoginComponent implements OnInit , OnDestroy {
       .subscribe((res: any) => {
         console.log(res);
         if (res!.statusCode === 200) {
+          this._snackBar.open('ورود موفقیت آمیز بود / در حال انتقال به صفحه اصلی' , '', {
+            verticalPosition: 'top',
+            duration : 2000
+          });
           const isRememberMeOn = this.rememberInput.nativeElement.checked;
           sessionStorage.setItem('token', res.data);
           console.log(
@@ -81,7 +85,12 @@ export class LoginComponent implements OnInit , OnDestroy {
               localStorage.getItem('token')
             );
           }
+
+          setTimeout(() => {
           this.router.navigate(['/users']);
+            
+          }, 2000);
+          
         }
       });
   }

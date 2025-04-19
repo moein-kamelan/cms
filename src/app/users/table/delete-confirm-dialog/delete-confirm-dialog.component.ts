@@ -31,7 +31,6 @@ export class DeleteConfirmDialogComponent {
   }
 
   onConfirm() {
-    console.log(this.data.id);
     
     this.dialogRef.close( this.data.id );
   }

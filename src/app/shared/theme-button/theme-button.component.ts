@@ -20,7 +20,6 @@ changeTheme() {
 
 
 if(this.themeStatus === "light") {
-  console.log("hello");
   
   this.renderer.addClass(document.body , "dark")
   this.themeStatus = "dark"

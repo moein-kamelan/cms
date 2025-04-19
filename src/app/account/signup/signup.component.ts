@@ -168,7 +168,7 @@ export class SignupComponent implements OnInit , OnDestroy{
 
           if (err.status === 400) {
             this._snackBar.open(
-              err.error.validationErrors[0].message,
+              err.message,
               'تلاش دوباره',
               {
                 verticalPosition: 'top',
@@ -201,7 +201,7 @@ export class SignupComponent implements OnInit , OnDestroy{
         catchError((err) => {
           if (err.status === 400) {
             this._snackBar.open(
-              err.error.validationErrors[0].message,
+              err.message,
               'تلاش دوباره',
               {
                 verticalPosition: 'top',
