@@ -1,6 +1,6 @@
 <div class="relative overflow-x-auto min-h-[510px]">
   <table
-    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-3xl overflow-hidden border-gray-200 dark:border-gray-700 shadow-md dark:shadow-red-900"
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-3xl overflow-hidden border-gray-200 dark:border-gray-700 shadow-md dark:shadow-blue-700"
   >
     <thead
       class="text-xs text-gray-700 uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400 *:text-white *:dark:text-white whitespace-nowrap "
@@ -37,7 +37,7 @@
       @for (user of users; track $index) {
 
       <tr
-        class="bg-white border-b dark:bg-rose-900 dark:border-gray-700 border-gray-200 dark:hover:bg-rose-700 hover:bg-gray-300"
+        class="bg-white border-b dark:bg-violet-900 dark:border-violet-700 border-gray-200 dark:hover:bg-violet-700 hover:bg-gray-300"
       >
         <td scope="row">
           <a
@@ -85,7 +85,7 @@
             [matMenuTriggerFor]="menu"
             aria-label="Example icon-button with a menu"
           >
-            <mat-icon>more_vert</mat-icon>
+            <mat-icon class="menu-icon dark:!text-white">more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu" class="divide-y-4 divide-gray-200">
             <a [routerLink]="['/users/editNewUser', user.id]" mat-menu-item>

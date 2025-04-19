@@ -4,10 +4,11 @@ import { MaterialModule } from '../material.module';
 import { FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { FormFeildComponent } from "../shared/form-feild/form-feild.component";
 import { ErrorMessageComponent } from "../shared/error-message/error-message.component";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-create-new-user',
-  imports: [HeaderComponent, MaterialModule, FormFeildComponent, ErrorMessageComponent],
+  imports: [HeaderComponent, MaterialModule, ErrorMessageComponent , RouterModule],
   templateUrl: './create-new-user.component.html',
   styleUrl: './create-new-user.component.css',
 })
@@ -60,7 +61,9 @@ export class CreateNewUserComponent implements OnInit {
   }
 
   onSubmitCreateNewUserForm() {
-    console.log("hello");
+    console.log(this.createNewUserFormGroup.value);
+    
+
     
   }
   
@@ -68,5 +71,7 @@ export class CreateNewUserComponent implements OnInit {
     console.log(this.createNewUserFormGroup.valid);
     
   }
+
+
   
 }

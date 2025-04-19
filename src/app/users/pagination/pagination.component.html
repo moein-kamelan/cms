@@ -33,7 +33,7 @@
   <div >
     <label for="visitors" class="flex items-center justify-center gap-5 text-nowrap max-sm:flex-col">
       <span>تعداد آیتم برای هر صفحه : ( حداکثر 6 )</span>
-      <input type="number" min="1" max="6" maxlength="6" id="visitors" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 shadow-2xl" placeholder="" required  value="5" (change)="changeItemPerPage(pagePerPageInput)" #pagePerPageInput/>
+      <input (change)="onChangePageSize(pageSizeInput)" #pageSizeInput  type="number" min="1" max="6" maxlength="6" id="visitors" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 shadow-2xl" placeholder="" required  [value]="paginationInfos.pageSize"/>
     </label>
    
 
@@ -41,21 +41,22 @@
   
 
   <nav aria-label="Page navigation example shadow-2xl">
-    <ul class="inline-flex -space-x-px text-base h-10">
+    <ul class="inline-flex -space-x-px text-base h-10 flex-wrap gap-y-1">
       <li>
-        <button href="#" class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" (click)="onClickPrev()" >قبلی</button>
+        <button href="#" class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"  (click)="onGoPrevPage()">قبلی</button>
       </li>
-      @for (Page of pageCount | pageCount : pageCount; track $index) {
 
-        <li>
-          <button (click)="onchangePage($index + 1)" [ngClass]="{'activePage' : CurrentPage === ($index + 1)}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{$index + 1}}</button>
-        </li>
+   @for (page of pageCount | pageCount : pageCount; track $index) {
+    <li>
+      <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{activePage : $index + 1 === currentPage}">{{$index +1}}</button>
+    </li>
+   }
         
-      }
+      
 
  
       <li>
-        <button href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"  (click)="onClickNext()">بعدی</button>
+        <button href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"  (click)="onGoNextPage()">بعدی</button>
       </li>
     </ul>
   </nav>

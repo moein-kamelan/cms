@@ -1,4 +1,3 @@
-<app-header></app-header>
 
 
 
@@ -17,169 +16,179 @@
           در اینجا اطلاعات کاربر را ویرایش کنید
         </p>
       </div>
+
+      @if(editUserFormGroup) {
         <form
-          action="" 
-          
-          [formGroup]="editUserFormGroup"
-          (ngSubmit)="onSubmitEditUserForm()"
-        >
-     <div class="border-t-3 border-gray-500 px-12 sm:px-4 py-5 grid sm:grid-cols-2 gap-x-4 gap-y-1.5">
+        action="" 
+        
+        [formGroup]="editUserFormGroup"
+        (ngSubmit)="onSubmitEditUserForm()"
+      >
+   <div class="border-t-3 border-gray-500 px-12 sm:px-4 py-5 grid sm:grid-cols-2 gap-x-4 gap-y-1.5">
 
-      <mat-form-field class="w-full">
-        <mat-label>نام</mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="نام  را وارد کنید"
-          formControlName="firstName"
-        />
-        <mat-error>
-          <app-error-message
-            [control]="editUserFormGroup.get('firstName')"
-            [minlength]="4"
-            [maxlength]="12"
-          ></app-error-message>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="w-full">
-        <mat-label>نام خانوادگی</mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="نام خانوادگی را وارد کنید"
-          formControlName="lastName"
-        />
+    <mat-form-field class="w-full">
+      <mat-label>نام</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="نام  را وارد کنید"
+        formControlName="firstName"
+      />
+      <mat-error>
+        <app-error-message
+          [control]="editUserFormGroup.get('firstName')"
+          [minlength]="4"
+          [maxlength]="12"
+        ></app-error-message>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>نام خانوادگی</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="نام خانوادگی را وارد کنید"
+        formControlName="lastName"
+      />
 
-        <mat-error>
-          <app-error-message
-            [control]="editUserFormGroup.get('lastName')"
-            [minlength]="4"
-            [maxlength]="12"
-          ></app-error-message>
-        </mat-error>
-      </mat-form-field>
+      <mat-error>
+        <app-error-message
+          [control]="editUserFormGroup.get('lastName')"
+          [minlength]="4"
+          [maxlength]="12"
+        ></app-error-message>
+      </mat-error>
+    </mat-form-field>
 
+
+  
+
+    <mat-form-field class="w-full">
+      <mat-label>نام پدر</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="نام پدر را وارد کنید"
+        formControlName="fatherName"
+      />
+      <mat-error>
+        <app-error-message
+          [control]="editUserFormGroup.get('fatherName')"
+          [minlength]="4"
+          [maxlength]="12"
+        ></app-error-message>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>نام کاربری</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="نام کاربری را وارد کنید"
+        formControlName="userName"
+      />
+      <mat-error>
+        <app-error-message
+          [control]="editUserFormGroup.get('userName')"
+          [minlength]="4"
+          [maxlength]="12"
+        ></app-error-message>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>شماره همراه</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="مثال : 09031357262"
+        formControlName="mobileNumber"
+      />
+      <mat-error>
+        <app-error-message
+          [control]="editUserFormGroup.get('mobileNumber')"
+          [isMobileNumber]="true"
+        ></app-error-message>
+      </mat-error>
+    </mat-form-field>
 
     
+    <mat-form-field class="w-full">
+      <mat-label>کد ملی</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="کد ملی را وارد کنید"
+        formControlName="nationalCode"
+      />
 
-      <mat-form-field class="w-full">
-        <mat-label>نام پدر</mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="نام پدر را وارد کنید"
-          formControlName="fatherName"
-        />
-        <mat-error>
-          <app-error-message
-            [control]="editUserFormGroup.get('fatherName')"
-            [minlength]="4"
-            [maxlength]="12"
-          ></app-error-message>
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="w-full">
-        <mat-label>نام کاربری</mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="نام کاربری را وارد کنید"
-          formControlName="userName"
-        />
-        <mat-error>
-          <app-error-message
-            [control]="editUserFormGroup.get('userName')"
-            [minlength]="4"
-            [maxlength]="12"
-          ></app-error-message>
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="w-full">
-        <mat-label>شماره همراه</mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="مثال : 09031357262"
-          formControlName="mobileNumber"
-        />
-        <mat-error>
-          <app-error-message
-            [control]="editUserFormGroup.get('mobileNumber')"
-            [isMobileNumber]="true"
-          ></app-error-message>
-        </mat-error>
-      </mat-form-field>
-
-      
-      <mat-form-field class="w-full">
-        <mat-label>کد ملی</mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="کد ملی را وارد کنید"
-          formControlName="nationalCode"
-        />
-
-        <mat-error>
-          <app-error-message
-            [control]="editUserFormGroup.get('nationalCode')"
-            [exactlength]="10"
-          ></app-error-message>
-        </mat-error>
-      </mat-form-field>
-      
-      
+      <mat-error>
+        <app-error-message
+          [control]="editUserFormGroup.get('nationalCode')"
+          [exactlength]="10"
+        ></app-error-message>
+      </mat-error>
+    </mat-form-field>
+    
+    
 <!-- 
-      <mat-form-field class="w-full">
-        <mat-label>رمز عبور</mat-label>
-        <input
-          matInput
-          type="password"
-          placeholder="رمز عبور را وارد کنید"
-          formControlName="password"
-        />
+    <mat-form-field class="w-full">
+      <mat-label>رمز عبور</mat-label>
+      <input
+        matInput
+        type="password"
+        placeholder="رمز عبور را وارد کنید"
+        formControlName="password"
+      />
 
-        <mat-error>
-          <app-error-message
-            [control]="editUserFormGroup.get('password')"
-            [minlength]="8"
-            [maxlength]="12"
-          ></app-error-message>
-        </mat-error>
-      </mat-form-field> -->
+      <mat-error>
+        <app-error-message
+          [control]="editUserFormGroup.get('password')"
+          [minlength]="8"
+          [maxlength]="12"
+        ></app-error-message>
+      </mat-error>
+    </mat-form-field> -->
 
-      <section
-        class="example-section"
-        class="flex items-center w-full gap-4"
-      >
-        <p>
-          <mat-slide-toggle
-            formControlName="isForeigner"
-          ></mat-slide-toggle>
-        </p>
+    <section
+      class="example-section"
+      class="flex items-center w-full gap-4"
+    >
+      <p>
+        <mat-slide-toggle
+          formControlName="isForeigner"
+        ></mat-slide-toggle>
+      </p>
 
-        <h4 class="text-main-black dark:text-white text-sm">
-          ایا اتباع خارجی هستید؟
-        </h4>
-      </section>
-      
-      
-     </div>
+      <h4 class="text-main-black dark:text-white text-sm">
+        ایا اتباع خارجی هستید؟
+      </h4>
+    </section>
+    
+    
+   </div>
 
 
-          <div class="w-full border-t-3 border-gray-500   bg-yellow-50 dark:bg-gray-400 p-4 flex justify-end ">
+        <div class="w-full border-t-3 border-gray-500   bg-yellow-50 dark:bg-gray-400 p-4 flex justify-end gap-3">
 
-            <button type="submit" [disabled]="!editUserFormGroup.valid" [ngClass]="{'invalid-btn' : !editUserFormGroup.valid}" (click)="onclickSubmitButton()" class="p-3 bg-blue-600 hover:bg-blue-800 w-1/4 max-sm:w-full  flex items-center justify-center gap-4 rounded-lg  font-iranSansDemiBold cursor-pointer dark:text-white border-4 border-gray-400"> <mat-icon>add_circle</mat-icon> ایجاد کاربر  </button>
-            
-            
-          </div>
+          <a   routerLink="/users" class="p-3 bg-red-700 hover:bg-red-800 w-1/4 max-sm:w-full  flex items-center justify-center gap-4 rounded-lg  font-iranSansDemiBold cursor-pointer dark:text-white border-4 border-gray-400"> <mat-icon>
+            undo
+            </mat-icon> بازگشت  </a>
+
+          <button type="submit" [disabled]="!editUserFormGroup.valid" [ngClass]="{'invalid-btn' : !editUserFormGroup.valid}" (click)="onclickSubmitButton()" class="p-3 bg-blue-600 hover:bg-blue-800 w-1/4 max-sm:w-full  flex items-center justify-center gap-4 rounded-lg  font-iranSansDemiBold cursor-pointer dark:text-white border-4 border-gray-400"> <mat-icon>add_circle</mat-icon> ویرایش کاربر  </button>
+
+
           
-
-
+          
+        </div>
         
-    </form>
+
+
+      
+  </form>
+      }
+  
     </div>
   </div>
 </div>
