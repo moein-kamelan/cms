@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-create-new-user',
-  imports: [HeaderComponent, MaterialModule, ErrorMessageComponent , RouterModule],
+  imports: [ MaterialModule, ErrorMessageComponent , RouterModule],
   templateUrl: './create-new-user.component.html',
   styleUrl: './create-new-user.component.css',
 })

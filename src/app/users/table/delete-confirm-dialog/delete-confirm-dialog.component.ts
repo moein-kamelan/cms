@@ -14,7 +14,6 @@ import { UsersService } from '../../../services/users.service';
   selector: 'app-delete-confirm-dialog',
   imports: [
     MatDialogActions,
-    MatDialogClose,
     MatDialogContent,
     MatDialogTitle],
   templateUrl: './delete-confirm-dialog.component.html',

@@ -12,7 +12,6 @@ import { SearchOptions } from '../enums/search-options';
 @Component({
   selector: 'app-users',
   imports: [
-    HeaderComponent,
     PaginationComponent,
     SearchbarComponent,
     TableComponent,
@@ -48,8 +47,8 @@ export class UsersComponent implements OnInit, OnDestroy , AfterViewInit {
         this.totalUsersCount = res.data.totalCount;
       });
 
-      this.usersService.usersSub.next(this.users)
       
+      this.usersService.usersSub.next(this.users)
     })
 
 

@@ -6,7 +6,7 @@ import { catchError, of } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-user-details',
-  imports: [HeaderComponent],
+  imports: [],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.css'
 })

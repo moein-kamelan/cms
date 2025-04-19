@@ -8,7 +8,7 @@ import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-edit-new-user',
-  imports: [HeaderComponent, ErrorMessageComponent , MaterialModule , RouterModule],
+  imports: [ ErrorMessageComponent , MaterialModule , RouterModule],
   templateUrl: './edit-new-user.component.html',
   styleUrl: './edit-new-user.component.css'
 })

@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy, inject } from '@angular/core';
 import { MaterialModule } from '../../material.module';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
@@ -21,12 +21,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentUserSub!: Subscription;
   dialogSub!: Subscription;
 
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService ) {}
 
   ngOnInit(): void {
     this.currentUserSub = this.usersService.GetCurrentUser().subscribe((user) => {
       this.currentUser = user;
-      console.log('this.currentUser:', this.currentUser);
+      console.log('this.currentUser:', this.currentUser , {
+        
+      });
     });
   }
 
@@ -44,20 +46,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
     overlay.style.display = 'block';
   }
 
-  logout() {
-    localStorage.removeItem("token");
-    sessionStorage.removeItem("token");
-  }
+
 
   openDialog() {
-    const dialogRef = this.dialog.open(ConfirmExitModalComponent);
+    const dialogRef = this.dialog.open(ConfirmExitModalComponent , {
+      width : "380px",
+    });
     this.dialogSub = dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log('result:', result);
-        this.usersService.DeleteUserById(result).subscribe((res) => {
-          console.log(res);
-        });
+      if(result) {
+
+
+        
+        
       }
+    
     });
   }
 
