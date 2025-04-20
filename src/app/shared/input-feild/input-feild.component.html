@@ -1,0 +1,41 @@
+<mat-form-field class="w-full">
+    <mat-label>{{label}}</mat-label>
+    <input
+      matInput
+      [type]="type"
+      [placeholder]="placeholder"
+      [formControl]="control"
+    />
+    <mat-error>
+
+        <p class='text-sm relative top-[-18px] text-red-500 dark:text-yellow-600'>
+            @if ( control.invalid && (control.touched || control.dirty) ) { 
+                @if
+            (control.hasError('required')) {
+            <ng-container>مقداری وارد نشده</ng-container>
+            } @else if (control.hasError("minlength")) {
+            <ng-container>حداقل کاراکتر مجاز {{ minlength }} عدد</ng-container>
+        
+            }@else if (control.hasError("maxlength")) {
+            <ng-container>حداکثر کاراکتر مجاز {{ maxlength }} عدد</ng-container>
+        
+            }@else if (control.hasError("pattern")) { @if(exactlength) {
+            <ng-container>باید {{ exactlength }} رقمی باشد</ng-container>
+            }@else if(isMobileNumber) {
+              <ng-container>
+              فرمت شماره درست نمیباشد
+              </ng-container>
+           
+            } @else {
+              <ng-container
+              >رمز باید شامل حداقل یک حرف بزرگ ، یک کاراکتر خاص و یک عدد
+              باشد</ng-container
+            >
+        
+            }
+           } }
+            </p>
+        
+
+    </mat-error>
+  </mat-form-field>

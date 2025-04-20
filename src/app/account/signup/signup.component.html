@@ -1,14 +1,13 @@
-<section class="h-screen bg-gray-50 
-                bg-gradient-to-r from-purple-500 to-cyan-600
-                 dark:bg-gradient-to-r dark:from-zinc-600 dark:to-red-500">
-
+<section
+  class="h-screen bg-gray-50 bg-gradient-to-r from-purple-500 to-cyan-600 dark:bg-gradient-to-r dark:from-zinc-600 dark:to-red-500"
+>
   <div
     class="flex flex-col items-center justify-center px-2 py-4 mx-auto md:h-screen lg:py-0 h-full"
   >
     <div
-      class="w-full bg-white rounded-lg shadow-4xl  md:mt-0 sm:max-w-4xl xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+      class="w-full bg-white rounded-lg shadow-4xl md:mt-0 sm:max-w-4xl xl:p-0 dark:bg-gray-800 dark:border-gray-700 min-h-[660px]"
     >
-      <div class="!p-4 space-y-4 md:space-y-6 sm:p-8 rounded-2xl ">
+      <div class="!p-4 space-y-4 md:space-y-6 sm:p-8 rounded-2xl">
         <h1
           class="text-xl font-iranSansDemiBold leading-tight tracking-tight text-gray-900 md:text-4xl dark:text-white mb-2"
         >
@@ -22,13 +21,61 @@
           >
             <mat-tab label="شخص حقیقی" class="flex items-center justify-center">
               <div
-                class="fields-container flex flex-col items-center justify-center gap-2 mt-5"
+                class="fields-container flex flex-col items-center justify-center gap-2 mt-5 h-9/10"
               >
                 <form
                   [formGroup]="personalFormGroup"
                   (ngSubmit)="onPersonalSubmit()"
                   class="grid sm:grid-cols-2 gap-x-4 gap-y-1.5 w-full p-2"
                 >
+                  <app-input-feild
+                    type="text"
+                    label="نام"
+                    placeholder="نام را وارد کنید"
+                    [control]="getPersonalFormControl('firstName')"
+                    [minlength]="4"
+                    [maxlength]="12"
+                  ></app-input-feild>
+
+                  <app-input-feild
+                    type="text"
+                    label="نام خانوادگی"
+                    placeholder="نام خانوادگی را وارد کنید"
+                    [control]="getPersonalFormControl('lastName')"
+                    [minlength]="4"
+                    [maxlength]="12"
+                  ></app-input-feild>
+                  <app-input-feild
+                    type="text"
+                    label="کد ملی"
+                    placeholder="کد ملی را وارد کنید"
+                    [control]="getPersonalFormControl('nationalCode')"
+                    [exactlength]="10"
+                  ></app-input-feild>
+                  <app-input-feild
+                    type="text"
+                    label="شماره همراه"
+                    placeholder="شماره همراه را وارد کنید"
+                    [control]="getPersonalFormControl('mobileNumber')"
+                    [isMobileNumber]="true"
+                  ></app-input-feild>
+                  <app-input-feild
+                    type="text"
+                    label="نام کاربری"
+                    placeholder="نام کاربری را وارد کنید"
+                    [control]="getPersonalFormControl('userName')"
+                    [minlength]="4"
+                    [maxlength]="12"
+                  ></app-input-feild>
+                  <app-input-feild
+                    type="password"
+                    label="رمز عبور"
+                    placeholder="رمز عبور را وارد کنید"
+                    [control]="getPersonalFormControl('password')"
+                    [minlength]="8"
+                    [maxlength]="12"
+                  ></app-input-feild>
+<!-- 
                   <mat-form-field class="w-full">
                     <mat-label>نام</mat-label>
                     <input
@@ -45,6 +92,7 @@
                       ></app-error-message>
                     </mat-error>
                   </mat-form-field>
+
                   <mat-form-field class="w-full">
                     <mat-label>نام خانوادگی</mat-label>
                     <input
@@ -129,7 +177,7 @@
                         [maxlength]="12"
                       ></app-error-message>
                     </mat-error>
-                  </mat-form-field>
+                  </mat-form-field> -->
 
                   <section
                     class="example-section"
@@ -145,9 +193,6 @@
                       ایا اتباع خارجی هستید؟
                     </h4>
                   </section>
-
-               
-
                 </form>
               </div>
             </mat-tab>
@@ -156,9 +201,109 @@
                 [formGroup]="legalFormGroup"
                 #legalFrom="ngForm"
                 (ngSubmit)="onlegalFormSubmit()"
-                class="sm:grid  lg:grid-cols-4 max-sm:space-y-3.5 gap-y-2 gap-x-5 mt-5 p-2"
+                class="sm:grid lg:grid-cols-4 max-sm:space-y-3.5 gap-y-2 gap-x-5 mt-5 p-2"
               >
-                <mat-form-field class="w-full">
+
+               <app-input-feild
+               class="w-full shrink"
+              type="text"
+              label="نام سازمان"
+              placeholder="نام سازمان را وارد کنید"
+              [control]="getLegalFormControl('name')"
+              [minlength]="4"
+              [maxlength]="12"
+            ></app-input-feild>
+              <app-input-feild
+              class="w-full shrink"
+              type="text"
+              label="کد پستی"
+              placeholder="کد پستی را وارد کنید"
+              [control]="getLegalFormControl('postalCode')"
+              [exactlength]="10"
+            ></app-input-feild> 
+              <app-input-feild
+              class="w-full shrink"
+              type="text"
+              label="شماره همراه"
+              placeholder="مثال : ۰۹۰۳۱۳۵۷۲۶۲"
+              [control]="getLegalFormControl('mobileNumber')"
+              [isMobileNumber]="true"
+            ></app-input-feild> 
+
+            <app-input-feild
+            class="w-full shrink"
+            type="text"
+            label="شناسه ملی"
+            placeholder="شناسه ملی را وارد کنید"
+            [control]="getLegalFormControl('nationalId')"
+            [exactlength]="11"
+          ></app-input-feild> 
+
+            <app-input-feild
+            class="w-full shrink"
+            type="password"
+            label="رمز عبور"
+            placeholder="رمز عبور را وارد کنید"
+            [control]="getLegalFormControl('password')"
+            [minlength]="8"
+            [maxlength]="12"
+          ></app-input-feild> 
+
+
+            <app-input-feild
+            class="w-full shrink"
+            type="text"
+            label="نام کاربری"
+            placeholder="نام کاربری را وارد کنید"
+            [control]="getLegalFormControl('userName')"
+            [minlength]="4"
+            [maxlength]="12"
+          ></app-input-feild> 
+
+
+            <app-input-feild
+            class="w-full shrink"
+            type="text"
+            label="نام"
+            placeholder="نام را وارد کنید"
+            [control]="getLegalFormControl('firstName')"
+            [minlength]="4"
+            [maxlength]="12"
+          ></app-input-feild> 
+
+
+            <app-input-feild
+            class="w-full shrink"
+            type="text"
+            label="نام خانوادگی"
+            placeholder="نام خانوادگی را وارد کنید"
+            [control]="getLegalFormControl('lastName')"
+            [minlength]="4"
+            [maxlength]="12"
+          ></app-input-feild> 
+              
+
+            <app-input-feild 
+            class="w-full col-span-2 shrink"
+            type="text"
+            label="کد اقتصادی"
+            placeholder="کد اقتصادی را وارد کنید"
+            [control]="getLegalFormControl('economicCode')"
+            [exactlength]="12"
+          ></app-input-feild> 
+
+
+            <app-input-feild
+            class="w-full col-span-2 shrink"
+            type="text"
+            label="کد ملی"
+            placeholder="کد ملی را وارد کنید"
+            [control]="getLegalFormControl('nationalCode')"
+            [exactlength]="10"
+          ></app-input-feild> 
+              
+              
+                 <!-- <mat-form-field class="w-full"> 
                   <mat-label>نام سازمان</mat-label>
                   <input
                     matInput
@@ -202,7 +347,6 @@
                     type="text"
                     placeholder="مثال : ۰۹۰۳۱۳۵۷۲۶۲"
                     formControlName="mobileNumber"
-                    
                   />
 
                   <mat-error>
@@ -262,7 +406,6 @@
                       [control]="legalFormGroup.get('userName')"
                       [minlength]="4"
                       [maxlength]="12"
-
                     ></app-error-message>
                   </mat-error>
                 </mat-form-field>
@@ -333,12 +476,13 @@
                       [exactlength]="10"
                     ></app-error-message>
                   </mat-error>
-                </mat-form-field>
+                </mat-form-field>  -->
 
                 <mat-form-field class="w-full col-span-4">
                   <mat-label>آدرس</mat-label>
                   <textarea
                     matInput
+                    cdkTextareaAutosize
                     placeholder="آدرس را وارد کنید"
                     formControlName="address"
                     class="addressTextarea"
@@ -351,8 +495,6 @@
                     ></app-error-message>
                   </mat-error>
                 </mat-form-field>
-
-               
               </form>
             </mat-tab>
           </mat-tab-group>
@@ -375,7 +517,7 @@
           </button>
         </div>
 
-        <p class=" font-light text-gray-500 dark:text-gray-400 text-lg">
+        <p class="font-light text-gray-500 dark:text-gray-400 text-lg">
           ایا از قبل حساب کاربری دارید؟
           <a
             routerLink="/account/login"

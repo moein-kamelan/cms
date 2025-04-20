@@ -22,6 +22,7 @@ import { catchError, from, of, Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorMessageComponent } from '../../shared/error-message/error-message.component';
+import { InputFeildComponent } from "../../shared/input-feild/input-feild.component";
 @Component({
   selector: 'app-signup',
   imports: [
@@ -30,7 +31,8 @@ import { ErrorMessageComponent } from '../../shared/error-message/error-message.
     FormsModule,
     ReactiveFormsModule,
     ErrorMessageComponent,
-  ],
+    InputFeildComponent
+],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
   encapsulation: ViewEncapsulation.None,
@@ -80,6 +82,7 @@ export class SignupComponent implements OnInit , OnDestroy{
         ),
       ]),
     });
+
 
     this.legalFormGroup = new FormGroup({
       name: new FormControl('', [
@@ -141,6 +144,14 @@ export class SignupComponent implements OnInit , OnDestroy{
 
   constructor(private authService: AuthService , private router : Router) {}
 
+  getPersonalFormControl(contolName : string) {
+      return this.personalFormGroup.get(contolName) as FormControl
+  }
+  getLegalFormControl(contolName : string) {
+      return this.legalFormGroup.get(contolName) as FormControl
+  }
+
+  
   onChangeTab(index: number) {
     if (index === 0) {
       this.isLegal = false;
