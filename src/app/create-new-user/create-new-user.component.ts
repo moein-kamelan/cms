@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HeaderComponent } from '../shared/header/header.component';
 import { MaterialModule } from '../material.module';
 import { FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { FormFeildComponent } from "../shared/form-feild/form-feild.component";
 import { ErrorMessageComponent } from "../shared/error-message/error-message.component";
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-create-new-user',
@@ -12,10 +14,12 @@ import { RouterModule } from '@angular/router';
   templateUrl: './create-new-user.component.html',
   styleUrl: './create-new-user.component.css',
 })
-export class CreateNewUserComponent implements OnInit {
+export class CreateNewUserComponent implements OnInit , OnDestroy{
   createNewUserFormGroup!: FormGroup;
 
+constructor(private usersService : UsersService , private router : Router) {
 
+}
   ngOnInit(): void {
     this.createNewUserFormGroup = new FormGroup({
       firstName: new FormControl('', [
@@ -60,18 +64,21 @@ export class CreateNewUserComponent implements OnInit {
     });
   }
 
+  editUserSub! : Subscription
   onSubmitCreateNewUserForm() {
     console.log(this.createNewUserFormGroup.value);
-    
+    const newUserInfos = {...this.createNewUserFormGroup.value , organizationId : 1}
+    this.editUserSub = this.usersService.RegisterNewUser(newUserInfos).subscribe((res) => {
+      console.log(res);
+        this.router.navigate(["/users"])
+    })
 
     
   }
+
   
-  onclickSubmitButton() {
-    console.log(this.createNewUserFormGroup.valid);
-    
-  }
-
-
+ngOnDestroy(): void {
+  this.editUserSub?.unsubscribe()
+}
   
 }

@@ -24,10 +24,10 @@ import {
 import { DeleteConfirmDialogComponent } from './delete-confirm-dialog/delete-confirm-dialog.component';
 import { UsersService } from '../../services/users.service';
 import { Subscription } from 'rxjs';
-
+import { SearchOptions } from '../../enums/search-options';
 @Component({
   selector: 'app-table',
-  imports: [CommonModule, MaterialModule, RouterModule, MatDialogModule],
+  imports: [CommonModule, MaterialModule, RouterModule, MatDialogModule  ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -63,26 +63,7 @@ export class TableComponent implements OnChanges , OnDestroy {
 
   sortList(sortOption : string) {
     console.log('sortOption:', sortOption)
-    
-    switch(sortOption) {
-      case "firstName" : {
-
-        break
-      }
-      case "lastName" : {
-
-        break
-      }
-      case "userName" : {
-
-        break
-      }
-      case "organizationName" : {
-        
-        break
-      }
-    }
-    
+    this.useresService.emitSortOption(sortOption)
     
     
   }

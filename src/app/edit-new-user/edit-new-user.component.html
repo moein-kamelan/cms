@@ -6,7 +6,7 @@
     <div
       class="bg-gray-400 dark:bg-gray-700 overflow-hidden shadow rounded-lg border mx-auto max-w-4xl shadow-2xl"
     >
-      <div class="px-4 py-5 sm:px-6 bg-yellow-50 dark:bg-gray-400">
+      <div class="px-4 py-5 sm:px-6 bg-gray-200 dark:bg-gray-400">
         <h3
           class="text-xl leading-6 font-medium text-gray-900 dark:text-gray-200"
         >
@@ -170,13 +170,13 @@
    </div>
 
 
-        <div class="w-full border-t-3 border-gray-500   bg-yellow-50 dark:bg-gray-400 p-4 flex justify-end gap-3">
+        <div class="w-full border-t-3 border-gray-500   bg-gray-200 dark:bg-gray-400 p-4 flex justify-end gap-3 flex-wrap-reverse">
 
           <a   routerLink="/users" class="p-3 bg-red-700 hover:bg-red-800 w-1/4 max-sm:w-full  flex items-center justify-center gap-4 rounded-lg  font-iranSansDemiBold cursor-pointer dark:text-white border-4 border-gray-400"> <mat-icon>
             undo
             </mat-icon> بازگشت  </a>
 
-          <button type="submit" [disabled]="!editUserFormGroup.valid" [ngClass]="{'invalid-btn' : !editUserFormGroup.valid}" (click)="onclickSubmitButton()" class="p-3 bg-blue-600 hover:bg-blue-800 w-1/4 max-sm:w-full  flex items-center justify-center gap-4 rounded-lg  font-iranSansDemiBold cursor-pointer dark:text-white border-4 border-gray-400"> <mat-icon>add_circle</mat-icon> ویرایش کاربر  </button>
+          <button type="submit" [disabled]="!editUserFormGroup.valid" [ngClass]="{'invalid-btn' : !editUserFormGroup.valid}"  class="p-3 bg-blue-600 hover:bg-blue-800 w-1/4 max-sm:w-full  flex items-center justify-center gap-4 rounded-lg  font-iranSansDemiBold cursor-pointer dark:text-white border-4 border-gray-400"> <mat-icon>add_circle</mat-icon> ویرایش کاربر  </button>
 
 
           

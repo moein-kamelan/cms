@@ -39,7 +39,7 @@ export class UsersComponent implements OnInit, OnDestroy , AfterViewInit {
   ngOnInit(): void {
 
     this.usersService.paginationSub.subscribe((paginationInfos : any) => {
-      
+      this.paginationInfos = paginationInfos
       this.getAllUserSub = this.usersService
       .GetAllUsersWithPagination(paginationInfos)
       .subscribe((res: any) => {
@@ -47,11 +47,18 @@ export class UsersComponent implements OnInit, OnDestroy , AfterViewInit {
         this.totalUsersCount = res.data.totalCount;
       });
 
+   
+
       
       this.usersService.usersSub.next(this.users)
     })
 
-
+    this.usersService.changeSort.subscribe((sortOptions : any)  => {
+      console.log("sortOprions => " , sortOptions);
+      
+      this.searchOption = sortOptions
+      this.onChangeSearchbar("" )
+    });
     
     
      
@@ -61,43 +68,71 @@ export class UsersComponent implements OnInit, OnDestroy , AfterViewInit {
       
   }
 
-
-
+searchOption : string = "firstName"
+searchUserSub! : Subscription
   onChangeSearchbar(searchText : string) {
-    console.log('searchText:', searchText)
+    const searchBody = {
+      "comparisonObjects": [
+        {
+          "logicalComparisonOperator": 0,
+          "comparisonObjects": [
+            {
+              "field": this.searchOption,
+              "operator": 7,
+              "value": searchText
+            }
+          ]
+        }
+      ],
+      "orders": [
+        {
+          "columnName": "id",
+          "sort": 2
+        }
+      ],
+      "pageNumber": this.paginationInfos.pageNumber,
+      "pageSize": this.paginationInfos.pageSize
+    }
+      console.log("HELLOOOO");
+      
+    this.searchUserSub = this.usersService.GetAllUsersWithPagination(searchBody).subscribe((res : any) => {
+      
+      console.log(res);
+      this.users = res.data.items
+      this.totalUsersCount = res.data.totalCount
+    })
     
   }
 
-  onChangeSearchOption(searchOption : string) {
-    console.log("searchOption => " , searchOption);
-    console.log(SearchOptions.lastName);
-    
-    switch(searchOption) {
+  onChangeSearchOption(searchOptionSelected : string) {
+    switch(searchOptionSelected) {
       case SearchOptions.firstName : {
-        
-
+        this.searchOption = "firstName"
         break
       }
       case SearchOptions.lastName : {
-        
+        this.searchOption = "lastName"
 
         break
       }
       case SearchOptions.userName : {
-        
+        this.searchOption = "userName"
 
         break
       }
       case SearchOptions.organizationName : {
-        
+        this.searchOption = "organizationName"
 
         break
       }
     }
+   
     
+  
   }
 
   ngOnDestroy(): void {
     this.getAllUserSub?.unsubscribe();
+    this.searchUserSub?.unsubscribe()
   }
 }

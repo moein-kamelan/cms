@@ -166,14 +166,14 @@
      </div>
 
 
-     <div class="w-full border-t-3 border-gray-500   bg-gray-200 dark:bg-gray-400 p-4 flex justify-end gap-3 ">
+     <div class="w-full border-t-3 border-gray-500   bg-gray-200 dark:bg-gray-400 p-4 flex justify-end gap-3 flex-wrap-reverse">
 
       
        <a  routerLink="/users" class="p-3 bg-red-700 hover:bg-red-800 w-1/4 max-sm:w-full  flex items-center justify-center gap-4 rounded-lg  font-iranSansDemiBold cursor-pointer dark:text-white border-4 border-gray-400"> <mat-icon>
         undo
         </mat-icon> بازگشت  </a>
        
-            <button type="submit" [disabled]="!createNewUserFormGroup.valid" [ngClass]="{'invalid-btn' : !createNewUserFormGroup.valid}" (click)="onclickSubmitButton()" class="p-3 bg-blue-600 hover:bg-blue-800 w-1/4 max-sm:w-full  flex items-center justify-center gap-4 rounded-lg  font-iranSansDemiBold cursor-pointer dark:text-white border-4 border-gray-400"> <mat-icon>add_circle</mat-icon> ایجاد کاربر  </button>
+            <button type="submit" [disabled]="!createNewUserFormGroup.valid" [ngClass]="{'invalid-btn' : !createNewUserFormGroup.valid}"  class="p-3 bg-blue-600 hover:bg-blue-800 w-1/4 max-sm:w-full  flex items-center justify-center gap-4 rounded-lg  font-iranSansDemiBold cursor-pointer dark:text-white border-4 border-gray-400"> <mat-icon>add_circle</mat-icon> ایجاد کاربر  </button>
             
             
             

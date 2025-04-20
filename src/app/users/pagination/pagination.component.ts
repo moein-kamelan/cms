@@ -83,9 +83,10 @@ onchangePageIndex(pageIndex : number) {
 onChangePageSize( pageSize : HTMLInputElement ) {
 
   this.pageCount = Math.ceil(this.totalUsersCount / +pageSize.value)
+  this.paginationInfos.pageSize = +pageSize.value
    console.log('this.pageCount:', this.pageCount)
    this.currentPage = 1
-   this.usersService.paginationSub.next({...this.paginationInfos , pageSize : +pageSize.value})
+   this.usersService.paginationSub.next({...this.paginationInfos })
 
 }
 

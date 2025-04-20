@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HeaderComponent } from "../shared/header/header.component";
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ErrorMessageComponent } from "../shared/error-message/error-message.component";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 import { UsersService } from '../services/users.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-new-user',
@@ -12,11 +13,11 @@ import { UsersService } from '../services/users.service';
   templateUrl: './edit-new-user.component.html',
   styleUrl: './edit-new-user.component.css'
 })
-export class EditNewUserComponent implements OnInit {
+export class EditNewUserComponent implements OnInit ,  OnDestroy{
 mainUser : any = {};
   userID : string | null = null
   editUserFormGroup! : FormGroup
-  constructor(private route : ActivatedRoute , private usersService : UsersService) {
+  constructor(private route : ActivatedRoute , private usersService : UsersService , private router : Router) {
     
   }
 
@@ -77,9 +78,23 @@ mainUser : any = {};
 
   }
 
+  updataeUserSub! : Subscription
   onSubmitEditUserForm() {
+    console.log("this.editUserFormGroup.value => " , this.editUserFormGroup.value);
+    this.updataeUserSub = this.usersService.UpdateUserPersonalInformation({...this.editUserFormGroup.value , id : this.userID ,   organizationId: 0,}).subscribe((res) => {
+      console.log(res);
+      this.router.navigate(["/users"])
+      
+    })
 
+    
   }
+
+
+
+ngOnDestroy(): void {
+  this.updataeUserSub?.unsubscribe()
+}  
 
   
   
