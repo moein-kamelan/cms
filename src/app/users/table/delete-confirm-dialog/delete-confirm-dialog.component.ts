@@ -9,13 +9,15 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { UsersService } from '../../../services/users.service';
+import { MaterialModule } from '../../../material.module';
 
 @Component({
   selector: 'app-delete-confirm-dialog',
   imports: [
     MatDialogActions,
     MatDialogContent,
-    MatDialogTitle],
+    MatDialogTitle, 
+  MaterialModule],
   templateUrl: './delete-confirm-dialog.component.html',
   styleUrl: './delete-confirm-dialog.component.css'
 })

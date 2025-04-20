@@ -4,9 +4,10 @@ import { ActivatedRoute } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { catchError, of } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BackButtonComponent } from "../../shared/back-button/back-button.component";
 @Component({
   selector: 'app-user-details',
-  imports: [],
+  imports: [BackButtonComponent],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.css'
 })

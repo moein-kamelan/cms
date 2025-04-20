@@ -7,10 +7,12 @@ import { ErrorMessageComponent } from "../shared/error-message/error-message.com
 import { Router, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UsersService } from '../services/users.service';
+import { ActionButtonComponent } from "../shared/action-button/action-button.component";
+import { BackButtonComponent } from "../shared/back-button/back-button.component";
 
 @Component({
   selector: 'app-create-new-user',
-  imports: [ MaterialModule, ErrorMessageComponent , RouterModule],
+  imports: [MaterialModule, ErrorMessageComponent, RouterModule, ActionButtonComponent, BackButtonComponent],
   templateUrl: './create-new-user.component.html',
   styleUrl: './create-new-user.component.css',
 })
@@ -46,7 +48,7 @@ constructor(private usersService : UsersService , private router : Router) {
         Validators.required,
         Validators.pattern(/^09\d{9}$/),
       ]),
-      organizationId: new FormControl(0, []),
+      organizationId: new FormControl(1, []),
       nationalCode: new FormControl('', [
         Validators.required,
         Validators.pattern(/^(?!(\d)\1{9})\d{10}$/),
@@ -67,7 +69,7 @@ constructor(private usersService : UsersService , private router : Router) {
   editUserSub! : Subscription
   onSubmitCreateNewUserForm() {
     console.log(this.createNewUserFormGroup.value);
-    const newUserInfos = {...this.createNewUserFormGroup.value , organizationId : 1}
+    const newUserInfos = {...this.createNewUserFormGroup.value }
     this.editUserSub = this.usersService.RegisterNewUser(newUserInfos).subscribe((res) => {
       console.log(res);
         this.router.navigate(["/users"])

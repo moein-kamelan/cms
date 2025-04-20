@@ -21,8 +21,8 @@
         </button>
       </div>
  
-      <div class="hidden lg:flex lg:flex-1 lg:justify-end  ">
-        <a (click)="openDialog()"  class="text-sm/6 font-semibold text-gray-900 dark:text-white flex items-center gap-4 p-3 bg-red-300 hover:bg-red-400 rounded-xl border border-red-600 shadow-2xl">خروج<mat-icon>logout</mat-icon></a>
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end  cursor-pointer">
+        <a (click)="openDialog()"  class="text-sm/6 font-semibold text-gray-900 dark:text-white flex items-center gap-4 p-3 bg-red-300 hover:bg-red-400 rounded-xl border border-red-600 shadow-2xl ">خروج<mat-icon>logout</mat-icon></a>
       </div>
     </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
@@ -58,13 +58,13 @@
               
               
             </div>
-            <div class="py-6" >
+            <div class="py-6 cursor-pointer" >
               <div>
 
                 
                 
               </div>
-              <a    (click)="openDialog()" routerLink="/account/login" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white hover:text-gray-900 shadow-4xl">خروج</a>
+              <a    (click)="openDialog()"  routerLink="/account/login" class="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 dark:text-white hover:text-gray-900 shadow-4xl cursor-pointer">خروج</a>
             </div>
           </div>
         </div>

@@ -6,10 +6,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 import { UsersService } from '../services/users.service';
 import { Subscription } from 'rxjs';
+import { ActionButtonComponent } from "../shared/action-button/action-button.component";
+import { BackButtonComponent } from "../shared/back-button/back-button.component";
 
 @Component({
   selector: 'app-edit-new-user',
-  imports: [ ErrorMessageComponent , MaterialModule , RouterModule],
+  imports: [ErrorMessageComponent, MaterialModule, RouterModule, ActionButtonComponent, BackButtonComponent],
   templateUrl: './edit-new-user.component.html',
   styleUrl: './edit-new-user.component.css'
 })
@@ -56,7 +58,7 @@ mainUser : any = {};
           Validators.required,
           Validators.pattern(/^09\d{9}$/),
         ]),
-        organizationId: new FormControl(0, []),
+        organizationId: new FormControl(1, []),
         nationalCode: new FormControl( this.mainUser.nationalCode , [
           Validators.required,
           Validators.pattern(/^(?!(\d)\1{9})\d{10}$/),
@@ -81,7 +83,7 @@ mainUser : any = {};
   updataeUserSub! : Subscription
   onSubmitEditUserForm() {
     console.log("this.editUserFormGroup.value => " , this.editUserFormGroup.value);
-    this.updataeUserSub = this.usersService.UpdateUserPersonalInformation({...this.editUserFormGroup.value , id : this.userID ,   organizationId: 0,}).subscribe((res) => {
+    this.updataeUserSub = this.usersService.UpdateUserPersonalInformation({...this.editUserFormGroup.value , id : this.userID ,  }).subscribe((res) => {
       console.log(res);
       this.router.navigate(["/users"])
       

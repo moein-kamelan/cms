@@ -7,7 +7,7 @@ import {
   ViewEncapsulation,
   inject,
 } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../material.module';
 import {
   FormControl,
@@ -42,6 +42,8 @@ export class SignupComponent implements OnInit , OnDestroy{
   personalFormGroup!: FormGroup;
 
   isLegal: boolean = false;
+
+  
 
   ngOnInit(): void {
     this.personalFormGroup = new FormGroup({
@@ -137,7 +139,7 @@ export class SignupComponent implements OnInit , OnDestroy{
     });
   }
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService , private router : Router) {}
 
   onChangeTab(index: number) {
     if (index === 0) {
@@ -185,6 +187,8 @@ export class SignupComponent implements OnInit , OnDestroy{
       )
       .subscribe((res) => {
         console.log(res);
+        this.router.navigate(["/account/login"])
+
       });
   }
 
@@ -218,7 +222,8 @@ export class SignupComponent implements OnInit , OnDestroy{
       )
       .subscribe({
         next: (res) => {
-          console.log(res);
+          console.log("res in personal => " , res);
+          this.router.navigate(["/account/login"])
         },
       });
   }

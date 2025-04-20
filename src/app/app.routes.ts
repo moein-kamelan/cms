@@ -6,7 +6,7 @@ import { authGuard } from './account/auth.guard';
 import { usersGuard } from './account/users.guard';
 
 export const routes: Routes = [
-  { path: '', title: 'users', redirectTo: 'users', pathMatch: 'full' },
+  { path: '', title: 'users', redirectTo: 'account/login', pathMatch: 'full' },
   {
     path: 'account',
     title: 'account',

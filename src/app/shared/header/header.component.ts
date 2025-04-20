@@ -11,7 +11,7 @@ import { ConfirmExitModalComponent } from '../../confirm-exit-modal/confirm-exit
   imports: [MaterialModule, RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   readonly dialog = inject(MatDialog);

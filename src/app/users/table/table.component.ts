@@ -51,10 +51,10 @@ export class TableComponent implements OnChanges , OnDestroy {
 
     this.dialogSub = dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('result:', result);
 
         this.useresService.DeleteUserById(result).subscribe((res) => {
           console.log(res);
+          this.useresService.usersSub.next(true)
         });
 
       }
@@ -62,7 +62,6 @@ export class TableComponent implements OnChanges , OnDestroy {
   }
 
   sortList(sortOption : string) {
-    console.log('sortOption:', sortOption)
     this.useresService.emitSortOption(sortOption)
     
     

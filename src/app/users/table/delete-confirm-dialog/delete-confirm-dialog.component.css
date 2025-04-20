@@ -1,6 +1,14 @@
- h2[mat-dialog-title] {
-    background-color: red;
+mat-dialog-content {
+     font-family: "iranSanc-r";
+
 }
-.dark h2[mat-dialog-title] {
-    background-color: green;
+
+h2[mat-dialog-title],
+mat-dialog-content,
+.mdc-button__label{
+  font-family: "iranSanc-r" !important;
+}
+.mdc-button__label { 
+  font-family: "iranSanc-r" !important;
+
 }

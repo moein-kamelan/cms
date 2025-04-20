@@ -79,7 +79,7 @@ color: blue !important;
 }
 
 .dark .mdc-tab__text-label{
-  color: red !important;
+  color: rgb(233, 90, 47) !important;
 }
 
 mat-label , mat-error , .mat-mdc-form-field.mat-mdc-form-field-type-mat-input{ 
