@@ -3,9 +3,10 @@ import { PageCountPipe } from '../../pipes/page-count.pipe';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { UsersService } from '../../services/users.service';
+import { MaterialModule } from '../../material.module';
 @Component({
   selector: 'app-pagination',
-  imports: [PageCountPipe , CommonModule],
+  imports: [PageCountPipe , CommonModule , MaterialModule],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.css'
 })
@@ -80,10 +81,12 @@ onchangePageIndex(pageIndex : number) {
 }
 
 
-onChangePageSize( pageSize : HTMLInputElement ) {
+onChangePageSize( pageSize : number ) {
+console.log('pageSize:', typeof pageSize)
 
-  this.pageCount = Math.ceil(this.totalUsersCount / +pageSize.value)
-  this.paginationInfos.pageSize = +pageSize.value
+  this.pageCount = Math.ceil(this.totalUsersCount / +pageSize)
+  this.paginationInfos.pageSize = +pageSize
+   console.log('this.paginationInfos.pageSize:', this.paginationInfos.pageSize)
    console.log('this.pageCount:', this.pageCount)
    this.currentPage = 1
    this.usersService.paginationSub.next({...this.paginationInfos })

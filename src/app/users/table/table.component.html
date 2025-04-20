@@ -34,6 +34,14 @@
       </tr>
     </thead>
     <tbody>
+      <tr *ngIf="users.length === 0" class="bg-gray-600">
+        <td colspan="6" class="text-center py-6 text-gray-400 dark:text-white">
+          کاربری یافت نشد
+        </td>
+      </tr>
+      
+      
+      
       @for (user of users; track $index) {
 
       <tr

@@ -4,19 +4,22 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
+  OnDestroy,
   Output,
   ViewChild,
+
 } from '@angular/core';
-import { debounceTime, distinctUntilChanged, fromEvent, pluck } from 'rxjs';
+import { Subscription, debounceTime, distinctUntilChanged, fromEvent, pluck } from 'rxjs';
 import { SearchOptions } from '../../enums/search-options';
+import { MaterialModule } from '../../material.module';
 
 @Component({
   selector: 'app-searchbar',
-  imports: [],
+  imports: [MaterialModule],
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.css',
 })
-export class SearchbarComponent implements AfterViewInit {
+export class SearchbarComponent implements AfterViewInit , OnDestroy {
   @ViewChild('searchOptionButton') searchOptionButton!: ElementRef;
   @ViewChild('searchOptionsMenu') searchOptionsMenu!: ElementRef;
   @ViewChild('searchInput') searchInput!: ElementRef;
@@ -25,9 +28,12 @@ export class SearchbarComponent implements AfterViewInit {
 
   searchBase: string = 'name';
   searchOptions = SearchOptions
+  isLoading : boolean = false
+  input$! : Subscription
+  input2$! : Subscription
 
   ngAfterViewInit(): void {
-    const input$ = fromEvent(this.searchInput.nativeElement, 'keyup')
+    this.input$ = fromEvent(this.searchInput.nativeElement, 'keyup')
       .pipe(
         debounceTime(2000),
         pluck('target', 'value'),
@@ -35,7 +41,14 @@ export class SearchbarComponent implements AfterViewInit {
       )
       .subscribe((res: any) => {
         this.changeSearchBar.emit(res);
+      this.isLoading = false;
+
       });
+
+      this.input2$ = fromEvent(this.searchInput.nativeElement, 'input')
+    .subscribe(() => {
+      this.isLoading = true;
+    });
   }
 
   toggleSearchOptions(el: HTMLDivElement) {
@@ -54,4 +67,11 @@ export class SearchbarComponent implements AfterViewInit {
     this.searchBase = this.searchOptionButton.nativeElement.innerHTML;
     this.changeSearchOption.emit(this.searchBase)
   }
+
+  ngOnDestroy(): void {
+    this.input$.unsubscribe()
+    this.input2$.unsubscribe()
+  }
+  
+  
 }
