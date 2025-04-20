@@ -29,9 +29,7 @@ export class UsersService {
     console.log(this.token);
 
     return this.http.get(`${this.baseURL}/Users/GetCurrentUser`, {
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      },
+ 
     });
   }
 
