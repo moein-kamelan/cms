@@ -92,10 +92,10 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
 
   reloadTable() {
       this.loading = true;
-    
+      const currentPagination = this.usersService.paginationSub.getValue();
       const body = {
-        pageNumber: 1,
-        pageSize: 5,
+        pageNumber: currentPagination.pageNumber,
+        pageSize: currentPagination.pageSize,
       };
     
       this.usersService
