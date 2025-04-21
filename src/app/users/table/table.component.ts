@@ -41,7 +41,6 @@ export class TableComponent implements  OnChanges , OnDestroy {
   constructor(private dialog: MatDialog, private useresService: UsersService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("loading => " , this.loading);
     
   }
 

@@ -22,7 +22,6 @@ ngOnInit(): void {
 
 
   const result = this.route.snapshot.data['userData']
-  console.log('result: in userDetails from resolver', result)
 
   if(!result) {
     this._snackBar.open("تلاش دوباره" , "خطا در دریافت اطلاعات کاربر" , {

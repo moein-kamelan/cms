@@ -1,15 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { HeaderComponent } from '../shared/header/header.component';
 import { MaterialModule } from '../material.module';
 import { FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { FormFeildComponent } from "../shared/form-feild/form-feild.component";
 import { ErrorMessageComponent } from "../shared/error-message/error-message.component";
 import { Router, RouterModule } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, catchError, of } from 'rxjs';
 import { UsersService } from '../services/users.service';
 import { ActionButtonComponent } from "../shared/action-button/action-button.component";
 import { BackButtonComponent } from "../shared/back-button/back-button.component";
 import { InputFeildComponent } from "../shared/input-feild/input-feild.component";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-new-user',
@@ -19,11 +20,17 @@ import { InputFeildComponent } from "../shared/input-feild/input-feild.component
 })
 export class CreateNewUserComponent implements OnInit , OnDestroy{
   createNewUserFormGroup!: FormGroup;
+  private _snackBar = inject(MatSnackBar);
 
 constructor(private usersService : UsersService , private router : Router) {
 
 }
+
   ngOnInit(): void {
+
+
+    
+    
     this.createNewUserFormGroup = new FormGroup({
       firstName: new FormControl('', [
         Validators.required,
@@ -71,9 +78,20 @@ constructor(private usersService : UsersService , private router : Router) {
   onSubmitCreateNewUserForm() {
     console.log(this.createNewUserFormGroup.value);
     const newUserInfos = {...this.createNewUserFormGroup.value }
-    this.editUserSub = this.usersService.RegisterNewUser(newUserInfos).subscribe((res) => {
-      console.log(res);
+    this.editUserSub = this.usersService.RegisterNewUser(newUserInfos).pipe(catchError((err : any) => {
+      
+      
+      this._snackBar.open(err , "تلاش مجدد" , {
+        duration : 2000
+      })
+
+      return of(null)
+    })).subscribe((res) => {
+      if(res !== null) {
         this.router.navigate(["/users"])
+
+      }
+      
     })
 
     

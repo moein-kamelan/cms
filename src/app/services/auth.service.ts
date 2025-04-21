@@ -13,7 +13,6 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   createPersonalAccount(person: Personal) {
-    console.log('person:', person)
 
     return this.http.post(`${this.baseURL}/Account/PersonalRegister`, JSON.stringify(person) , {
       headers : {

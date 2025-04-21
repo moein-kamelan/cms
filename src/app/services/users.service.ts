@@ -14,10 +14,13 @@ export class UsersService {
   });
 
   usersSub = new Subject();
-  changeSort = new Subject()
+  changeSortSub = new Subject()
+  changePageSub = new Subject()
+
+  
 
   emitSortOption(sortOption : string) {
-    this.changeSort.next(sortOption)
+    this.changeSortSub.next(sortOption)
   }
 
   token: string | null =
@@ -26,7 +29,6 @@ export class UsersService {
   constructor(private http: HttpClient) {}
 
   GetCurrentUser() {
-    console.log(this.token);
 
     return this.http.get(`${this.baseURL}/Users/GetCurrentUser`, {
      headers : {
@@ -90,10 +92,7 @@ RegisterNewUser(userInfos : any) {
     headers : {
       "Content-Type" : "application/json" , 
     }
-  }).pipe(catchError((err : any) => {
-    console.log(err);
-    return of(null)
-  }))
+  })
 }
 
 

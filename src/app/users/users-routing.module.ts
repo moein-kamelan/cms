@@ -15,7 +15,7 @@ const routes: Routes = [
     path : "createNewUser" , title : "createNewUser" , loadComponent: () => import('../create-new-user/create-new-user.component').then(m => m.CreateNewUserComponent)
   },
   {
-    path : "editNewUser/:id" , title : "editNewUser" , loadComponent: () => import('../edit-new-user/edit-new-user.component').then(m => m.EditNewUserComponent)
+    path : "editNewUser/:id" , title : "editNewUser" , resolve : {userData : userDetailsResolver}, loadComponent: () => import('../edit-new-user/edit-new-user.component').then(m => m.EditNewUserComponent)
   },
   {
     path : "userDetails/:id" , title : "userDetails",  resolve : {userData : userDetailsResolver} , runGuardsAndResolvers: 'always',  loadComponent: () => import('./user-details/user-details.component').then(m => m.UserDetailsComponent)

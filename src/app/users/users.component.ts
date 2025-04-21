@@ -1,9 +1,4 @@
-import {
-  AfterViewInit,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -36,73 +31,91 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
     pageNumber: 1,
     pageSize: 5,
   };
-  loading: boolean = true
+  loading: boolean = true;
 
   private destroy$ = new Subject<void>();
   searchOption: string = 'firstName';
 
-  constructor(private usersService: UsersService , private route : ActivatedRoute) {}
+  constructor(
+    private usersService: UsersService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    // this.usersService.paginationSub
-    //   .pipe(takeUntil(this.destroy$))
-    //   .subscribe((paginationInfos: any) => {
-    //     this.paginationInfos = paginationInfos;
+    setTimeout(() => {
+      const resolveData = this.route.snapshot.data['usersData'];
 
-    //     this.usersService
-    //       .GetAllUsersWithPagination(paginationInfos)
-    //       .pipe(takeUntil(this.destroy$))
-    //       .subscribe((res: any) => {
-    //         this.users = res.data.items;
-    //         this.totalUsersCount = res.data.totalCount;
+      if (resolveData) {
+        this.users = resolveData.data.items;
+        this.totalUsersCount = resolveData.data.totalCount;
+      } else {
+        console.log('داده ها بارگزاری نشد');
+      }
 
-    //       });
-    //   });
+      this.loading = false;
+    }, 2000);
 
-    const resolveData = this.route.snapshot.data["usersData"]
-    console.log('resolveData:', resolveData)
+    
 
-    if(resolveData) {
-      this.users = resolveData.data.items
-      this.totalUsersCount = resolveData.data.totalCount
-    } else {
-      console.log("داده ها بارگزاری نشد");
+    this.usersService.changePageSub.subscribe((res : any) => {
+      this.usersService.GetAllUsersWithPagination(res).subscribe((users : any) => {
+        this.users = users.data.items;
+        this.totalUsersCount = users.data.totalCount;
+        
+      })
       
-    }
-
-    this.loading = false
+    })
 
     this.usersService.usersSub
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
         if (res) {
-          
           this.usersService
             .GetAllUsersWithPagination(this.paginationInfos)
             .pipe(takeUntil(this.destroy$))
             .subscribe((users: any) => {
               this.users = users.data.items;
             });
-
-   
-          
         }
       });
 
-    this.usersService.changeSort
+    this.usersService.changeSortSub
       .pipe(takeUntil(this.destroy$))
       .subscribe((sortOptions: any) => {
         console.log('sortOptions =>', sortOptions);
         this.searchOption = sortOptions;
-        this.changeSort(sortOptions)
-        
-        
+        this.changeSortSub(sortOptions);
       });
   }
+  
 
-  changeSort(sortOption : string) {
+
+  reloadTable() {
+      this.loading = true;
+    
+      const body = {
+        pageNumber: 1,
+        pageSize: 5,
+      };
+    
+      this.usersService
+        .GetAllUsersWithPagination(body)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((res: any) => {
+          setTimeout(() => {
+            this.users = res.data.items;
+            this.totalUsersCount = res.data.totalCount;
+            this.loading = false;
+          }, 2000);
+          
+          
+        })
+    
+
+  }
+
+  changeSortSub(sortOption: string) {
     const searchBody = {
-      
       orders: [
         {
           columnName: sortOption,
@@ -112,15 +125,16 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
       pageNumber: this.paginationInfos.pageNumber,
       pageSize: this.paginationInfos.pageSize,
     };
-    
-    this.usersService.GetAllUsersWithPagination(searchBody).pipe(takeUntil(this.destroy$)).subscribe((res : any) => {
-      this.users = res.data.items;
-      this.totalUsersCount = res.data.totalCount;
 
-    })
-    
+    this.usersService
+      .GetAllUsersWithPagination(searchBody)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res: any) => {
+        this.users = res.data.items;
+        this.totalUsersCount = res.data.totalCount;
+      });
   }
-  
+
   onChangeSearchbar(searchText: string) {
     const searchBody = {
       comparisonObjects: [

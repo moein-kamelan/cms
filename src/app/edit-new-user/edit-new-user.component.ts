@@ -29,10 +29,12 @@ mainUser : any = {};
   
 
   ngOnInit(): void {
-      this.userID = this.route.snapshot.paramMap.get("id")
-    this.usersService.GetUserById(this.userID).subscribe((user : any) => {
-      this.mainUser = user.data
-      console.log('this.mainUser:', this.mainUser)
+
+    const resolvedData = this.route.snapshot.data["userData"]
+    this.mainUser = resolvedData.data
+    
+    
+
 
             this.editUserFormGroup = new FormGroup({
         firstName: new FormControl(this.mainUser.firstName, [
@@ -69,7 +71,6 @@ mainUser : any = {};
         
       });
       
-    })
 
     
       console.log('this.userID:', this.userID)

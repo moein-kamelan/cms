@@ -57,7 +57,7 @@ onGoPrevPage() {
   const newPage = this.paginationInfos.pageNumber -1
   this.paginationInfos.pageNumber = newPage
   this.currentPage = newPage
-  this.usersService.paginationSub.next({...this.paginationInfos })
+  this.usersService.changePageSub.next({...this.paginationInfos })
   }
 }
 onGoNextPage() {
@@ -66,7 +66,7 @@ onGoNextPage() {
   this.paginationInfos.pageNumber = newPage
   this.currentPage = newPage
   console.log('this.paginationInfos:', this.paginationInfos)
-  this.usersService.paginationSub.next({...this.paginationInfos })
+  this.usersService.changePageSub.next({...this.paginationInfos })
   }
 }
 
@@ -74,20 +74,18 @@ onGoNextPage() {
 onchangePageIndex(pageIndex : number) {
   this.currentPage = pageIndex
   this.paginationInfos.pageNumber = pageIndex
-  this.usersService.paginationSub.next({...this.paginationInfos, pageNumber: pageIndex})
+  this.usersService.changePageSub.next({...this.paginationInfos, pageNumber: pageIndex})
 }
 
 
 onChangePageSize( pageSize : number ) {
-console.log('pageSize:', typeof pageSize)
 
   this.pageCount = Math.ceil(this.totalUsersCount / +pageSize)
   this.paginationInfos.pageSize = +pageSize
-   console.log('this.paginationInfos.pageSize:', this.paginationInfos.pageSize)
-   console.log('this.pageCount:', this.pageCount)
    this.currentPage = 1
    this.paginationInfos.pageNumber = this.currentPage
-   this.usersService.paginationSub.next({...this.paginationInfos })
+   console.log('this.paginationInfos:', this.paginationInfos)
+   this.usersService.changePageSub.next({...this.paginationInfos })
 
 }
 

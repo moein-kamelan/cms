@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit , OnDestroy {
   }
 
   submitLoginForm() {
-    console.log(this.loginFormGroup.value);
     this.isLoginSub = this.authService
       .loginPerson(this.loginFormGroup.value)
       .pipe(

@@ -172,12 +172,10 @@ export class SignupComponent implements OnInit , OnDestroy{
 
   private createLegalPersonSub!: Subscription;
   onlegalFormSubmit() {
-    console.log('this.legalFormGroup.value =>', this.legalFormGroup.value);
     this.createLegalPersonSub = this.authService
       .createLegalAccount(this.legalFormGroup.value)
       .pipe(
         catchError((err) => {
-          console.log('err in catch err', err);
 
           if (err.status === 400) {
             this._snackBar.open(
@@ -206,10 +204,7 @@ export class SignupComponent implements OnInit , OnDestroy{
   private createPersonalSub!: Subscription;
 
   onPersonalSubmit() {
-    console.log(
-      'this.personalFormGroup.value =>',
-      this.personalFormGroup.value
-    );
+    
    this.createPersonalSub = this.authService
       .createPersonalAccount(this.personalFormGroup.value)
       .pipe(
@@ -233,7 +228,6 @@ export class SignupComponent implements OnInit , OnDestroy{
       )
       .subscribe({
         next: (res) => {
-          console.log("res in personal => " , res);
           this.router.navigate(["/account/login"])
         },
       });

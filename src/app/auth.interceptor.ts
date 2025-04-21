@@ -10,7 +10,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = localStorage.getItem('token') || sessionStorage.getItem("token");
 
   if (token) {
-    console.log("hello");
     
     const authReq = req.clone({
       setHeaders: {

@@ -3,127 +3,181 @@
     class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-3xl overflow-hidden border-gray-200 dark:border-gray-700 shadow-md dark:shadow-blue-700"
   >
     <thead
-      class="text-xs text-gray-700 uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400 *:text-white *:dark:text-white whitespace-nowrap "
+      class="text-xs text-gray-700 uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400 *:text-white *:dark:text-white whitespace-nowrap"
     >
-
-    <ng-container *ngIf="loading">
-      <tr *ngFor="let i of [1,2,3,4,5]" class="animate-pulse" [attr.aria-hidden]="true">
-        <td colspan="6" class="px-6 py-4 space-y-2">
-          <div class="h-4 bg-gray-300 rounded w-3/4"></div>
-          <div class="h-4 bg-gray-300 rounded w-1/2"></div>
-          <div class="h-4 bg-gray-300 rounded w-full"></div>
-        </td>
-      </tr>
-    </ng-container>
-    
-    
-    
-    
-
-   
       <tr class=" ">
-        <th scope="col" class="px-6 py-3 ">
-           ID
-        </th>
-        <th scope="col" class="px-6 py-3  hover:bg-gray-800">
-          <button class="flex items-center gap-2 cursor-pointer w-full " (click)="sortList('firstName')">
-            <mat-icon class="material-symbols-outlined"> keyboard_arrow_down </mat-icon> <span>نام</span>
-          </button>
-     
-        </th>
+        <th scope="col" class="px-6 py-3">ID</th>
         <th scope="col" class="px-6 py-3 hover:bg-gray-800">
-          <button class="flex items-center gap-2 cursor-pointer w-full " (click)="sortList('lastName')">
-            <mat-icon class="material-symbols-outlined"> keyboard_arrow_down </mat-icon> <span>نام خانوادگی</span>
+          <button
+            class="flex items-center gap-2 cursor-pointer w-full"
+            (click)="sortList('firstName')"
+          >
+            <mat-icon class="material-symbols-outlined">
+              keyboard_arrow_down
+            </mat-icon>
+            <span>نام</span>
           </button>
         </th>
         <th scope="col" class="px-6 py-3 hover:bg-gray-800">
-          <button class="flex items-center gap-2 cursor-pointer w-full " (click)="sortList('userName')">
-            <mat-icon class="material-symbols-outlined"> keyboard_arrow_down </mat-icon> <span>نام کاربری</span>
+          <button
+            class="flex items-center gap-2 cursor-pointer w-full"
+            (click)="sortList('lastName')"
+          >
+            <mat-icon class="material-symbols-outlined">
+              keyboard_arrow_down
+            </mat-icon>
+            <span>نام خانوادگی</span>
           </button>
         </th>
         <th scope="col" class="px-6 py-3 hover:bg-gray-800">
-          <button class="flex items-center gap-2 cursor-pointer w-full " (click)="sortList('organizationName')">
-            <mat-icon class="material-symbols-outlined"> keyboard_arrow_down </mat-icon> <span>نام سازمانی</span>
+          <button
+            class="flex items-center gap-2 cursor-pointer w-full"
+            (click)="sortList('userName')"
+          >
+            <mat-icon class="material-symbols-outlined">
+              keyboard_arrow_down
+            </mat-icon>
+            <span>نام کاربری</span>
+          </button>
+        </th>
+        <th scope="col" class="px-6 py-3 hover:bg-gray-800">
+          <button
+            class="flex items-center gap-2 cursor-pointer w-full"
+            (click)="sortList('organizationName')"
+          >
+            <mat-icon class="material-symbols-outlined">
+              keyboard_arrow_down
+            </mat-icon>
+            <span>نام سازمانی</span>
           </button>
         </th>
         <th scope="col" class="px-6 py-3"></th>
       </tr>
+
+
     </thead>
     <tbody>
-      <tr *ngIf="users.length === 0" class="bg-gray-600">
-        <td colspan="6" class="text-center py-6 text-gray-400 dark:text-white">
-          کاربری یافت نشد
-        </td>
-      </tr>
-      
-      
-      
-      @for (user of users; track $index) {
+      @if(loading) {
+        @for (item of [1,2,3,4,5]; track $index) {
 
-      <tr
-        class="bg-white border-b dark:bg-violet-900 dark:border-violet-700 border-gray-200 dark:hover:bg-violet-700 hover:bg-gray-300 *:whitespace-nowrap"
-      >
-        <td scope="row">
-          <a
-            routerLink="['/users/userDetails' , user.id]"
-            class="w-full h-full inline-block px-6 py-4 dark:text-white"
-          >
-            {{ user.id }}
-          </a>
-        </td>
-        <td scope="row">
-          <a
-            [routerLink]="['/users/userDetails', user.id]"
-            class="w-full h-full inline-block px-6 py-4 dark:text-white"
-          >
-            {{ user.firstName }}
-          </a>
-        </td>
-        <td scope="row">
-          <a
-            [routerLink]="['/users/userDetails', user.id]"
-            class="w-full h-full inline-block px-6 py-4 dark:text-white"
-          >
-            {{ user.lastName }}
-          </a>
-        </td>
-        <td scope="row">
-          <a
-            [routerLink]="['/users/userDetails', user.id]"
-            class="w-full h-full inline-block px-6 py-4 dark:text-white"
-          >
-            {{ user.userName }}
-          </a>
-        </td>
-        <td scope="row">
-          <a
-            [routerLink]="['/users/userDetails', user.id]"
-            class="w-full h-full inline-block px-6 py-4 dark:text-white"
-          >
-            {{ user.organizationName }}
-          </a>
-        </td>
-        <td scope="row" class="px-6 py-4">
-          <button
-            mat-icon-button
-            [matMenuTriggerFor]="menu"
-            aria-label="Example icon-button with a menu"
-          >
-            <mat-icon class="menu-icon dark:!text-white">more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu" class="divide-y-4 divide-gray-200">
-            <a [routerLink]="['/users/editNewUser', user.id]" mat-menu-item>
-              <mat-icon>edit</mat-icon>
-              <span class="menu-text">ویرایش</span>
-            </a>
+          <tr class="bg-white border-b dark:bg-violet-900 dark:border-violet-700 border-gray-200 dark:hover:bg-violet-700 hover:bg-gray-300 *:whitespace-nowrap">
+            <td class="px-6 py-4 h-[74px]">
+              <div class="flex justify-center items-center h-full w-full">
+                <div role="status" class="animate-pulse w-24 h-4 bg-gray-300 rounded-full"></div>
+              </div>
+            </td>
+            <td class="px-6 py-4 h-[74px]">
+              <div class="flex justify-center items-center h-full w-full">
+                <div role="status" class="animate-pulse w-24 h-4 bg-gray-300 rounded-full"></div>
+              </div>
+            </td>
+            <td class="px-6 py-4 h-[74px]">
+              <div class="flex justify-center items-center h-full w-full">
+                <div role="status" class="animate-pulse w-24 h-4 bg-gray-300 rounded-full"></div>
+              </div>
+            </td>
+            <td class="px-6 py-4 h-[74px]">
+              <div class="flex justify-center items-center h-full w-full">
+                <div role="status" class="animate-pulse w-24 h-4 bg-gray-300 rounded-full"></div>
+              </div>
+            </td>
+            <td class="px-6 py-4 h-[74px]">
+              <div class="flex justify-center items-center h-full w-full">
+                <div role="status" class="animate-pulse w-24 h-4 bg-gray-300 rounded-full"></div>
+              </div>
+            </td>
+            <td class="px-6 py-4 h-[74px]">
+              <div class="flex justify-center items-center h-full w-full">
+                <div role="status" class="animate-pulse w-24 h-4 bg-gray-300 rounded-full"></div>
+              </div>
+            </td>
+          </tr>
+          
+        }
 
-            <button mat-menu-item (click)="openDeleteDialog(user.id)">
-              <mat-icon>delete</mat-icon>
-              <span class="menu-text">حذف</span>
-            </button>
-          </mat-menu>
-        </td>
-      </tr>
+      }@else {
+
+        @if(users.length === 0 && !loading) {
+          <tr *ngIf="users.length === 0" class="bg-gray-600">
+            <td colspan="6" class="text-center py-6 text-gray-400 dark:text-white">
+              کاربری یافت نشد
+            </td>
+          </tr>
+          } @for (user of users; track $index) {
+    
+          <tr
+            class="bg-white border-b dark:bg-violet-900 dark:border-violet-700 border-gray-200 dark:hover:bg-violet-700 hover:bg-gray-300 *:whitespace-nowrap"
+          >
+            <td scope="row">
+              <a
+                routerLink="['/users/userDetails' , user.id]"
+                class="w-full h-full inline-block px-6 py-4 dark:text-white"
+              >
+                {{ user.id }}
+              </a>
+            </td>
+            <td scope="row">
+              <a
+                [routerLink]="['/users/userDetails', user.id]"
+                class="w-full h-full inline-block px-6 py-4 dark:text-white"
+              >
+                {{ user.firstName }}
+              </a>
+            </td>
+            <td scope="row">
+              <a
+                [routerLink]="['/users/userDetails', user.id]"
+                class="w-full h-full inline-block px-6 py-4 dark:text-white"
+              >
+                {{ user.lastName }}
+              </a>
+            </td>
+            <td scope="row">
+              <a
+                [routerLink]="['/users/userDetails', user.id]"
+                class="w-full h-full inline-block px-6 py-4 dark:text-white"
+              >
+                {{ user.userName }}
+              </a>
+            </td>
+            <td scope="row">
+              <a
+                [routerLink]="['/users/userDetails', user.id]"
+                class="w-full h-full inline-block px-6 py-4 dark:text-white"
+              >
+                {{ user.organizationName }}
+              </a>
+            </td>
+            <td scope="row" class="px-6 py-4">
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon class="menu-icon dark:!text-white">more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" class="divide-y-4 divide-gray-200">
+                <a [routerLink]="['/users/editNewUser', user.id]" mat-menu-item>
+                  <mat-icon>edit</mat-icon>
+                  <span class="menu-text">ویرایش</span>
+                </a>
+    
+                <button mat-menu-item (click)="openDeleteDialog(user.id)">
+                  <mat-icon>delete</mat-icon>
+                  <span class="menu-text">حذف</span>
+                </button>
+              </mat-menu>
+            </td>
+          </tr>
+        
+        
+        
+        
+      }
+      
+      
+      
+
       }
     </tbody>
   </table>
