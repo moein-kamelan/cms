@@ -53,8 +53,7 @@ export class TableComponent implements OnChanges , OnDestroy {
       if (result) {
 
         this.useresService.DeleteUserById(result).subscribe((res) => {
-          console.log(res);
-          this.useresService.usersSub.next(true)
+          this.useresService.usersSub.next(res)
         });
 
       }

@@ -8,10 +8,11 @@ import { UsersService } from '../services/users.service';
 import { Subscription } from 'rxjs';
 import { ActionButtonComponent } from "../shared/action-button/action-button.component";
 import { BackButtonComponent } from "../shared/back-button/back-button.component";
+import { InputFeildComponent } from "../shared/input-feild/input-feild.component";
 
 @Component({
   selector: 'app-edit-new-user',
-  imports: [ErrorMessageComponent, MaterialModule, RouterModule, ActionButtonComponent, BackButtonComponent],
+  imports: [ErrorMessageComponent, MaterialModule, RouterModule, ActionButtonComponent, BackButtonComponent, InputFeildComponent],
   templateUrl: './edit-new-user.component.html',
   styleUrl: './edit-new-user.component.css'
 })
@@ -76,9 +77,7 @@ mainUser : any = {};
 
   }
 
-  onclickSubmitButton() {
 
-  }
 
   updataeUserSub! : Subscription
   onSubmitEditUserForm() {
@@ -90,6 +89,11 @@ mainUser : any = {};
     })
 
     
+  }
+
+
+  getEditUserFormControl(controlName : string) {
+    return this.editUserFormGroup.get(controlName) as FormControl;
   }
 
 

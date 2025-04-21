@@ -9,10 +9,11 @@ import { Subscription } from 'rxjs';
 import { UsersService } from '../services/users.service';
 import { ActionButtonComponent } from "../shared/action-button/action-button.component";
 import { BackButtonComponent } from "../shared/back-button/back-button.component";
+import { InputFeildComponent } from "../shared/input-feild/input-feild.component";
 
 @Component({
   selector: 'app-create-new-user',
-  imports: [MaterialModule, ErrorMessageComponent, RouterModule, ActionButtonComponent, BackButtonComponent],
+  imports: [MaterialModule, ErrorMessageComponent, RouterModule, ActionButtonComponent, BackButtonComponent, InputFeildComponent],
   templateUrl: './create-new-user.component.html',
   styleUrl: './create-new-user.component.css',
 })
@@ -76,6 +77,10 @@ constructor(private usersService : UsersService , private router : Router) {
     })
 
     
+  }
+
+  getCreateNewUserFormControl(controlName : string) {
+    return this.createNewUserFormGroup.get(controlName) as FormControl;
   }
 
   

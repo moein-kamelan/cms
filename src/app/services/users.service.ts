@@ -29,7 +29,10 @@ export class UsersService {
     console.log(this.token);
 
     return this.http.get(`${this.baseURL}/Users/GetCurrentUser`, {
- 
+     headers : {
+      Authorization: `Bearer ${this.token}`,
+
+     } 
     });
   }
 
@@ -43,7 +46,6 @@ export class UsersService {
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${this.token}`,
         },
       }
     );
@@ -56,17 +58,12 @@ export class UsersService {
       },
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.token}`,
       },
     });
   }
 
   GetUserById(id: any) {
-    return this.http.get(`${this.baseURL}/Users/GetUserById?id=${id}`, {
-      headers: {
-        Authorization: `Bearer ${this.token}`,
-      },
-    });
+    return this.http.get(`${this.baseURL}/Users/GetUserById?id=${id}`);
   }
 
   UpdateUserPersonalInformation(userEditedInfos: any) {
@@ -77,7 +74,6 @@ export class UsersService {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${this.token}`,
           },
         }
       )
@@ -93,7 +89,6 @@ RegisterNewUser(userInfos : any) {
   return this.http.post(`${this.baseURL}/Users/RegisterNewUser` , JSON.stringify(userInfos) , {
     headers : {
       "Content-Type" : "application/json" , 
-      "Authorization" : `Bearer ${this.token}` ,
     }
   }).pipe(catchError((err : any) => {
     console.log(err);

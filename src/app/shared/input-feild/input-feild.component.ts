@@ -8,7 +8,7 @@ import { AbstractControl, FormControl, ReactiveFormsModule } from '@angular/form
   templateUrl: './input-feild.component.html',
   styleUrl: './input-feild.component.css'
 })
-export class InputFeildComponent implements OnChanges{
+export class InputFeildComponent {
 @Input() type! : string
 @Input() placeholder! : string
 @Input() control : FormControl = new FormControl()
@@ -19,9 +19,6 @@ export class InputFeildComponent implements OnChanges{
 @Input() isMobileNumber : boolean = false
 @Input() label : string = ""
 
-ngOnChanges(changes: SimpleChanges): void {
-    console.log("this.formControl => " , this.formControl);
-    
-}
+
 
 }

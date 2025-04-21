@@ -45,12 +45,12 @@
       @for (user of users; track $index) {
 
       <tr
-        class="bg-white border-b dark:bg-violet-900 dark:border-violet-700 border-gray-200 dark:hover:bg-violet-700 hover:bg-gray-300"
+        class="bg-white border-b dark:bg-violet-900 dark:border-violet-700 border-gray-200 dark:hover:bg-violet-700 hover:bg-gray-300 *:whitespace-nowrap"
       >
         <td scope="row">
           <a
             routerLink="['/users/userDetails' , user.id]"
-            class="w-full h-full inline-block px-6 py-4"
+            class="w-full h-full inline-block px-6 py-4 dark:text-white"
           >
             {{ user.id }}
           </a>
@@ -58,7 +58,7 @@
         <td scope="row">
           <a
             [routerLink]="['/users/userDetails', user.id]"
-            class="w-full h-full inline-block px-6 py-4"
+            class="w-full h-full inline-block px-6 py-4 dark:text-white"
           >
             {{ user.firstName }}
           </a>
@@ -66,7 +66,7 @@
         <td scope="row">
           <a
             [routerLink]="['/users/userDetails', user.id]"
-            class="w-full h-full inline-block px-6 py-4"
+            class="w-full h-full inline-block px-6 py-4 dark:text-white"
           >
             {{ user.lastName }}
           </a>
@@ -74,7 +74,7 @@
         <td scope="row">
           <a
             [routerLink]="['/users/userDetails', user.id]"
-            class="w-full h-full inline-block px-6 py-4"
+            class="w-full h-full inline-block px-6 py-4 dark:text-white"
           >
             {{ user.userName }}
           </a>
@@ -82,7 +82,7 @@
         <td scope="row">
           <a
             [routerLink]="['/users/userDetails', user.id]"
-            class="w-full h-full inline-block px-6 py-4"
+            class="w-full h-full inline-block px-6 py-4 dark:text-white"
           >
             {{ user.organizationName }}
           </a>

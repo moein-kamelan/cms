@@ -42,10 +42,7 @@ ngOnChanges(changes: SimpleChanges): void {
 ngOnInit(): void {
 this.paginationInfos = this.usersService.paginationSub.getValue()
 this.currentPage = this.paginationInfos.pageNumber
-this.usersService.usersSub.subscribe((res) => {
-  console.log("res => " , res);
-  
-})
+
 
 
 }
@@ -89,6 +86,7 @@ console.log('pageSize:', typeof pageSize)
    console.log('this.paginationInfos.pageSize:', this.paginationInfos.pageSize)
    console.log('this.pageCount:', this.pageCount)
    this.currentPage = 1
+   this.paginationInfos.pageNumber = this.currentPage
    this.usersService.paginationSub.next({...this.paginationInfos })
 
 }

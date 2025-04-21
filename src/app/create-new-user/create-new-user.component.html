@@ -22,130 +22,18 @@
         >
      <div class="border-t-3 border-gray-500 px-12 sm:px-4 py-5 grid sm:grid-cols-2 gap-x-4 gap-y-1.5">
 
-      <mat-form-field class="w-full">
-        <mat-label>نام</mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="نام  را وارد کنید"
-          formControlName="firstName"
-        />
-        <mat-error>
-          <app-error-message
-            [control]="createNewUserFormGroup.get('firstName')"
-            [minlength]="4"
-            [maxlength]="12"
-          ></app-error-message>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="w-full">
-        <mat-label>نام خانوادگی</mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="نام خانوادگی را وارد کنید"
-          formControlName="lastName"
-        />
 
-        <mat-error>
-          <app-error-message
-            [control]="createNewUserFormGroup.get('lastName')"
-            [minlength]="4"
-            [maxlength]="12"
-          ></app-error-message>
-        </mat-error>
-      </mat-form-field>
-
-
-    
-
-      <mat-form-field class="w-full">
-        <mat-label>نام پدر</mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="نام پدر را وارد کنید"
-          formControlName="fatherName"
-        />
-        <mat-error>
-          <app-error-message
-            [control]="createNewUserFormGroup.get('fatherName')"
-            [minlength]="4"
-            [maxlength]="12"
-          ></app-error-message>
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="w-full">
-        <mat-label>نام کاربری</mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="نام کاربری را وارد کنید"
-          formControlName="userName"
-        />
-        <mat-error>
-          <app-error-message
-            [control]="createNewUserFormGroup.get('userName')"
-            [minlength]="4"
-            [maxlength]="12"
-          ></app-error-message>
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="w-full">
-        <mat-label>شماره همراه</mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="مثال : 09031357262"
-          formControlName="mobileNumber"
-        />
-        <mat-error>
-          <app-error-message
-            [control]="createNewUserFormGroup.get('mobileNumber')"
-            [isMobileNumber]="true"
-          ></app-error-message>
-        </mat-error>
-      </mat-form-field>
-
-      
-      <mat-form-field class="w-full">
-        <mat-label>کد ملی</mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="کد ملی را وارد کنید"
-          formControlName="nationalCode"
-        />
-
-        <mat-error>
-          <app-error-message
-            [control]="createNewUserFormGroup.get('nationalCode')"
-            [exactlength]="10"
-          ></app-error-message>
-        </mat-error>
-      </mat-form-field>
+      <app-input-feild type="text" label="نام" placeholder="نام را وارد کنید" [control]="getCreateNewUserFormControl('firstName')" [minlength]="4" [maxlength]="12" ></app-input-feild>
+      <app-input-feild type="text" label="نام خانوادگی" placeholder="نام خانوادگی را وارد کنید" [control]="getCreateNewUserFormControl('lastName')" [minlength]="4" [maxlength]="12" ></app-input-feild>
+      <app-input-feild type="text" label="نام پدر" placeholder="نام پدر را وارد کنید" [control]="getCreateNewUserFormControl('fatherName')" [minlength]="4" [maxlength]="12" ></app-input-feild>
+      <app-input-feild type="text" label="نام کاربری" placeholder="نام کاربری را وارد کنید" [control]="getCreateNewUserFormControl('userName')" [minlength]="4" [maxlength]="12" ></app-input-feild>
+      <app-input-feild type="text" label="شماره همراه" placeholder="شماره همراه را وارد کنید" [control]="getCreateNewUserFormControl('mobileNumber')" [isMobileNumber]="true" ></app-input-feild>
+      <app-input-feild type="text" label="کد ملی" placeholder="کد ملی را وارد کنید" [control]="getCreateNewUserFormControl('nationalCode')" [exactlength]="10" ></app-input-feild>
+      <app-input-feild type="password" label="رمز عبور" placeholder="رمز عبور را وارد کنید" [control]="getCreateNewUserFormControl('password')" [minlength]="8" [maxlength]="12" ></app-input-feild>
       
       
 
-      <mat-form-field class="w-full">
-        <mat-label>رمز عبور</mat-label>
-        <input
-          matInput
-          type="password"
-          placeholder="رمز عبور را وارد کنید"
-          formControlName="password"
-        />
 
-        <mat-error>
-          <app-error-message
-            [control]="createNewUserFormGroup.get('password')"
-            [minlength]="8"
-            [maxlength]="12"
-          ></app-error-message>
-        </mat-error>
-      </mat-form-field>
 
       <section
         class="example-section"

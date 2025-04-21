@@ -54,7 +54,6 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
             this.users = res.data.items;
             this.totalUsersCount = res.data.totalCount;
 
-            this.usersService.usersSub.next(this.users);
           });
       });
 
@@ -62,12 +61,17 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
         if (res) {
+          console.log("salam");
+          
           this.usersService
             .GetAllUsersWithPagination(this.paginationInfos)
             .pipe(takeUntil(this.destroy$))
             .subscribe((users: any) => {
               this.users = users.data.items;
             });
+
+   
+          
         }
       });
 
