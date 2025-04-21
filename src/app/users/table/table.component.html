@@ -1,6 +1,6 @@
 <div class="relative overflow-x-auto min-h-[510px]">
   <table
-    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-3xl overflow-hidden border-gray-200 dark:border-gray-700 shadow-md dark:shadow-blue-700"
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-3xl overflow-hidden border-gray-200 dark:border-gray-700 shadow-md dark:shadow-violet-400 border-separate "
   >
     <thead
       class="text-xs text-gray-700 uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400 *:text-white *:dark:text-white whitespace-nowrap"
@@ -60,7 +60,7 @@
       @if(loading) {
         @for (item of [1,2,3,4,5]; track $index) {
 
-          <tr class="bg-white border-b dark:bg-violet-900 dark:border-violet-700 border-gray-200 dark:hover:bg-violet-700 hover:bg-gray-300 *:whitespace-nowrap">
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-b-gray-100 border-gray-200 dark:hover:bg-gray-900 hover:bg-gray-300 *:whitespace-nowrap">
             <td class="px-6 py-4 h-[74px]">
               <div class="flex justify-center items-center h-full w-full">
                 <div role="status" class="animate-pulse w-24 h-4 bg-gray-300 rounded-full"></div>
@@ -106,7 +106,7 @@
           } @for (user of users; track $index) {
     
           <tr
-            class="bg-white border-b dark:bg-violet-900 dark:border-violet-700 border-gray-200 dark:hover:bg-violet-700 hover:bg-gray-300 *:whitespace-nowrap"
+            class="bg-white border-b dark:bg-gray-800 dark:border-violet-700 border-gray-200 dark:hover:bg-gray-900 hover:bg-gray-300 *:whitespace-nowrap"
           >
             <td scope="row">
               <a
