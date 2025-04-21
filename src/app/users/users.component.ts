@@ -12,8 +12,9 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 import { TableComponent } from './table/table.component';
 import { MaterialModule } from '../material.module';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SearchOptions } from '../enums/search-options';
+import { routes } from '../app.routes';
 
 @Component({
   selector: 'app-users',
@@ -35,33 +36,46 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
     pageNumber: 1,
     pageSize: 5,
   };
+  loading: boolean = true
 
   private destroy$ = new Subject<void>();
   searchOption: string = 'firstName';
 
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService , private route : ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.usersService.paginationSub
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((paginationInfos: any) => {
-        this.paginationInfos = paginationInfos;
+    // this.usersService.paginationSub
+    //   .pipe(takeUntil(this.destroy$))
+    //   .subscribe((paginationInfos: any) => {
+    //     this.paginationInfos = paginationInfos;
 
-        this.usersService
-          .GetAllUsersWithPagination(paginationInfos)
-          .pipe(takeUntil(this.destroy$))
-          .subscribe((res: any) => {
-            this.users = res.data.items;
-            this.totalUsersCount = res.data.totalCount;
+    //     this.usersService
+    //       .GetAllUsersWithPagination(paginationInfos)
+    //       .pipe(takeUntil(this.destroy$))
+    //       .subscribe((res: any) => {
+    //         this.users = res.data.items;
+    //         this.totalUsersCount = res.data.totalCount;
 
-          });
-      });
+    //       });
+    //   });
+
+    const resolveData = this.route.snapshot.data["usersData"]
+    console.log('resolveData:', resolveData)
+
+    if(resolveData) {
+      this.users = resolveData.data.items
+      this.totalUsersCount = resolveData.data.totalCount
+    } else {
+      console.log("داده ها بارگزاری نشد");
+      
+    }
+
+    this.loading = false
 
     this.usersService.usersSub
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
         if (res) {
-          console.log("salam");
           
           this.usersService
             .GetAllUsersWithPagination(this.paginationInfos)

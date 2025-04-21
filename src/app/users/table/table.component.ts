@@ -32,12 +32,17 @@ import { SearchOptions } from '../../enums/search-options';
   styleUrl: './table.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TableComponent implements OnChanges , OnDestroy {
+export class TableComponent implements  OnChanges , OnDestroy {
   @Input() users: any[] = [];
+  @Input() loading! : boolean
+
+  
 
   constructor(private dialog: MatDialog, private useresService: UsersService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log("loading => " , this.loading);
+    
   }
 
   private dialogSub!: Subscription;

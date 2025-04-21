@@ -7,7 +7,7 @@ export const usersResolver: ResolveFn<any> = (route : ActivatedRouteSnapshot) =>
   const paginationInfo = userService.paginationSub.getValue()
   console.log('paginationInfo:', paginationInfo)
   return userService.GetAllUsersWithPagination(paginationInfo)
-  
+
 
   
 };
