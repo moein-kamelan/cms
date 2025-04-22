@@ -22,7 +22,8 @@ import { catchError, from, of, Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorMessageComponent } from '../../shared/error-message/error-message.component';
-import { InputFeildComponent } from "../../shared/input-feild/input-feild.component";
+import { InputFeildComponent } from '../../shared/input-feild/input-feild.component';
+import { nationalCodeValidator } from '../../validators/national-code.validator';
 @Component({
   selector: 'app-signup',
   imports: [
@@ -31,21 +32,19 @@ import { InputFeildComponent } from "../../shared/input-feild/input-feild.compon
     FormsModule,
     ReactiveFormsModule,
     ErrorMessageComponent,
-    InputFeildComponent
-],
+    InputFeildComponent,
+  ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
   encapsulation: ViewEncapsulation.None,
 })
-export class SignupComponent implements OnInit , OnDestroy{
+export class SignupComponent implements OnInit, OnDestroy {
   private _snackBar = inject(MatSnackBar);
 
   legalFormGroup!: FormGroup;
   personalFormGroup!: FormGroup;
 
   isLegal: boolean = false;
-
-  
 
   ngOnInit(): void {
     this.personalFormGroup = new FormGroup({
@@ -61,7 +60,7 @@ export class SignupComponent implements OnInit , OnDestroy{
       ]),
       nationalCode: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^(?!(\d)\1{9})\d{10}$/),
+        nationalCodeValidator(),
       ]),
       mobileNumber: new FormControl('', [
         Validators.required,
@@ -82,7 +81,6 @@ export class SignupComponent implements OnInit , OnDestroy{
         ),
       ]),
     });
-
 
     this.legalFormGroup = new FormGroup({
       name: new FormControl('', [
@@ -110,7 +108,8 @@ export class SignupComponent implements OnInit , OnDestroy{
       ]),
       nationalCode: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^(?!(\d)\1{9})\d{10}$/),
+        nationalCodeValidator(),
+
       ]),
       economicCode: new FormControl('', [
         Validators.required,
@@ -140,18 +139,21 @@ export class SignupComponent implements OnInit , OnDestroy{
         Validators.maxLength(12),
       ]),
     });
+
+    this.personalFormGroup
+      .get('nationalCode')
+      ?.valueChanges.subscribe((value) => {});
   }
 
-  constructor(private authService: AuthService , private router : Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  getPersonalFormControl(contolName : string) {
-      return this.personalFormGroup.get(contolName) as FormControl
+  getPersonalFormControl(contolName: string) {
+    return this.personalFormGroup.get(contolName) as FormControl;
   }
-  getLegalFormControl(contolName : string) {
-      return this.legalFormGroup.get(contolName) as FormControl
+  getLegalFormControl(contolName: string) {
+    return this.legalFormGroup.get(contolName) as FormControl;
   }
 
-  
   onChangeTab(index: number) {
     if (index === 0) {
       this.isLegal = false;
@@ -176,15 +178,10 @@ export class SignupComponent implements OnInit , OnDestroy{
       .createLegalAccount(this.legalFormGroup.value)
       .pipe(
         catchError((err) => {
-
-          if (err.status === 400) {
-            this._snackBar.open(
-              err.message,
-              'تلاش دوباره',
-              {
-                verticalPosition: 'top',
-              }
-            );
+          if (err.status) {
+            this._snackBar.open(err.message, 'تلاش دوباره', {
+              verticalPosition: 'top',
+            });
           } else {
             this._snackBar.open('خطای غیر منتظره ایی رخ داده', 'تلاش دوباره', {
               verticalPosition: 'top',
@@ -196,27 +193,21 @@ export class SignupComponent implements OnInit , OnDestroy{
       )
       .subscribe((res) => {
         console.log(res);
-        this.router.navigate(["/account/login"])
-
+        this.router.navigate(['/account/login']);
       });
   }
 
   private createPersonalSub!: Subscription;
 
   onPersonalSubmit() {
-    
-   this.createPersonalSub = this.authService
+    this.createPersonalSub = this.authService
       .createPersonalAccount(this.personalFormGroup.value)
       .pipe(
         catchError((err) => {
-          if (err.status === 400) {
-            this._snackBar.open(
-              err.message,
-              'تلاش دوباره',
-              {
-                verticalPosition: 'top',
-              }
-            );
+          if (err.status) {
+            this._snackBar.open(err.message, undefined, {
+              verticalPosition: 'top',
+            });
           } else {
             this._snackBar.open('خطای غیر منتظره ایی رخ داده', 'تلاش دوباره', {
               verticalPosition: 'top',
@@ -226,17 +217,21 @@ export class SignupComponent implements OnInit , OnDestroy{
           return of(null);
         })
       )
-      .subscribe({
-        next: (res) => {
-          this.router.navigate(["/account/login"])
-        },
+      .subscribe((res) => {
+        if(res !== null) {
+          this._snackBar.open("کاربر با موفقیت ایجاد شد" , undefined , {
+            duration : 2000
+          })
+          setTimeout(() => {
+            this.router.navigate(['/account/login']);
+
+          }, 2000);
+        }
       });
   }
 
-  
-ngOnDestroy(): void {
-    this.createLegalPersonSub?.unsubscribe()
-    this.createPersonalSub?.unsubscribe()
-}  
-  
+  ngOnDestroy(): void {
+    this.createLegalPersonSub?.unsubscribe();
+    this.createPersonalSub?.unsubscribe();
+  }
 }

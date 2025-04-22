@@ -50,7 +50,6 @@
                     label="کد ملی"
                     placeholder="کد ملی را وارد کنید"
                     [control]="getPersonalFormControl('nationalCode')"
-                    [exactlength]="10"
                   ></app-input-feild>
                   <app-input-feild
                     type="text"
@@ -98,7 +97,7 @@
                 [formGroup]="legalFormGroup"
                 #legalFrom="ngForm"
                 (ngSubmit)="onlegalFormSubmit()"
-                class="grid sm:grid-cols-4 max-sm:space-y-3.5 gap-y-2 gap-x-5 mt-5 p-2"
+                class="grid sm:grid-cols-4  gap-y-2 gap-x-5 mt-5 p-2"
               >
                 <app-input-feild
                   class="w-full "
@@ -190,7 +189,6 @@
                   label="کد ملی"
                   placeholder="کد ملی را وارد کنید"
                   [control]="getLegalFormControl('nationalCode')"
-                  [exactlength]="10"
                 ></app-input-feild>
 
 

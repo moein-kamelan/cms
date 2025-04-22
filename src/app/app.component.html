@@ -1,37 +1,67 @@
-<ng-container *ngIf="shouldShowHeader(); else authLayout">
-    <mat-drawer-container class="h-screen " autosize>
-      <app-header (openSidebar)="sidebar.open()"></app-header>
-  
-      <mat-drawer
-        #sidebar
-        mode="over"
-        position="start"
-        class="w-full bg-white  dark:!bg-gray-800 "
-      >
-        <div class="p-6">
-          <div class="flex justify-between items-center mb-4 border-b-2 dark:border-b-white">
-            <h2 class="text-xl font-bold dark:text-white p-4 flex items-center gap-3 "> <mat-icon >account_circle</mat-icon> پروفایل کاربر</h2>
-            <button mat-icon-button class="dark:!text-white" (click)="sidebar.close()">
-              <mat-icon  >close</mat-icon>
-            </button>
-          </div>
-          <ul class="*:p-6 divide-x-dashed divide-y-2">
-            <li class="grid grid-cols-2 text-center "><span class="text-violet-500 font-iranSansDemiBold">ID :</span> <span>3</span></li>
-            <li class="grid grid-cols-2 text-center "><span class="text-violet-500 font-iranSansDemiBold">نام :</span> <span>3</span></li>
-            <li class="grid grid-cols-2 text-center "><span class="text-violet-500 font-iranSansDemiBold">نام خانواگی :</span> <span>3</span></li>
-            <li class="grid grid-cols-2 text-center "><span class="text-violet-500 font-iranSansDemiBold">کد سازمانی :</span> <span>3</span></li>
-            <li class="grid grid-cols-2 text-center "><span class="text-violet-500 font-iranSansDemiBold">نام سازمان :</span> <span>3</span></li>
-          </ul>
+<ng-container *ngIf="shouldShowHeader() && mainUser; else authLayout">
+  <mat-drawer-container class="h-screen" autosize>
+    <app-header (openSidebar)="sidebar.open()"></app-header>
+
+    <mat-drawer
+      #sidebar
+      mode="over"
+      position="start"
+      class="w-full bg-white dark:!bg-gray-800"
+    >
+      <div class="p-6">
+        <div
+          class="flex justify-between items-center mb-4 border-b-8 dark:border-b-white"
+        >
+          <h2
+            class="text-xl font-bold dark:text-white p-4 flex items-center gap-3"
+          >
+            <mat-icon>account_circle</mat-icon> پروفایل کاربر
+          </h2>
+          <button
+            mat-icon-button
+            class="dark:!text-white"
+            (click)="sidebar.close()"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
         </div>
-      </mat-drawer>
-  
-      <router-outlet></router-outlet>
-    </mat-drawer-container>
-  </ng-container>
-  
-  <ng-template #authLayout>
+        <ul class="*:p-6 divide-x-dashed divide-y-2 divide-gray-400">
+          <li class="grid grid-cols-2 text-center">
+            <span class="text-violet-500 font-iranSansDemiBold text-xl">ID :</span>
+            <span class="dark:text-white">{{mainUser?.id}}</span>
+          </li>
+          <li class="grid grid-cols-2 text-center">
+            <span class="text-violet-500 font-iranSansDemiBold text-xl">نام :</span>
+            <span class="dark:text-white">{{mainUser?.firstName}}</span>
+          </li>
+          <li class="grid grid-cols-2 text-center">
+            <span class="text-violet-500 font-iranSansDemiBold text-xl"
+              >نام خانواگی :</span
+            >
+            <span class="dark:text-white">{{mainUser?.lastName}}</span>
+          </li>
+          <li class="grid grid-cols-2 text-center">
+            <span class="text-violet-500 font-iranSansDemiBold text-xl"
+              >کد سازمانی :</span
+            >
+            <span class="dark:text-white">{{mainUser?.organizationId}}</span>
+          </li>
+          <li class="grid grid-cols-2 text-center">
+            <span class="text-violet-500 font-iranSansDemiBold text-xl"
+              >نام سازمان :</span
+            >
+            <span class="dark:text-white">{{mainUser?.organizationName}}</span>
+          </li>
+        </ul>
+      </div>
+    </mat-drawer>
+
     <router-outlet></router-outlet>
-  </ng-template>
-  
-  <app-theme-button class="custom-icon"></app-theme-button>
-  
+  </mat-drawer-container>
+</ng-container>
+
+<ng-template #authLayout>
+  <router-outlet></router-outlet>
+</ng-template>
+
+<app-theme-button class="custom-icon"></app-theme-button>

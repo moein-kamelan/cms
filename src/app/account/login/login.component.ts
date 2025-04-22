@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit , OnDestroy {
         catchError((err) => {
           console.log(err);
 
-          if (err.status === 400) {
+          if (err.status) {
             this._snackBar.open(err.message, 'تلاش دوباره', {
               verticalPosition: 'top',
             });
@@ -66,7 +66,6 @@ export class LoginComponent implements OnInit , OnDestroy {
       )
       .subscribe((res: any) => {
         console.log(res);
-        if (res!.statusCode === 200) {
           this._snackBar.open('ورود موفقیت آمیز بود / در حال انتقال به صفحه اصلی' , '', {
             verticalPosition: 'top',
             duration : 2000
@@ -90,7 +89,6 @@ export class LoginComponent implements OnInit , OnDestroy {
             
           }, 2000);
           
-        }
       });
   }
 

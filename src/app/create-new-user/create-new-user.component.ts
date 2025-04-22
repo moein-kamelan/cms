@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { HeaderComponent } from '../shared/header/header.component';
 import { MaterialModule } from '../material.module';
 import { FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
-import { FormFeildComponent } from "../shared/form-feild/form-feild.component";
 import { ErrorMessageComponent } from "../shared/error-message/error-message.component";
 import { Router, RouterModule } from '@angular/router';
 import { Subscription, catchError, of } from 'rxjs';
@@ -11,6 +10,7 @@ import { ActionButtonComponent } from "../shared/action-button/action-button.com
 import { BackButtonComponent } from "../shared/back-button/back-button.component";
 import { InputFeildComponent } from "../shared/input-feild/input-feild.component";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { nationalCodeValidator } from '../validators/national-code.validator';
 
 @Component({
   selector: 'app-create-new-user',
@@ -59,7 +59,7 @@ constructor(private usersService : UsersService , private router : Router) {
       organizationId: new FormControl(1, []),
       nationalCode: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^(?!(\d)\1{9})\d{10}$/),
+        nationalCodeValidator()
       ]),
       identifyNumber: new FormControl('', []),
       isForeigner: new FormControl(false, []),
@@ -81,13 +81,16 @@ constructor(private usersService : UsersService , private router : Router) {
     this.editUserSub = this.usersService.RegisterNewUser(newUserInfos).pipe(catchError((err : any) => {
       
       
-      this._snackBar.open(err , "تلاش مجدد" , {
+      this._snackBar.open(err.message , undefined , {
         duration : 2000
       })
 
       return of(null)
     })).subscribe((res) => {
       if(res !== null) {
+        
+        
+        
         this.router.navigate(["/users"])
 
       }
