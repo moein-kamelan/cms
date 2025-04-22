@@ -1,14 +1,15 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, ChangeDetectionStrategy, inject, Output, EventEmitter } from '@angular/core';
 import { MaterialModule } from '../../material.module';
 import { Router, RouterModule } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmExitModalComponent } from '../../confirm-exit-modal/confirm-exit-modal.component';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
   selector: 'app-header',
-  imports: [MaterialModule, RouterModule],
+  imports: [MaterialModule, RouterModule, SidebarComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 
@@ -16,7 +17,7 @@ import { ConfirmExitModalComponent } from '../../confirm-exit-modal/confirm-exit
 export class HeaderComponent implements OnInit, OnDestroy {
   readonly dialog = inject(MatDialog);
   @ViewChild('openNavMenuButton') openNavMenuButton!: ElementRef;
-
+@Output() openSidebar = new EventEmitter()
   currentUser: any = null;
   currentUserSub!: Subscription;
   dialogSub!: Subscription;
@@ -33,7 +34,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   openConfirmDialog() {
-   
+    
   }
 
   closeMobileMenu(mobileMenu: HTMLDivElement, overlay: HTMLDivElement) {
@@ -62,6 +63,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     
     });
   }
+
+  onOpenSidenav() {
+    this.openSidebar.emit()
+  }
+  
 
   ngOnDestroy(): void {
     this.currentUserSub?.unsubscribe();

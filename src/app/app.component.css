@@ -1,4 +1,13 @@
 html.dark .custom-icon {
-fill: white !important;
-color: wheat !important;
+  fill: white !important;
+  color: wheat !important;
+}
+::ng-deep .mat-drawer-content {
+}
+::ng-deep .dark .mat-drawer-content {
+  background-color: #9ca3af !important;
+}
+
+.dark .close-sidebar-btn {
+    color: white !important;
 }

@@ -67,12 +67,7 @@ html {
   font-family: "iranSanc-r";
 }
 
-:root {
-  @include mat.slide-toggle-overrides((
-    track-outline-color: orange,
-    disabled-unselected-track-outline-color: red,
-  ));
-}
+
 
 
 

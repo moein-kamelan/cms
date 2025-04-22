@@ -115,6 +115,7 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   changeSortSub(sortOption: string) {
+    const currentPaginationInfos = this.usersService.paginationSub.getValue()
     const searchBody = {
       orders: [
         {
@@ -122,8 +123,8 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
           sort: 2,
         },
       ],
-      pageNumber: this.paginationInfos.pageNumber,
-      pageSize: this.paginationInfos.pageSize,
+      pageNumber: currentPaginationInfos.pageNumber,
+      pageSize: currentPaginationInfos.pageSize,
     };
 
     this.usersService
@@ -149,12 +150,7 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
           ],
         },
       ],
-      orders: [
-        {
-          columnName: 'id',
-          sort: 2,
-        },
-      ],
+     
       pageNumber: this.paginationInfos.pageNumber,
       pageSize: this.paginationInfos.pageSize,
     };

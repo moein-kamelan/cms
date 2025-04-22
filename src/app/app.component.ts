@@ -2,10 +2,11 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { ThemeButtonComponent } from "./shared/theme-button/theme-button.component";
 import { HeaderComponent } from "./shared/header/header.component";
+import { MaterialModule } from './material.module';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ThemeButtonComponent, HeaderComponent],
+  imports: [RouterOutlet, ThemeButtonComponent, HeaderComponent , MaterialModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
