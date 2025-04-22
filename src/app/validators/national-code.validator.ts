@@ -17,7 +17,6 @@ export function nationalCodeValidator(): ValidatorFn {
       };
     }
 
-    // بررسی تکراری نبودن همه ارقام مثل 1111111111
     if (/^(\d)\1{9}$/.test(nationalCode)) {
       return {
         invalidNationalCode: {

@@ -49,7 +49,7 @@
 
 .invalid-btn:disabled {
   background-color: #ccc !important;
-  color: #666 !important;
+  color: black !important;
   cursor: not-allowed;
   box-shadow: none !important;
 }

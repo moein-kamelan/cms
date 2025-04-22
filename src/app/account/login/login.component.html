@@ -1,88 +1,85 @@
-<section class="h-screen bg-gray-50 
-bg-gradient-to-r from-purple-500 to-cyan-600 dark:bg-gradient-to-r dark:from-zinc-600 dark:to-red-500
-">
+<section
+  class="h-screen bg-gray-50 bg-gradient-to-r from-purple-500 to-cyan-600 dark:bg-gradient-to-r dark:from-zinc-600 dark:to-red-500"
+>
   <div
-    class="flex flex-col items-center justify-center px-2 py-4 mx-auto md:h-screen lg:py-0 h-full "
+    class="flex flex-col items-center justify-center px-2 py-4 mx-auto md:h-screen lg:py-0 h-full"
   >
     <div
-      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 overflow-hidden"
+      class="w-full bg-white/20 backdrop-blur-xl border border-white/20 rounded-lg shadow-2xl md:mt-0 sm:max-w-md xl:p-0 dark:bg-black/20 dark:border-white/20"
     >
-      <div class="!p-4 space-y-4 md:space-y-6 sm:p-8  rounded-2xl dark:border-none rounded-lg">
+      <div
+        class="!p-4 space-y-4 md:space-y-6 sm:p-8 rounded-2xl dark:border-none"
+      >
         <h1
-          class="text-xl font-iranSansDemiBold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white mb-6"
+          class="text-xl font-iranSansDemiBold leading-tight tracking-tight dark:text-gray-900 md:text-2xl text-white mb-6"
         >
           ورود به حساب کاربری
         </h1>
-              
-                <div>
 
-
-
-
-
-          <form  [formGroup]="loginFormGroup" (ngSubmit)="submitLoginForm()" class="grid ">
-
-
+        <div>
+          <form
+            [formGroup]="loginFormGroup"
+            (ngSubmit)="submitLoginForm()"
+            class="grid"
+          >
             <mat-form-field class="w-full mb-2">
               <mat-label>نام کاربری</mat-label>
-              <input matInput type="text" placeholder="نام کاربری را وارد کنید"  formControlName="userName"/>
+              <input
+                matInput
+                type="text"
+                placeholder="نام کاربری را وارد کنید"
+                formControlName="userName"
+              />
 
-              
-              @if(loginFormGroup.get("userName")?.touched && loginFormGroup.get("password")?.errors) {
-                <mat-error>
-                  @if(loginFormGroup.get("userName")?.errors?.["required"]) {
-                    <span>مقداری وارد نشده</span>
-                  }
-                  
-                  
-                </mat-error>
-                
-       
+              @if(loginFormGroup.get("userName")?.touched &&
+              loginFormGroup.get("password")?.errors) {
+              <mat-error>
+                @if(loginFormGroup.get("userName")?.errors?.["required"]) {
+                <span>مقداری وارد نشده</span>
+                }
+              </mat-error>
+
               }
-              
             </mat-form-field>
 
-            
-        <mat-form-field class="w-full">
+            <mat-form-field class="w-full">
               <mat-label>رمز عبور</mat-label>
-              <input matInput type="password" placeholder="رمز عبور را وارد کنید"  formControlName="password"/>
+              <input
+                matInput
+                type="password"
+                placeholder="رمز عبور را وارد کنید"
+                formControlName="password"
+              />
 
-              @if(loginFormGroup.get("password")?.touched && loginFormGroup.get("password")?.errors) {
-                <mat-error>
-                  @if(loginFormGroup.get("password")?.errors?.["required"]) {
-                    <span>مقداری وارد نشده</span>
-                  }
-                  
-                </mat-error>
+              @if(loginFormGroup.get("password")?.touched &&
+              loginFormGroup.get("password")?.errors) {
+              <mat-error>
+                @if(loginFormGroup.get("password")?.errors?.["required"]) {
+                <span>مقداری وارد نشده</span>
+                }
+              </mat-error>
               }
-              
-              
             </mat-form-field>
 
             <button
-            type="submit"
-            
-            [ngClass]="{'invalid-btn' : !loginFormGroup.valid }"
-            [disabled]="!loginFormGroup.valid"
-            class="relative inline-flex items-center justify-center p-0.5 mt-6  overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+              type="submit"
+              [ngClass]="{ 'invalid-btn': !loginFormGroup.valid }"
+              [disabled]="!loginFormGroup.valid"
+              class="relative inline-flex items-center justify-center p-0.5 mt-6 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+            >
+            <span
+            class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent w-full text-black dark:text-white disabled:text-red-500 hover:text-white text-iranSansDemiBold dark:hover:text-gray-900"
           >
-          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent w-full dark:text-white   dark:hover:text-gray-900">
-
             ورود
           </span>
-          </button>
-                        
+            </button>
           </form>
-
-          
-
-
         </div>
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
             <div class="flex items-center h-5">
               <input
-              #rememberInput
+                #rememberInput
                 id="remember"
                 aria-describedby="remember"
                 type="checkbox"
@@ -90,41 +87,23 @@ bg-gradient-to-r from-purple-500 to-cyan-600 dark:bg-gradient-to-r dark:from-zin
                 required=""
               />
             </div>
-            
+
             <div class="ml-3 text-sm">
-              <label for="remember" class="text-gray-500 dark:text-gray-300"
+              <label for="remember" class="text-white dark:text-black"
                 >مرا به خاطر بسپار</label
               >
             </div>
           </div>
         </div>
 
-        
-
-      
-        <p class="font-light text-gray-500 dark:text-gray-400 text-lg">
+        <p class="font-light text-white dark:text-black text-lg">
           هنوز حساب کاربری ندارید ؟
           <a
             routerLink="/account/signup"
-            class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+            class="font-medium text-primary-600 hover:underline dark:text-rose-900"
             >ثبت نام</a
           >
         </p>
-
-        <!-- <form class="example-form">
-            <mat-form-field class="example-full-width">
-              <mat-label>Email</mat-label>
-              <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-                     placeholder="Ex. pat@example.com">
-              <mat-hint>Errors appear instantly!</mat-hint>
-              @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
-                <mat-error>Please enter a valid email address</mat-error>
-              }
-              @if (emailFormControl.hasError('required')) {
-                <mat-error>Email is <strong>required</strong></mat-error>
-              }
-            </mat-form-field>
-          </form> -->
       </div>
     </div>
   </div>

@@ -74,10 +74,13 @@ html {
  .mdc-tab__text-label{
   font-family: "iranSanc-r";
 color: blue !important;
+font-size : 18px
+
 }
 
 .dark .mdc-tab__text-label{
-  color: rgb(233, 90, 47) !important;
+  color: oklch(41% 0.159 10.272) !important;
+  
 }
 
 mat-label , mat-error , .mat-mdc-form-field.mat-mdc-form-field-type-mat-input{ 

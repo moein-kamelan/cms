@@ -1,4 +1,4 @@
-<ng-container *ngIf="shouldShowHeader() && mainUser; else authLayout">
+<ng-container *ngIf="shouldShowHeader() ; else authLayout">
   <mat-drawer-container class="h-screen" autosize>
     <app-header (openSidebar)="sidebar.open()"></app-header>
 

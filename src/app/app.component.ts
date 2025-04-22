@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, OnDestroy{
   private unsubscribe$ = new Subject<void>();
   private hiddenRoutes = ["/account/login" , "/account/signup"];
 
-  constructor(private renderer : Renderer2 , public router:Router , private userService : UsersService , private cdRef : ChangeDetectorRef) {
+  constructor(private renderer : Renderer2 , public router:Router , private userService : UsersService) {
 
   }
 
