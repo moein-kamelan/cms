@@ -21,10 +21,11 @@ import {
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { catchError, from, of, Subscription } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { InputFeildComponent } from "../../shared/input-feild/input-feild.component";
 
 @Component({
   selector: 'app-login',
-  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, InputFeildComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -66,7 +67,7 @@ export class LoginComponent implements OnInit , OnDestroy {
       )
       .subscribe((res: any) => {
         console.log(res);
-          this._snackBar.open('ورود موفقیت آمیز بود / در حال انتقال به صفحه اصلی' , '', {
+          this._snackBar.open('ورود موفقیت آمیز بود / در حال انتقال به صفحه اصلی' , undefined, {
             verticalPosition: 'top',
             duration : 2000
           });
@@ -90,6 +91,10 @@ export class LoginComponent implements OnInit , OnDestroy {
           }, 2000);
           
       });
+  }
+
+  getLoginFormControl(controlName : string) {
+    return this.loginFormGroup.get(controlName) as FormControl
   }
 
   ngOnDestroy(): void {

@@ -1,6 +1,5 @@
-
 <div class="container mx-auto">
-  <div class="form-container mt-12 ">
+  <div class="form-container mt-12">
     <div
       class="bg-gray-400 dark:bg-gray-700 overflow-hidden shadow rounded-lg border mx-auto max-w-4xl shadow-2xl"
     >
@@ -14,62 +13,98 @@
           در اینجا اطلاعات کاربر جدید را وارد کنید
         </p>
       </div>
-        <form
-          action="" 
-          
-          [formGroup]="createNewUserFormGroup"
-          (ngSubmit)="onSubmitCreateNewUserForm()"
-        >
-     <div class="border-t-3 border-gray-500 px-12 sm:px-4 py-5 grid sm:grid-cols-2 gap-x-4 gap-y-1.5">
-
-
-      <app-input-feild type="text" label="نام" placeholder="نام را وارد کنید" [control]="getCreateNewUserFormControl('firstName')" [minlength]="4" [maxlength]="12" ></app-input-feild>
-      <app-input-feild type="text" label="نام خانوادگی" placeholder="نام خانوادگی را وارد کنید" [control]="getCreateNewUserFormControl('lastName')" [minlength]="4" [maxlength]="12" ></app-input-feild>
-      <app-input-feild type="text" label="نام پدر" placeholder="نام پدر را وارد کنید" [control]="getCreateNewUserFormControl('fatherName')" [minlength]="4" [maxlength]="12" ></app-input-feild>
-      <app-input-feild type="text" label="نام کاربری" placeholder="نام کاربری را وارد کنید" [control]="getCreateNewUserFormControl('userName')" [minlength]="4" [maxlength]="12" ></app-input-feild>
-      <app-input-feild type="text" label="شماره همراه" placeholder="شماره همراه را وارد کنید" [control]="getCreateNewUserFormControl('mobileNumber')" [isMobileNumber]="true" ></app-input-feild>
-      <app-input-feild type="text" label="کد ملی" placeholder="کد ملی را وارد کنید" [control]="getCreateNewUserFormControl('nationalCode')" [exactlength]="10" ></app-input-feild>
-      <app-input-feild type="password" label="رمز عبور" placeholder="رمز عبور را وارد کنید" [control]="getCreateNewUserFormControl('password')" [minlength]="8" [maxlength]="12" ></app-input-feild>
-      
-      
-
-
-
-      <section
-        class="example-section"
-        class="flex items-center w-full gap-4"
+      <form
+        action=""
+        [formGroup]="createNewUserFormGroup"
+        (ngSubmit)="onSubmitCreateNewUserForm()"
       >
-        <p>
-          <mat-slide-toggle
-            formControlName="isForeigner"
-          ></mat-slide-toggle>
-        </p>
+        <div
+          class="border-t-3 border-gray-500 px-12 sm:px-4 py-5 grid sm:grid-cols-2 gap-x-4 gap-y-1.5"
+        >
+          <app-input-feild
+            type="text"
+            label="نام"
+            placeholder="نام را وارد کنید"
+            [control]="getCreateNewUserFormControl('firstName')"
+            [minlength]="4"
+            [maxlength]="12"
+          ></app-input-feild>
+          <app-input-feild
+            type="text"
+            label="نام خانوادگی"
+            placeholder="نام خانوادگی را وارد کنید"
+            [control]="getCreateNewUserFormControl('lastName')"
+            [minlength]="4"
+            [maxlength]="12"
+          ></app-input-feild>
+          <app-input-feild
+            type="text"
+            label="نام پدر"
+            placeholder="نام پدر را وارد کنید"
+            [control]="getCreateNewUserFormControl('fatherName')"
+            [minlength]="4"
+            [maxlength]="12"
+          ></app-input-feild>
+          <app-input-feild
+            type="text"
+            label="نام کاربری"
+            placeholder="نام کاربری را وارد کنید"
+            [control]="getCreateNewUserFormControl('userName')"
+            [minlength]="4"
+            [maxlength]="12"
+          ></app-input-feild>
+          <app-input-feild
+            type="text"
+            label="شماره همراه"
+            placeholder="شماره همراه را وارد کنید"
+            [control]="getCreateNewUserFormControl('mobileNumber')"
+            [isMobileNumber]="true"
+          ></app-input-feild>
+          <app-input-feild
+            type="text"
+            label="کد ملی"
+            placeholder="کد ملی را وارد کنید"
+            [control]="getCreateNewUserFormControl('nationalCode')"
+            [exactlength]="10"
+          ></app-input-feild>
+          <app-input-feild
+            type="password"
+            label="رمز عبور"
+            placeholder="رمز عبور را وارد کنید"
+            [control]="getCreateNewUserFormControl('password')"
+            [minlength]="8"
+            [maxlength]="12"
+          ></app-input-feild>
 
-        <h4 class="text-main-black dark:text-white text-sm">
-          ایا اتباع خارجی هستید؟
-        </h4>
-      </section>
-      
-      
-     </div>
+          <section
+            class="example-section"
+            class="flex items-center w-full gap-4"
+          >
+            <p>
+              <mat-slide-toggle
+                formControlName="isForeigner"
+              ></mat-slide-toggle>
+            </p>
 
+            <h4 class="text-main-black dark:text-white text-sm">
+              ایا اتباع خارجی هستید؟
+            </h4>
+          </section>
+        </div>
 
-     <div class="w-full border-t-3 border-gray-500   bg-gray-200 dark:bg-gray-400 p-4 flex justify-end gap-3 flex-wrap-reverse">
+        <div
+          class="w-full border-t-3 border-gray-500 bg-gray-200 dark:bg-gray-400 p-4 flex justify-end gap-3 flex-wrap-reverse"
+        >
+          <app-back-button class="max-sm:w-full w-1/4"></app-back-button>
 
-      
-    
-        <app-back-button class="max-sm:w-full w-1/4"></app-back-button>
-       
-
-            <app-action-button [formValidation]="createNewUserFormGroup.valid" class="max-sm:w-full w-1/4" [iconText] = "'add_circle'"
-            [buttonText] = "'ایجاد کاربر'"></app-action-button>
-            
-          </div>
-          
-
-
-        
-    </form>
+          <app-action-button
+            [formValidation]="createNewUserFormGroup.valid"
+            class="max-sm:w-full w-1/4"
+            [iconText]="'add_circle'"
+            [buttonText]="'ایجاد کاربر'"
+          ></app-action-button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
