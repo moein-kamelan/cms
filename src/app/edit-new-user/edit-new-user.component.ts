@@ -88,16 +88,8 @@ export class EditNewUserComponent implements OnInit, OnDestroy {
       .UpdateUserPersonalInformation({
         ...this.editUserFormGroup.value,
         id: this.userID,
-      })
-      .pipe(
-        catchError((err: any) => {
-          this._snackBar.open(err.message);
-
-          return of(null);
-        })
-      )
-      .subscribe((res) => {
-        if (res !== null) {
+      }).subscribe((res) => {
+        if (res) {
           this._snackBar.open('کاربر با موفقیت ویرایش شد', undefined, {
             duration: 2000,
           });

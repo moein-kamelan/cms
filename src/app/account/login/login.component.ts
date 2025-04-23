@@ -48,24 +48,7 @@ export class LoginComponent implements OnInit , OnDestroy {
 
   submitLoginForm() {
     this.isLoginSub = this.authService
-      .loginPerson(this.loginFormGroup.value)
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-
-          if (err.status) {
-            this._snackBar.open(err.message, 'تلاش دوباره', {
-              verticalPosition: 'top',
-            });
-          } else {
-            this._snackBar.open('خطای غیر منتظره ایی رخ داده', 'تلاش دوباره', {
-              verticalPosition: 'top',
-            });
-          }
-          return of(null);
-        })
-      )
-      .subscribe((res: any) => {
+      .loginPerson(this.loginFormGroup.value).subscribe((res: any) => {
         console.log(res);
         if(res) {
           this._snackBar.open('ورود موفقیت آمیز بود / در حال انتقال به صفحه اصلی' , undefined, {

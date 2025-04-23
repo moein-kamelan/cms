@@ -78,16 +78,8 @@ constructor(private usersService : UsersService , private router : Router) {
   onSubmitCreateNewUserForm() {
     console.log(this.createNewUserFormGroup.value);
     const newUserInfos = {...this.createNewUserFormGroup.value }
-    this.editUserSub = this.usersService.RegisterNewUser(newUserInfos).pipe(catchError((err : any) => {
-      
-      
-      this._snackBar.open(err.message , undefined , {
-        duration : 4000
-      })
-
-      return of(null)
-    })).subscribe((res) => {
-      if(res !== null) {
+    this.editUserSub = this.usersService.RegisterNewUser(newUserInfos).subscribe((res) => {
+      if(res) {
         
         
         console.log("created User => " , res);

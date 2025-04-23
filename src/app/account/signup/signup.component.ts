@@ -175,25 +175,12 @@ export class SignupComponent implements OnInit, OnDestroy {
   private createLegalPersonSub!: Subscription;
   onlegalFormSubmit() {
     this.createLegalPersonSub = this.authService
-      .createLegalAccount(this.legalFormGroup.value)
-      .pipe(
-        catchError((err) => {
-          if (err.status) {
-            this._snackBar.open(err.message, 'تلاش دوباره', {
-              verticalPosition: 'top',
-            });
-          } else {
-            this._snackBar.open('خطای غیر منتظره ایی رخ داده', 'تلاش دوباره', {
-              verticalPosition: 'top',
-            });
-          }
-
-          return of(null);
-        })
-      )
-      .subscribe((res) => {
-        console.log(res);
-        this.router.navigate(['/account/login']);
+      .createLegalAccount(this.legalFormGroup.value).subscribe((res) => {
+        if(res) {
+          console.log(res);
+          this.router.navigate(['/account/login']);
+        }
+        
       });
   }
 

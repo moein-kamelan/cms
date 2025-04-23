@@ -60,9 +60,12 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
     
 
     this.usersService.changePageSub.subscribe((res : any) => {
-      this.usersService.GetAllUsersWithPagination(res).pipe().subscribe((users : any) => {
-        this.users = users.data.items;
-        this.totalUsersCount = users.data.totalCount;
+      this.usersService.GetAllUsersWithPagination(res).subscribe((users : any) => {
+        if(users) {
+          this.users = users.data.items;
+          this.totalUsersCount = users.data.totalCount;
+        }
+        
         
       })
       
@@ -74,10 +77,7 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
         if (res) {
           this.usersService
             .GetAllUsersWithPagination(this.paginationInfos)
-            .pipe(takeUntil(this.destroy$) , catchError((err : any) => {
-              this._snackBar.open(err.message , "متوجه شدم")
-              return of(null)
-            }))
+            .pipe(takeUntil(this.destroy$))
             .subscribe((users: any) => {
               this.users = users.data.items;
             });
@@ -85,14 +85,14 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
       });
 
     this.usersService.changeSortSub
-      .pipe(takeUntil(this.destroy$)  , catchError((err : any) => {
-        this._snackBar.open(err.message , "متوجه شدم")
-        return of(null)
-      }))
+      .pipe(takeUntil(this.destroy$))
       .subscribe((sortOptions: any) => {
-        console.log('sortOptions =>', sortOptions);
-        this.searchOption = sortOptions;
-        this.changeSortSub(sortOptions);
+        if(sortOptions) {
+          console.log('sortOptions =>', sortOptions);
+          this.searchOption = sortOptions;
+          this.changeSortSub(sortOptions);
+        }
+  
       });
   }
   
@@ -108,15 +108,16 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
     
       this.usersService
         .GetAllUsersWithPagination(body)
-        .pipe(takeUntil(this.destroy$) , catchError((err : any) => {
-          this._snackBar.open(err.message , "متوجه شدم")
-          return of(null)
-        })).subscribe((res: any) => {
-          setTimeout(() => {
-            this.users = res.data.items;
-            this.totalUsersCount = res.data.totalCount;
-            this.loading = false;
-          }, 2000);
+        .pipe(takeUntil(this.destroy$) ).subscribe((res: any) => {
+          if(res) {
+            setTimeout(() => {
+            
+              this.users = res.data.items;
+              this.totalUsersCount = res.data.totalCount;
+              this.loading = false;
+            }, 2000);
+            
+          }
           
           
         })
@@ -141,8 +142,11 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
       .GetAllUsersWithPagination(searchBody)
       .pipe(takeUntil(this.destroy$))
       .subscribe((res: any) => {
-        this.users = res.data.items;
-        this.totalUsersCount = res.data.totalCount;
+        if(res) {
+          this.users = res.data.items;
+          this.totalUsersCount = res.data.totalCount;
+        }
+
       });
   }
 
@@ -167,15 +171,12 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.usersService
       .GetAllUsersWithPagination(searchBody)
-      .pipe(takeUntil(this.destroy$) , catchError((err : any) => {
+      .pipe(takeUntil(this.destroy$)).subscribe((res: any) => {
+        if(res ) {
+          this.users = res.data.items;
+          this.totalUsersCount = res.data.totalCount;
+        }
 
-        this._snackBar.open(err.message , "متوجه شدم" )
-        
-        return of(null)
-      }))
-      .subscribe((res: any) => {
-        this.users = res.data.items;
-        this.totalUsersCount = res.data.totalCount;
       });
   }
 
