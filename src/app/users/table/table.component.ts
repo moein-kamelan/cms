@@ -25,12 +25,16 @@ import { DeleteConfirmDialogComponent } from './delete-confirm-dialog/delete-con
 import { UsersService } from '../../services/users.service';
 import { Subscription } from 'rxjs';
 import { SearchOptions } from '../../enums/search-options';
+import { ConvertBooleanPipe } from '../../pipes/convert-boolean.pipe';
+import { ConvertDatePipe } from '../../pipes/convert-date.pipe';
+ConvertDatePipe
 @Component({
   selector: 'app-table',
-  imports: [CommonModule, MaterialModule, RouterModule, MatDialogModule  ],
+
+imports: [CommonModule, MaterialModule, RouterModule, MatDialogModule , ConvertBooleanPipe , ConvertDatePipe],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent implements  OnChanges , OnDestroy {
   @Input() users: any[] = [];

@@ -79,7 +79,7 @@ font-size : 18px
 }
 
 .dark .mdc-tab__text-label{
-  color: oklch(41% 0.159 10.272) !important;
+  color: #fb923c  !important;
   
 }
 
@@ -89,7 +89,7 @@ mat-label , mat-error , .mat-mdc-form-field.mat-mdc-form-field-type-mat-input{
 }
 
 .dark mat-label , .dark .mat-mdc-form-field-required-marker.mdc-floating-label--required::after , .dark input::placeholder  {
-  color: #000;
+  color: white;
 }
 
 
@@ -102,10 +102,9 @@ mat-label , mat-error , .mat-mdc-form-field.mat-mdc-form-field-type-mat-input{
 
 .dark .mat-mdc-text-field-wrapper.mdc-text-field.mdc-text-field--filled {
 background: gray;
-color: #000;
 }
 
 .dark input {
-background-color: gray !important;
+  color: white !important;
 }
 

@@ -82,7 +82,7 @@ constructor(private usersService : UsersService , private router : Router) {
       
       
       this._snackBar.open(err.message , undefined , {
-        duration : 2000
+        duration : 4000
       })
 
       return of(null)
@@ -90,8 +90,15 @@ constructor(private usersService : UsersService , private router : Router) {
       if(res !== null) {
         
         
-        
+        console.log("created User => " , res);
+        this._snackBar.open("کاربر با موفقیت ایجاد شد" , undefined , {
+          duration : 2000
+        })
+
+        setTimeout(() => {
         this.router.navigate(["/users"])
+          
+        }, 2000);
 
       }
       

@@ -4,8 +4,8 @@
   
 
 <mat-form-field>
-  <mat-label class="text-sm ">تعداد آیتم در هر صفحه</mat-label>
-  <mat-select [value]="paginationInfos.pageSize" (selectionChange)="onChangePageSize($event.value)">
+  <mat-label class="text-sm dark:!text-white">تعداد آیتم در هر صفحه</mat-label>
+  <mat-select class="dark:!text-white" [value]="paginationInfos.pageSize" (selectionChange)="onChangePageSize($event.value)">
     <mat-option [value]="1">1</mat-option>
     <mat-option [value]="2">2</mat-option>
     <mat-option [value]="3">3</mat-option>
@@ -19,7 +19,7 @@
   <nav aria-label="Page navigation example shadow-2xl " class="relative !-top-[10px]" >
     <ul class="inline-flex -space-x-px text-base h-10 flex-wrap gap-y-1">
       <li>
-        <button class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"  (click)="onGoPrevPage()">قبلی</button>
+        <button class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"  (click)="onGoPrevPage()">قبلی</button>
       </li>
 
 
@@ -28,50 +28,50 @@
    @for (page of pageCount | pageCount : pageCount; track $index) {
     @if((($index + 1) < (currentPage - 2)) && ($index + 1 === 1)) {
       <li>
-        <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"[ngClass]="{activePage : $index + 1 === currentPage}" > {{$index + 1}} </button>
+        <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200  dark:hover:bg-gray-700 dark:hover:text-white"[ngClass]="{activePage : $index + 1 === currentPage}" > {{$index + 1}} </button>
       </li>
     }
     @else if(($index + 1) === ( currentPage - 3) ) {
       <li>
-        <button   class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" > ... </button>
+        <button   class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200  dark:hover:bg-gray-700 dark:hover:text-white" > ... </button>
       </li>
     }@else if(($index + 1) === (currentPage - 2)) {
 
       <li>
-        <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{activePage : $index + 1 === currentPage}">{{$index +1}}</button>
+        <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200  dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{activePage : $index + 1 === currentPage}">{{$index +1}}</button>
       </li>
       
     } @else if (($index + 1) === (currentPage - 1)) {
 
       <li>
-        <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{activePage : $index + 1 === currentPage}">{{$index +1}}</button>
+        <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200  dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{activePage : $index + 1 === currentPage}">{{$index +1}}</button>
       </li>
 
       
     }@else if(($index + 1) === currentPage){
 
         <li>
-          <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{activePage : $index + 1 === currentPage}">{{$index +1}}</button>
+          <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200  dark:hover:bg-gray-700 dark:hover:text-white " [ngClass]="{activePage : $index + 1 === currentPage}">{{$index +1}}</button>
         </li>
         
       } @else if (($index + 1) === (currentPage + 1)) {
         <li>
-          <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{activePage : $index + 1 === currentPage}">{{$index +1}}</button>
+          <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{activePage : $index + 1 === currentPage}">{{$index +1}}</button>
         </li>
       } @else if (($index + 1) === currentPage + 2  )  {
         <li>
-          <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{activePage : $index + 1 === currentPage}">{{$index +1}}</button>
+          <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200  dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{activePage : $index + 1 === currentPage}">{{$index +1}}</button>
         </li>
         
        
       } @else if(($index + 1) === ( currentPage + 3) ) {
         <li>
-          <button   class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" > ... </button>
+          <button   class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200  dark:hover:bg-gray-700 dark:hover:text-white" > ... </button>
         </li>
       }  @if ((($index + 1) > (currentPage + 2)) && ($index + 1 === pageCount) ) {
 
         <li>
-          <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{activePage : $index + 1 === currentPage}">{{$index +1}}</button>
+          <button (click)="onchangePageIndex($index + 1)"  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200  dark:hover:bg-gray-700 dark:hover:text-white" [ngClass]="{activePage : $index + 1 === currentPage}">{{$index +1}}</button>
         </li>
       }
       
@@ -82,7 +82,7 @@
 
  
       <li>
-        <button  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"  (click)="onGoNextPage()">بعدی</button>
+        <button  class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-white"  (click)="onGoNextPage()">بعدی</button>
       </li>
     </ul>
   </nav>

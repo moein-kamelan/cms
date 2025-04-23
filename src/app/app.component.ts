@@ -38,7 +38,7 @@ export class AppComponent implements OnInit, OnDestroy{
       }
 
       this.router.events.pipe(
-        filter(isNavigationEnd), // استفاده از assertion function به جای inline function
+        filter(isNavigationEnd), 
         filter((event: NavigationEnd) => !this.hiddenRoutes.includes(event.url)),
         takeUntil(this.unsubscribe$)
       ).subscribe(() => {

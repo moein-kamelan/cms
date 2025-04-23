@@ -22,7 +22,7 @@ MatDialogTitle,
   ],
   templateUrl: './confirm-exit-modal.component.html',
   styleUrl: './confirm-exit-modal.component.css',
-  changeDetection : ChangeDetectionStrategy.OnPush
+  // changeDetection : ChangeDetectionStrategy.OnPush
 })
 export class ConfirmExitModalComponent {
   readonly dialogRef = inject(MatDialogRef<ConfirmExitModalComponent>);

@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
   const token = localStorage.getItem('token') || sessionStorage.getItem("token");
-
+  
   if (token) {
     
     const authReq = req.clone({

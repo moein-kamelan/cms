@@ -69,8 +69,8 @@ export class SearchbarComponent implements AfterViewInit , OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.input$.unsubscribe()
-    this.input2$.unsubscribe()
+    this.input$?.unsubscribe()
+    this.input2$?.unsubscribe()
   }
   
   
