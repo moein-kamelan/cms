@@ -14,6 +14,18 @@
   font-style: normal;
   font-weight: 600;
 }
+@font-face {
+  font-family: "yekan-r";
+  src: url("../public/fonts/YekanBakh-Regular.woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "yekan-b";
+  src: url("../public/fonts/YekanBakh-Bold.woff2");
+  font-style: normal;
+  font-weight: 600;
+}
 
 @theme {
   --color-main-blue: #0052cc;
@@ -37,6 +49,8 @@
 
   --font-iranSansRegular: "iranSanc-r";
   --font-iranSansDemiBold: "iranSanc-db";
+  --font-yekanRegular : "yekan-r";
+  --font-yekanBold : "yekan-b";
 
   --breakpoint-xs: 480px;
 }
@@ -104,7 +118,44 @@ mat-label , mat-error , .mat-mdc-form-field.mat-mdc-form-field-type-mat-input{
 background: gray;
 }
 
-.dark input {
+.dark input , .dark input::placeholder {
   color: white !important;
+  background-color: gray;
 }
 
+.mdc-button__label {
+  font-family: "iranSanc-r";
+}
+
+.mdc-snackbar__surface.mat-mdc-snackbar-surface {
+  background-color: white !important;
+  font-family: "iranSanc-r" !important;
+  color: #000 !important;
+  padding: 12px;
+  box-shadow: 0px 4px 18px #000;
+}
+
+.dark .mdc-snackbar__surface.mat-mdc-snackbar-surface {
+  background-color: black !important;
+  color: white !important;
+  box-shadow: 0px 4px 18px #fff;
+
+}
+
+.mat-mdc-snack-bar-label.mdc-snackbar__label {
+  font-family: "iranSanc-r" !important;
+}
+.mat-mdc-button-persistent-ripple.mdc-button__ripple {
+  background-color: red;
+  opacity: 0.3;
+}
+.dark .mat-mdc-button-persistent-ripple.mdc-button__ripple {
+  background-color: red;
+  opacity: 0.7;
+}
+.mdc-button__label {
+  color: red !important;
+}
+.dark .mdc-button__label {
+  color: white !important;
+}

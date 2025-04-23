@@ -1,19 +1,17 @@
 <div class="flex items-center gap-8 w-full relative">
-
   <div class="max-w-lg mx-auto shadow-2xl shrink-0">
     <div class="flex relative max-sm:flex-col">
-
       <button
         id="dropdown-button"
         data-dropdown-toggle="dropdown"
         (click)="toggleSearchOptions(searchOptionsMenu)"
-        class="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-800 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600 "
+        class="min-w-[273px] shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-800 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
         type="button"
         #searchOptionButton
       >
-      <span class="hidden sm:inline">جستجو بر اساس ... ( پیش فرض : نام)</span>
-      <span class="sm:hidden">جستجو (نام)</span>
-        
+        <span class="hidden sm:inline">جستجو بر اساس ... ( پیش فرض : نام)</span>
+        <span class="sm:hidden w-full text-center">جستجو (نام)</span>
+
         <svg
           class="w-2.5 h-2.5 ms-2.5"
           aria-hidden="true"
@@ -32,36 +30,52 @@
       </button>
       <div
         id="dropdown"
-        class="z-10 bg-white  rounded-lg shadow-sm w-44 dark:bg-gray-700 absolute top-[110%] max-sm:top-[60%] hidden"
+        class="z-10 bg-white rounded-lg shadow-sm w-44 dark:bg-gray-700 absolute top-[110%] max-sm:top-[60%] hidden"
         #searchOptionsMenu
       >
         <ul
-          class="py-2 text-sm text-gray-700 dark:text-gray-200 divide-y divide-gray-400 "
+          class="py-2 text-sm text-gray-700 dark:text-gray-200 divide-y divide-gray-400"
           aria-labelledby="dropdown-button"
         >
           <li>
             <button
               type="button"
-              class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" (click)="sortSearch(nameOption)" #nameOption
-            >{{searchOptions.firstName}}</button>
+              class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              (click)="sortSearch(nameOption)"
+              #nameOption
+            >
+              {{ searchOptions.firstName }}
+            </button>
           </li>
           <li>
             <button
               type="button"
-              class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" (click)="sortSearch(lastNameOption)" #lastNameOption
-            >{{searchOptions.lastName}}</button>
+              class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              (click)="sortSearch(lastNameOption)"
+              #lastNameOption
+            >
+              {{ searchOptions.lastName }}
+            </button>
           </li>
           <li>
             <button
               type="button"
-              class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" (click)="sortSearch(organizationOption)" #organizationOption
-            >{{searchOptions.organizationName}}</button>
+              class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              (click)="sortSearch(organizationOption)"
+              #organizationOption
+            >
+              {{ searchOptions.organizationName }}
+            </button>
           </li>
           <li>
             <button
               type="button"
-              class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" (click)="sortSearch(userNameOption)" #userNameOption
-            >{{searchOptions.userName}}</button>
+              class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              (click)="sortSearch(userNameOption)"
+              #userNameOption
+            >
+              {{ searchOptions.userName }}
+            </button>
           </li>
         </ul>
       </div>
@@ -69,37 +83,55 @@
         <input
           type="search"
           id="search-dropdown"
-          class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700 dark:border-gray-600  dark:text-white dark:focus:border-blue-500 !dark:text-gray-200 dark:placeholder:!text-gray-200"
+          class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700 dark:border-gray-600 dark:text-white dark:focus:border-blue-500 !dark:text-gray-200 dark:placeholder:!text-gray-200"
           placeholder="متن جستجو را وارد کنید"
           required
           #searchInput
         />
-  
-  
-  
-        
-        
-  
-     
       </div>
-  
-   
-      
     </div>
-  
-  
-    
   </div>
-  
-  
+
   @if(isLoading) {
-  
-    <svg class="size-12 absolute -left-[50px] " viewBox="0 0 44 44"><circle cx="22" cy="22" r="6" fill="none" stroke="#60A5FA" stroke-width="2"><animate attributeName="r" from="6" to="20" dur="1.5s" begin="0s" repeatCount="indefinite"></animate><animate attributeName="opacity" from="1" to="0" dur="1.5s" begin="0s" repeatCount="indefinite"></animate></circle><circle cx="22" cy="22" r="6" fill="none" stroke="#60A5FA" stroke-width="2"><animate attributeName="r" from="6" to="20" dur="1.5s" begin="0.5s" repeatCount="indefinite"></animate><animate attributeName="opacity" from="1" to="0" dur="1.5s" begin="0.5s" repeatCount="indefinite"></animate></circle></svg>
-    
-    
+
+  <svg class="size-12 absolute -left-[50px]" viewBox="0 0 44 44">
+    <circle cx="22" cy="22" r="6" fill="none" stroke="#60A5FA" stroke-width="2">
+      <animate
+        attributeName="r"
+        from="6"
+        to="20"
+        dur="1.5s"
+        begin="0s"
+        repeatCount="indefinite"
+      ></animate>
+      <animate
+        attributeName="opacity"
+        from="1"
+        to="0"
+        dur="1.5s"
+        begin="0s"
+        repeatCount="indefinite"
+      ></animate>
+    </circle>
+    <circle cx="22" cy="22" r="6" fill="none" stroke="#60A5FA" stroke-width="2">
+      <animate
+        attributeName="r"
+        from="6"
+        to="20"
+        dur="1.5s"
+        begin="0.5s"
+        repeatCount="indefinite"
+      ></animate>
+      <animate
+        attributeName="opacity"
+        from="1"
+        to="0"
+        dur="1.5s"
+        begin="0.5s"
+        repeatCount="indefinite"
+      ></animate>
+    </circle>
+  </svg>
+
   }
-  
-  
-  
-  
 </div>

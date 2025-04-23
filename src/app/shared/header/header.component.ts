@@ -31,9 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  openConfirmDialog() {
-    
-  }
+
 
   closeMobileMenu(mobileMenu: HTMLDivElement, overlay: HTMLDivElement) {
     mobileMenu.style.display = 'none';

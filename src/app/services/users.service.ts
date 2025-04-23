@@ -14,13 +14,11 @@ export class UsersService {
   });
 
   usersSub = new Subject();
-  changeSortSub = new Subject()
-  changePageSub = new Subject()
+  changeSortSub = new Subject();
+  changePageSub = new Subject();
 
-  
-
-  emitSortOption(sortOption : string) {
-    this.changeSortSub.next(sortOption)
+  emitSortOption(sortOption: string) {
+    this.changeSortSub.next(sortOption);
   }
 
   token: string | null =
@@ -29,12 +27,10 @@ export class UsersService {
   constructor(private http: HttpClient) {}
 
   GetCurrentUser() {
-
     return this.http.get(`${this.baseURL}/Users/GetCurrentUser`, {
-     headers : {
-      Authorization: `Bearer ${this.token}`,
-
-     } 
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+      },
     });
   }
 
@@ -87,17 +83,15 @@ export class UsersService {
       );
   }
 
-RegisterNewUser(userInfos : any) {
-  return this.http.post(`${this.baseURL}/Users/RegisterNewUser` , JSON.stringify(userInfos) , {
-    headers : {
-      "Content-Type" : "application/json" , 
-    }
-  })
-}
-
-
-
-
-  
-  
+  RegisterNewUser(userInfos: any) {
+    return this.http.post(
+      `${this.baseURL}/Users/RegisterNewUser`,
+      JSON.stringify(userInfos),
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+  }
 }

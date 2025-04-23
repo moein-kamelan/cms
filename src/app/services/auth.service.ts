@@ -12,6 +12,9 @@ export class AuthService {
   baseURL: string = environment.baseURL;
   constructor(private http: HttpClient) {}
 
+
+name : string = ""
+
   createPersonalAccount(person: Personal) {
 
     return this.http.post(`${this.baseURL}/Account/PersonalRegister`, JSON.stringify(person) , {

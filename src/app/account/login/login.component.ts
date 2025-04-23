@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit , OnDestroy {
       )
       .subscribe((res: any) => {
         console.log(res);
+        if(res) {
           this._snackBar.open('ورود موفقیت آمیز بود / در حال انتقال به صفحه اصلی' , undefined, {
             verticalPosition: 'top',
             duration : 2000
@@ -89,6 +90,8 @@ export class LoginComponent implements OnInit , OnDestroy {
           this.router.navigate(['/users']);
             
           }, 2000);
+        }
+     
           
       });
   }

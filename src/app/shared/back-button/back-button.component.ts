@@ -8,6 +8,10 @@ import { RouterModule } from '@angular/router';
   templateUrl: './back-button.component.html',
   styleUrl: './back-button.component.css'
 })
-export class BackButtonComponent {
+export class BackButtonComponent  {
+
+  log() {
+    
+  }
 
 }

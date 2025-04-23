@@ -6,7 +6,9 @@
       class="text-xs text-gray-700 uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400 *:text-white *:dark:text-white whitespace-nowrap"
     >
       <tr class="**:justify-center">
-        <th scope="col" class="px-6 py-3">ID</th>
+        <th (click)="onResetSort()" scope="col" class="px-6 py-3"><mat-icon><span class="material-symbols-outlined">
+          filter_alt
+          </span></mat-icon></th>
         <th scope="col" class="px-6 py-3 hover:bg-gray-800">
           <button
             class="flex items-center gap-2 cursor-pointer w-full"
@@ -224,6 +226,7 @@
           <a
             [routerLink]="['/users/userDetails', user.id]"
             class="w-full h-full inline-block px-6 py-4 dark:text-white"
+            style="direction: ltr;"
           >
             {{ user.expireDateTime | convertDate  }}
           </a>

@@ -1,12 +1,12 @@
 <header class="bg-gray-300 dark:bg-gray-600 shadow-md border-b-2 border-b-violet-700 shadow-violet-800 min-h-[110px]">
     <nav class="mx-auto flex  items-center justify-between p-6 container " aria-label="Global">
       <div class="flex lg:flex-1">
-        <button (click)="onOpenSidenav()" class="-m-1.5 p-1.5 flex items-center justify-center gap-4 font-bold ">
+        <button (click)="onOpenSidenav()" class="-m-1.5 p-1.5 flex items-center justify-center gap-4 font-bold  cursor-pointer">
           <div class="flex items-center justify-center size-14 bg-indigo-400 rounded-full">
           <img  class="size-13 text-white" src="user-logo.png" alt="logo">
 
           </div>
-          <div class="flex flex-col gap-4">
+          <div class="flex flex-col gap-4 items-start">
           <span class="text-sm text-indigo-400">پنل مدیریت کاربران</span>
             <span class="dark:text-white">{{currentUser?.data.userName}} : {{currentUser?.data.firstName}} {{currentUser?.data.lastName}}</span>
           </div>

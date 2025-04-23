@@ -201,24 +201,8 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   onPersonalSubmit() {
     this.createPersonalSub = this.authService
-      .createPersonalAccount(this.personalFormGroup.value)
-      .pipe(
-        catchError((err) => {
-          if (err.status) {
-            this._snackBar.open(err.message, undefined, {
-              verticalPosition: 'top',
-            });
-          } else {
-            this._snackBar.open('خطای غیر منتظره ایی رخ داده', 'تلاش دوباره', {
-              verticalPosition: 'top',
-            });
-          }
-
-          return of(null);
-        })
-      )
-      .subscribe((res) => {
-        if(res !== null) {
+      .createPersonalAccount(this.personalFormGroup.value).subscribe((res) => {
+        if(res) {
           this._snackBar.open("کاربر با موفقیت ایجاد شد" , undefined , {
             duration : 2000
           })

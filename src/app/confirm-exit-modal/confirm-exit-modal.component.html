@@ -1,12 +1,12 @@
-<div class="!divide-y-2 !divide-gray-300">
+<div class="p-2 rounded-2xl dark:bg-gray-300">
 
-    <h2 mat-dialog-title class="!flex !items-center !gap-3 !text-iranSansDemiBold !text-red-600"> <mat-icon><span class="material-symbols-outlined ">
+    <h2 mat-dialog-title class="!flex !items-center !gap-3 !font-yekanBold !text-red-600 justify-center"> <mat-icon><span class="material-symbols-outlined ">
         exit_to_app
         </span></mat-icon> خروج از حساب کاربری </h2>
-    <mat-dialog-content class="!text-iranSansDemiBold !py-4">
+    <mat-dialog-content class="!font-yekanRegular !py-4 dark:!text-black">
       ایا از خروج اطمینان دارید ؟
     </mat-dialog-content>
-    <mat-dialog-actions >
+    <mat-dialog-actions class="flex items-center gap-6" >
       <button mat-button mat-dialog-close>خیر</button>
       <button mat-button mat-dialog-close cdkFocusInitial (click)="onConfirm()">بله</button>
     </mat-dialog-actions>

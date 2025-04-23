@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { AfterViewInit, Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { Subscription, Subject, of } from 'rxjs';
+import { catchError, takeUntil } from 'rxjs/operators';
 
 import { UsersService } from '../services/users.service';
 import { PaginationComponent } from './pagination/pagination.component';
@@ -10,6 +10,7 @@ import { MaterialModule } from '../material.module';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SearchOptions } from '../enums/search-options';
 import { routes } from '../app.routes';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-users',
@@ -32,6 +33,7 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
     pageSize: 5,
   };
   loading: boolean = true;
+  private _snackBar = inject(MatSnackBar)
 
   private destroy$ = new Subject<void>();
   searchOption: string = 'firstName';
@@ -58,7 +60,7 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
     
 
     this.usersService.changePageSub.subscribe((res : any) => {
-      this.usersService.GetAllUsersWithPagination(res).subscribe((users : any) => {
+      this.usersService.GetAllUsersWithPagination(res).pipe().subscribe((users : any) => {
         this.users = users.data.items;
         this.totalUsersCount = users.data.totalCount;
         
@@ -72,7 +74,10 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
         if (res) {
           this.usersService
             .GetAllUsersWithPagination(this.paginationInfos)
-            .pipe(takeUntil(this.destroy$))
+            .pipe(takeUntil(this.destroy$) , catchError((err : any) => {
+              this._snackBar.open(err.message , "متوجه شدم")
+              return of(null)
+            }))
             .subscribe((users: any) => {
               this.users = users.data.items;
             });
@@ -80,7 +85,10 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
       });
 
     this.usersService.changeSortSub
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.destroy$)  , catchError((err : any) => {
+        this._snackBar.open(err.message , "متوجه شدم")
+        return of(null)
+      }))
       .subscribe((sortOptions: any) => {
         console.log('sortOptions =>', sortOptions);
         this.searchOption = sortOptions;
@@ -100,8 +108,10 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
     
       this.usersService
         .GetAllUsersWithPagination(body)
-        .pipe(takeUntil(this.destroy$))
-        .subscribe((res: any) => {
+        .pipe(takeUntil(this.destroy$) , catchError((err : any) => {
+          this._snackBar.open(err.message , "متوجه شدم")
+          return of(null)
+        })).subscribe((res: any) => {
           setTimeout(() => {
             this.users = res.data.items;
             this.totalUsersCount = res.data.totalCount;
@@ -157,7 +167,12 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.usersService
       .GetAllUsersWithPagination(searchBody)
-      .pipe(takeUntil(this.destroy$))
+      .pipe(takeUntil(this.destroy$) , catchError((err : any) => {
+
+        this._snackBar.open(err.message , "متوجه شدم" )
+        
+        return of(null)
+      }))
       .subscribe((res: any) => {
         this.users = res.data.items;
         this.totalUsersCount = res.data.totalCount;

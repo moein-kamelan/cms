@@ -9,7 +9,7 @@ import {
   ViewChild,
 
 } from '@angular/core';
-import { Subscription, debounceTime, distinctUntilChanged, fromEvent, pluck } from 'rxjs';
+import { Subscription, debounceTime, distinctUntilChanged, fromEvent, pluck, tap } from 'rxjs';
 import { SearchOptions } from '../../enums/search-options';
 import { MaterialModule } from '../../material.module';
 
@@ -37,17 +37,23 @@ export class SearchbarComponent implements AfterViewInit , OnDestroy {
       .pipe(
         debounceTime(2000),
         pluck('target', 'value'),
-        distinctUntilChanged()
+        tap(() => {
+          this.isLoading = false;
+        }),
       )
       .subscribe((res: any) => {
         this.changeSearchBar.emit(res);
-      this.isLoading = false;
 
       });
 
       this.input2$ = fromEvent(this.searchInput.nativeElement, 'input')
     .subscribe(() => {
+      const inputValue = this.searchInput.nativeElement.value;
+    if (inputValue.length === 0) {
+      this.isLoading = false;
+    } else {
       this.isLoading = true;
+    }
     });
   }
 
