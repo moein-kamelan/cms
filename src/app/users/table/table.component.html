@@ -6,7 +6,7 @@
       class="text-xs text-gray-700 uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400 *:text-white *:dark:text-white whitespace-nowrap"
     >
       <tr class="**:justify-center">
-        <th (click)="onResetSort()" scope="col" class="px-6 py-3"><mat-icon><span class="material-symbols-outlined">
+        <th (click)="onResetSort()" scope="col" class="px-6 py-3 cursor-pointer"><mat-icon><span class="material-symbols-outlined" >
           filter_alt
           </span></mat-icon></th>
         <th scope="col" class="px-6 py-3 hover:bg-gray-800">
@@ -14,9 +14,16 @@
             class="flex items-center gap-2 cursor-pointer w-full"
             (click)="sortList('firstName')"
           >
+          @if(sortState["firstName"] === "desc") {
             <mat-icon class="material-symbols-outlined">
               keyboard_arrow_down
             </mat-icon>
+          }@else if (sortState["firstName"] === "asc") {
+            <mat-icon class="material-symbols-outlined">
+              keyboard_arrow_up
+            </mat-icon>
+          }
+
             <span>نام</span>
           </button>
         </th>
@@ -25,9 +32,15 @@
             class="flex items-center gap-2 cursor-pointer w-full"
             (click)="sortList('lastName')"
           >
+          @if(sortState["lastName"] === "desc") {
             <mat-icon class="material-symbols-outlined">
               keyboard_arrow_down
             </mat-icon>
+          }@else if (sortState["lastName"] === "asc") {
+            <mat-icon class="material-symbols-outlined">
+              keyboard_arrow_up
+            </mat-icon>
+          }
             <span>نام خانوادگی</span>
           </button>
         </th>
@@ -36,9 +49,15 @@
             class="flex items-center gap-2 cursor-pointer w-full"
             (click)="sortList('userName')"
           >
+          @if(sortState["userName"] === "desc") {
             <mat-icon class="material-symbols-outlined">
               keyboard_arrow_down
             </mat-icon>
+          }@else if (sortState["userName"] === "asc") {
+            <mat-icon class="material-symbols-outlined">
+              keyboard_arrow_up
+            </mat-icon>
+          }
             <span>نام کاربری</span>
           </button>
         </th>
@@ -47,31 +66,41 @@
             class="flex items-center gap-2 cursor-pointer w-full"
             (click)="sortList('organizationName')"
           >
+          @if(sortState["organizationName"] === "desc") {
             <mat-icon class="material-symbols-outlined">
               keyboard_arrow_down
             </mat-icon>
+          }@else if (sortState["organizationName"] === "asc") {
+            <mat-icon class="material-symbols-outlined">
+              keyboard_arrow_up
+            </mat-icon>
+          }
             <span>نام سازمانی</span>
           </button>
         </th>
         <th scope="col" class="px-6 py-3 hover:bg-gray-800">
           <button
             class="flex items-center gap-2 cursor-pointer w-full"
-            (click)="sortList('organizationName')"
+            (click)="sortList('isAuthenticated')"
           >
+          @if(sortState["isAuthenticated"] === "desc") {
             <mat-icon class="material-symbols-outlined">
               keyboard_arrow_down
             </mat-icon>
+          }@else if (sortState["isAuthenticated"] === "asc") {
+            <mat-icon class="material-symbols-outlined">
+              keyboard_arrow_up
+            </mat-icon>
+          }
             <span>احراز هویت شده</span>
           </button>
         </th>
         <th scope="col" class="px-6 py-3 hover:bg-gray-800">
           <button
             class="flex items-center gap-2 cursor-pointer w-full"
-            (click)="sortList('organizationName')"
+            
           >
-            <mat-icon class="material-symbols-outlined">
-              keyboard_arrow_down
-            </mat-icon>
+        
             <span>تاریخ انقضا</span>
           </button>
         </th>

@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+  inject,
+} from '@angular/core';
 import { Subscription, Subject, of } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
 
@@ -25,15 +33,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
 })
-export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
+export class UsersComponent implements OnInit, OnDestroy {
   users: any = [];
-  totalUsersCount: number = 0;
+  pageCount: number = 1;
+  currentPage: number = 1;
   paginationInfos: { pageNumber: number; pageSize: number } = {
     pageNumber: 1,
     pageSize: 5,
   };
   loading: boolean = true;
-  private _snackBar = inject(MatSnackBar)
+  private _snackBar = inject(MatSnackBar);
 
   private destroy$ = new Subject<void>();
   searchOption: string = 'firstName';
@@ -46,158 +55,55 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit(): void {
     setTimeout(() => {
       const resolveData = this.route.snapshot.data['usersData'];
+      console.log('resolveData:', resolveData);
 
       if (resolveData) {
         this.users = resolveData.data.items;
-        this.totalUsersCount = resolveData.data.totalCount;
+        this.currentPage = this.paginationInfos.pageNumber;
+        this.pageCount = Math.ceil(
+          resolveData.data.totalCount / this.paginationInfos.pageSize
+        );
+        console.log('this.pageCount:', this.pageCount);
       } else {
         console.log('داده ها بارگزاری نشد');
       }
 
       this.loading = false;
     }, 2000);
-
-    
-
-    this.usersService.changePageSub.subscribe((res : any) => {
-      this.usersService.GetAllUsersWithPagination(res).subscribe((users : any) => {
-        if(users) {
-          this.users = users.data.items;
-          this.totalUsersCount = users.data.totalCount;
-        }
-        
-        
-      })
-      
-    })
-
-    this.usersService.usersSub
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((res) => {
-        if (res) {
-          this.usersService
-            .GetAllUsersWithPagination(this.paginationInfos)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((users: any) => {
-              this.users = users.data.items;
-            });
-        }
-      });
-
-    this.usersService.changeSortSub
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((sortOptions: any) => {
-        if(sortOptions) {
-          console.log('sortOptions =>', sortOptions);
-          this.searchOption = sortOptions;
-          this.changeSortSub(sortOptions);
-        }
-  
-      });
   }
-  
+
+  updatePage() {
+    this.usersService.GetAllUsersWithPagination(this.paginationInfos).subscribe((res : any) =>  {
+      this.users = res.data.items
+      this.currentPage = this.paginationInfos.pageNumber
+      this.pageCount =  Math.ceil(res.data.totalCount / this.paginationInfos.pageSize)
+     })
+  }
+
+  onreloadTable() {
+    this.loading = true
+
+    setTimeout(() => {
+      this.updatePage()
+
+      this.loading = false;
+    }, 2000);
+  }
 
 
-  reloadTable() {
-      this.loading = true;
-      const currentPagination = this.usersService.paginationSub.getValue();
-      const body = {
-        pageNumber: currentPagination.pageNumber,
-        pageSize: currentPagination.pageSize,
-      };
-    
-      this.usersService
-        .GetAllUsersWithPagination(body)
-        .pipe(takeUntil(this.destroy$) ).subscribe((res: any) => {
-          if(res) {
-            setTimeout(() => {
-            
-              this.users = res.data.items;
-              this.totalUsersCount = res.data.totalCount;
-              this.loading = false;
-            }, 2000);
-            
-          }
-          
-          
-        })
-    
+  onChangeSortOptions(newpaginationInfos : any) {
+  // console.log('newSortOption:', newSortOption)
+  this.paginationInfos = newpaginationInfos
+  this.updatePage()
+
 
   }
 
-  changeSortSub(sortOption: string) {
-    const currentPaginationInfos = this.usersService.paginationSub.getValue()
-    const searchBody = {
-      orders: [
-        {
-          columnName: sortOption,
-          sort: 2,
-        },
-      ],
-      pageNumber: currentPaginationInfos.pageNumber,
-      pageSize: currentPaginationInfos.pageSize,
-    };
 
-    this.usersService
-      .GetAllUsersWithPagination(searchBody)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((res: any) => {
-        if(res) {
-          this.users = res.data.items;
-          this.totalUsersCount = res.data.totalCount;
-        }
-
-      });
+  onchangePagination(infos: any) {
+    this.paginationInfos = infos
+   this.updatePage()
   }
-
-  onChangeSearchbar(searchText: string) {
-    const searchBody = {
-      comparisonObjects: [
-        {
-          logicalComparisonOperator: 0,
-          comparisonObjects: [
-            {
-              field: this.searchOption,
-              operator: 7,
-              value: searchText,
-            },
-          ],
-        },
-      ],
-     
-      pageNumber: this.paginationInfos.pageNumber,
-      pageSize: this.paginationInfos.pageSize,
-    };
-
-    this.usersService
-      .GetAllUsersWithPagination(searchBody)
-      .pipe(takeUntil(this.destroy$)).subscribe((res: any) => {
-        if(res ) {
-          this.users = res.data.items;
-          this.totalUsersCount = res.data.totalCount;
-        }
-
-      });
-  }
-
-  onChangeSearchOption(searchOptionSelected: string) {
-    switch (searchOptionSelected) {
-      case SearchOptions.firstName:
-        this.searchOption = 'firstName';
-        break;
-      case SearchOptions.lastName:
-        this.searchOption = 'lastName';
-        break;
-      case SearchOptions.userName:
-        this.searchOption = 'userName';
-        break;
-      case SearchOptions.organizationName:
-        this.searchOption = 'organizationName';
-        break;
-    }
-  }
-
-  ngAfterViewInit(): void {}
 
   ngOnDestroy(): void {
     this.destroy$.next();

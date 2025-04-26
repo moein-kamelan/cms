@@ -1,94 +1,126 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
-  OnInit,
+  Output,
   SimpleChanges,
+  inject,
 } from '@angular/core';
 import { MaterialModule } from '../../material.module';
 import { RouterModule } from '@angular/router';
-import { MatDialogModule } from '@angular/material/dialog';
-
-import { ChangeDetectionStrategy, inject } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import {
-  MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogRef,
-  MatDialogTitle,
-} from '@angular/material/dialog';
-import { DeleteConfirmDialogComponent } from './delete-confirm-dialog/delete-confirm-dialog.component';
-import { UsersService } from '../../services/users.service';
-import { Subscription, catchError, of } from 'rxjs';
-import { SearchOptions } from '../../enums/search-options';
-import { ConvertBooleanPipe } from '../../pipes/convert-boolean.pipe';
-import { ConvertDatePipe } from '../../pipes/convert-date.pipe';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-ConvertDatePipe
+import { UsersService } from '../../services/users.service';
+import { Subscription } from 'rxjs';
+import { DeleteConfirmDialogComponent } from './delete-confirm-dialog/delete-confirm-dialog.component';
+import { ConvertDatePipe } from '../../pipes/convert-date.pipe';
+import { SortDirectionOptions } from '../../sort-direction-options';
+
+type SortDirection = 'none' | 'asc' | 'desc';
+
 @Component({
   selector: 'app-table',
-
-imports: [CommonModule, MaterialModule, RouterModule, MatDialogModule , ConvertBooleanPipe , ConvertDatePipe],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MaterialModule,
+    RouterModule,
+    MatDialogModule,
+    ConvertDatePipe,
+  ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TableComponent implements  OnChanges , OnDestroy {
+export class TableComponent implements OnDestroy {
   @Input() users: any[] = [];
-  @Input() loading! : boolean
+  @Input() loading!: boolean;
+  @Input() paginationInfos : any
+  @Output() onDeleteUser = new EventEmitter();
+  @Output() onChangeSortOption = new EventEmitter()
+
   private _snackBar = inject(MatSnackBar);
+  private dialogSub!: Subscription;
 
+  sortState: { [key: string]: SortDirection } = {
+    firstName: 'none',
+    lastName: 'none',
+    userName: 'none',
+    organizationName: 'none',
+    isAuthenticated: 'none',
+  };
 
-  
+  activeSortKey: string | null = null;
 
   constructor(private dialog: MatDialog, private useresService: UsersService) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    
-  }
-
-  private dialogSub!: Subscription;
 
   openDeleteDialog(userID: any) {
     const dialogRef = this.dialog.open(DeleteConfirmDialogComponent, {
       width: '400px',
-      panelClass : "dark" ,
+      panelClass: 'dark',
       data: { id: userID },
     });
 
     this.dialogSub = dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-
-        this.useresService.DeleteUserById(result).pipe(catchError((err : any) => {
-          this._snackBar.open(err.message , "متوجه شدم" )
-          return of(null)
-        })).subscribe((res) => {
-          if(res) {
-            this.useresService.usersSub.next(res)
-
+        this.useresService.DeleteUserById(result).subscribe((res) => {
+          if (res) {
+            this.onDeleteUser.emit();
           }
         });
-
       }
     });
   }
 
-  sortList(sortOption : string) {
-    this.useresService.emitSortOption(sortOption)
-    
-    
+  sortList(column: string) {
+    if (this.activeSortKey && this.activeSortKey !== column) {
+      this.sortState[this.activeSortKey] = 'none';
+    }
+
+    const current = this.sortState[column];
+    const newState: SortDirection =
+      current === 'none' ? 'desc' : current === 'desc' ? 'asc' : 'none';
+
+    this.sortState[column] = newState;
+    console.log(' this.sortState[column]:', this.sortState[column]);
+    this.activeSortKey = newState === 'none' ? null : column;
+
+    if (this.sortState[column] === SortDirectionOptions.desc) {
+      this.onChangeSortOption.emit({...this.paginationInfos , "orders": [
+        {
+          "columnName": column,
+          "sort": 1
+        }
+      ],})
+    } else if (this.sortState[column] === SortDirectionOptions.asc) {
+      this.onChangeSortOption.emit({...this.paginationInfos , "orders": [
+        {
+          "columnName": column,
+          "sort": 2
+        }
+      ],})
+    } else {
+      delete this.paginationInfos.orders
+      console.log('this.paginationInfos:', this.paginationInfos)
+      this.onChangeSortOption.emit({...this.paginationInfos })
+    }
   }
 
   onResetSort() {
+    if (this.activeSortKey) {
+      this.sortState[this.activeSortKey] = 'none';
+      this.activeSortKey = null;
+    }
+    if(this.paginationInfos.orders) {
+      delete this.paginationInfos.orders
+      this.onChangeSortOption.emit({...this.paginationInfos })
+    }
     
   }
 
-ngOnDestroy(): void {
-    this.dialogSub?.unsubscribe()
-}  
-  
+  ngOnDestroy(): void {
+    this.dialogSub?.unsubscribe();
+  }
 }

@@ -22,66 +22,46 @@ import { MaterialModule } from '../../material.module';
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.css',
 })
-export class PaginationComponent implements OnChanges, OnInit, AfterViewInit {
+export class PaginationComponent  {
   @ViewChild('pagePerPageInput') pagePerPageInput!: ElementRef;
-  @Input() totalUsersCount!: number;
-  pageCount: number = 1;
-  currentPage: number = 1;
-  paginationInfos = {
-    pageNumber: 1,
-    pageSize: 5,
-  };
+  @Input() currentPage : number = 1
+  @Input() pageCount : number = 1
+  @Input() paginationInfos : any
+  @Output() newPaginationInfos  = new EventEmitter()
 
   constructor(private usersService: UsersService) {}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['totalUsersCount']) {
-      this.pageCount = Math.ceil(
-        this.totalUsersCount / this.paginationInfos.pageSize
-      );
-    }
+ 
+
+
+
+  onGoPrevPage(currentPageIndex : number) {
+  console.log('currentPageIndex:', currentPageIndex)
+  if(currentPageIndex > 1) {
+
+    this.newPaginationInfos.emit({...this.paginationInfos , pageNumber : currentPageIndex - 1})
   }
 
-  ngOnInit(): void {
-    this.paginationInfos = this.usersService.paginationSub.getValue();
-    this.currentPage = this.paginationInfos.pageNumber;
+  }
+  onGoNextPage(currentPageIndex : number) {
+  console.log('currentPageIndex:', currentPageIndex)
+  if(currentPageIndex < this.pageCount) {
+
+    this.newPaginationInfos.emit({...this.paginationInfos , pageNumber : currentPageIndex + 1})
   }
 
-  ngAfterViewInit(): void {}
-
-  onGoPrevPage() {
-    if (this.paginationInfos.pageNumber > 1) {
-      const newPage = this.paginationInfos.pageNumber - 1;
-      this.paginationInfos.pageNumber = newPage;
-      this.currentPage = newPage;
-      this.usersService.changePageSub.next({ ...this.paginationInfos });
-    }
-  }
-  onGoNextPage() {
-    if (this.paginationInfos.pageNumber < this.pageCount) {
-      const newPage = this.paginationInfos.pageNumber + 1;
-      this.paginationInfos.pageNumber = newPage;
-      this.currentPage = newPage;
-      console.log('this.paginationInfos:', this.paginationInfos);
-      this.usersService.changePageSub.next({ ...this.paginationInfos });
-    }
   }
 
   onchangePageIndex(pageIndex: number) {
-    this.currentPage = pageIndex;
-    this.paginationInfos.pageNumber = pageIndex;
-    this.usersService.changePageSub.next({
-      ...this.paginationInfos,
-      pageNumber: pageIndex,
-    });
+    console.log('pageIndex:', pageIndex)
+    this.newPaginationInfos.emit({...this.paginationInfos , pageNumber : pageIndex })
+
+
   }
 
-  onChangePageSize(pageSize: number) {
-    this.pageCount = Math.ceil(this.totalUsersCount / +pageSize);
-    this.paginationInfos.pageSize = +pageSize;
-    this.currentPage = 1;
-    this.paginationInfos.pageNumber = this.currentPage;
-    console.log('this.paginationInfos:', this.paginationInfos);
-    this.usersService.changePageSub.next({ ...this.paginationInfos });
+  onChangePageSize(newPageSize: number) {
+  console.log('newPageSize:', newPageSize)
+  this.newPaginationInfos.emit({...this.paginationInfos , pageSize : newPageSize})
+  
   }
 }

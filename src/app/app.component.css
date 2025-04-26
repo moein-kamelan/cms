@@ -5,7 +5,6 @@ html.dark .custom-icon {
 ::ng-deep .mat-drawer-content {
 }
 ::ng-deep .dark .mat-drawer-content {
-  background-color: #9ca3af !important;
 }
 
 .dark .close-sidebar-btn {
