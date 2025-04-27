@@ -131,7 +131,7 @@ export class SearchbarComponent implements AfterViewInit, OnDestroy, OnInit {
   
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((sub) => sub.unsubscribe());
-    this.resetTableSubscription.unsubscribe()
+    this.subscriptions.forEach((sub) => sub?.unsubscribe());
+    this.resetTableSubscription?.unsubscribe()
   }
 }
