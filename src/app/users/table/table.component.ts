@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
   Output,
   SimpleChanges,
+  ViewChild,
   inject,
 } from '@angular/core';
 import { MaterialModule } from '../../material.module';
@@ -40,7 +42,7 @@ export class TableComponent implements OnDestroy {
   @Input() paginationInfos : any
   @Output() onDeleteUser = new EventEmitter();
   @Output() onChangeSortOption = new EventEmitter()
-
+@ViewChild("resetTableBtn") resetTableBtn! : ElementRef
   private _snackBar = inject(MatSnackBar);
   private dialogSub!: Subscription;
 
@@ -50,6 +52,7 @@ export class TableComponent implements OnDestroy {
     userName: 'none',
     organizationName: 'none',
     isAuthenticated: 'none',
+    expireDateTime: 'none',
   };
 
   activeSortKey: string | null = null;
@@ -108,15 +111,19 @@ export class TableComponent implements OnDestroy {
     }
   }
 
-  onResetSort() {
+  onClickResetTable() {
     if (this.activeSortKey) {
       this.sortState[this.activeSortKey] = 'none';
       this.activeSortKey = null;
     }
     if(this.paginationInfos.orders) {
       delete this.paginationInfos.orders
+      delete this.paginationInfos.comparisonObjects
+      console.log('this.paginationInfos:', this.paginationInfos)
       this.onChangeSortOption.emit({...this.paginationInfos })
     }
+
+    this.useresService.setResetTableSub(true)
     
   }
 

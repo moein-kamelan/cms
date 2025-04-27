@@ -2,3 +2,7 @@
     color: white !important;
     fill : white !important
 }
+
+li {
+    cursor: pointer !important;
+}

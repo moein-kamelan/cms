@@ -6,9 +6,9 @@ import { catchError, of } from 'rxjs';
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const __snackBar = inject(MatSnackBar)
   return next(req).pipe(catchError((err : any) => {
-    console.log("hello");
+    console.log("error" , err);
     
-    __snackBar.open(err.message || "خطایی رخ داده" , "متوجه شدم" , {
+    __snackBar.open(err?.error?.message || "خطایی رخ داده" , "متوجه شدم" , {
       verticalPosition : "top"
     })
     

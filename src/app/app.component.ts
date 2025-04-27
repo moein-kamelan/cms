@@ -1,11 +1,12 @@
 import { ChangeDetectorRef, Component, OnInit, Renderer2, OnDestroy } from '@angular/core';
-import { Router, RouterOutlet, NavigationEnd, Event } from '@angular/router';
+import { Router, RouterOutlet, NavigationEnd, Event, NavigationCancel, NavigationError, NavigationStart } from '@angular/router';
 import { ThemeButtonComponent } from "./shared/theme-button/theme-button.component";
 import { HeaderComponent } from "./shared/header/header.component";
 import { MaterialModule } from './material.module';
 import { UsersService } from './services/users.service';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { LoadingService } from './loading.service';
 
 // Assertion function برای اطمینان از نوع NavigationEnd
 function isNavigationEnd(event: Event): event is NavigationEnd {
@@ -24,8 +25,16 @@ export class AppComponent implements OnInit, OnDestroy{
   private unsubscribe$ = new Subject<void>();
   private hiddenRoutes = ["/account/login" , "/account/signup" , ];
 
-  constructor(private renderer : Renderer2 , public router:Router , private userService : UsersService) {
+  constructor(private renderer : Renderer2 , public router:Router , private userService : UsersService , public loadingService : LoadingService) {
 
+ this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.loadingService.show();
+      }
+      if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
+        this.loadingService.hide();
+      }
+    });
   }
 
   ngOnInit(): void {

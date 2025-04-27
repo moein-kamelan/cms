@@ -1,3 +1,5 @@
+<mat-progress-bar *ngIf="(loadingService.loading$ | async)" mode="query" color="accent"></mat-progress-bar>
+
 <ng-container *ngIf="shouldShowHeader() ; else authLayout">
   <mat-drawer-container class="h-screen dark:!bg-gray-900" autosize>
     <app-header (openSidebar)="sidebar.open()"></app-header>
@@ -27,27 +29,27 @@
         </div>
         <ul class="*:p-6 divide-x-dashed divide-y-2 divide-gray-400">
           <li class="grid grid-cols-2 text-center">
-            <span class="text-violet-500 font-iranSansDemiBold text-xl">ID :</span>
+            <span class="text-violet-500 dark:text-violet-300 font-iranSansDemiBold text-xl">ID :</span>
             <span class="dark:text-white">{{mainUser?.id}}</span>
           </li>
           <li class="grid grid-cols-2 text-center">
-            <span class="text-violet-500 font-iranSansDemiBold text-xl">نام :</span>
+            <span class="text-violet-500 dark:text-violet-300 font-iranSansDemiBold text-xl">نام :</span>
             <span class="dark:text-white">{{mainUser?.firstName}}</span>
           </li>
           <li class="grid grid-cols-2 text-center">
-            <span class="text-violet-500 font-iranSansDemiBold text-xl"
+            <span class="text-violet-500 dark:text-violet-300 font-iranSansDemiBold text-xl"
               >نام خانواگی :</span
             >
             <span class="dark:text-white">{{mainUser?.lastName}}</span>
           </li>
           <li class="grid grid-cols-2 text-center">
-            <span class="text-violet-500 font-iranSansDemiBold text-xl"
+            <span class="text-violet-500 dark:text-violet-300 font-iranSansDemiBold text-xl"
               >کد سازمانی :</span
             >
             <span class="dark:text-white">{{mainUser?.organizationId}}</span>
           </li>
           <li class="grid grid-cols-2 text-center">
-            <span class="text-violet-500 font-iranSansDemiBold text-xl"
+            <span class="text-violet-500 dark:text-violet-300 font-iranSansDemiBold text-xl"
               >نام سازمان :</span
             >
             <span class="dark:text-white">{{mainUser?.organizationName}}</span>

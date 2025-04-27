@@ -1,10 +1,12 @@
 import {
   AfterViewInit,
   Component,
+  ElementRef,
   OnChanges,
   OnDestroy,
   OnInit,
   SimpleChanges,
+  ViewChild,
   inject,
 } from '@angular/core';
 import { Subscription, Subject, of } from 'rxjs';
@@ -19,6 +21,8 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SearchOptions } from '../enums/search-options';
 import { routes } from '../app.routes';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CreateUserBtnComponent } from "../create-user-btn/create-user-btn.component";
+import { RefreshTableBtnComponent } from "../refresh-table-btn/refresh-table-btn.component";
 
 @Component({
   selector: 'app-users',
@@ -29,11 +33,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     TableComponent,
     MaterialModule,
     RouterModule,
-  ],
+    CreateUserBtnComponent,
+    RefreshTableBtnComponent
+],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
 })
 export class UsersComponent implements OnInit, OnDestroy {
+  @ViewChild("searchbarComp") searchbarComp! : ElementRef
   users: any = [];
   pageCount: number = 1;
   currentPage: number = 1;
@@ -69,40 +76,52 @@ export class UsersComponent implements OnInit, OnDestroy {
       }
 
       this.loading = false;
+
     }, 2000);
+
+  console.log(this.searchbarComp);
+      
+    
   }
 
-  updatePage() {
-    this.usersService.GetAllUsersWithPagination(this.paginationInfos).subscribe((res : any) =>  {
-      this.users = res.data.items
-      this.currentPage = this.paginationInfos.pageNumber
-      this.pageCount =  Math.ceil(res.data.totalCount / this.paginationInfos.pageSize)
-     })
+  updateTable() {
+    this.usersService
+      .GetAllUsersWithPagination(this.paginationInfos)
+      .subscribe((res: any) => {
+        this.users = res.data.items;
+        this.currentPage = this.paginationInfos.pageNumber;
+        this.pageCount = Math.ceil(
+          res.data.totalCount / this.paginationInfos.pageSize
+        );
+      });
   }
 
   onreloadTable() {
-    this.loading = true
+    this.loading = true;
 
     setTimeout(() => {
-      this.updatePage()
+      this.updateTable();
 
       this.loading = false;
     }, 2000);
   }
 
-
-  onChangeSortOptions(newpaginationInfos : any) {
-  // console.log('newSortOption:', newSortOption)
-  this.paginationInfos = newpaginationInfos
-  this.updatePage()
-
-
+  onChangeSortOptions(newpaginationInfos: any) {
+   this.paginationInfos = newpaginationInfos;
+    this.updateTable();
   }
 
+  onchangePagination(newpaginationInfos: any) {
+    this.paginationInfos = newpaginationInfos;
+    this.updateTable();
+  }
 
-  onchangePagination(infos: any) {
-    this.paginationInfos = infos
-   this.updatePage()
+  onChangeSearchbar(newpaginationInfos : any) {
+    this.paginationInfos = newpaginationInfos
+    this.updateTable()
+    console.log('newpaginationInfos:', newpaginationInfos)
+    
+    // this.updateTable()
   }
 
   ngOnDestroy(): void {

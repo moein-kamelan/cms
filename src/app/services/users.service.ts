@@ -9,6 +9,13 @@ import { environment } from '../../environments/environments';
 export class UsersService {
   baseURL: string = environment.baseURL;
 
+  resetTableSub = new Subject<boolean>()
+  $resetTableSub = this.resetTableSub.asObservable()
+
+  setResetTableSub(data : boolean) {
+    this.resetTableSub.next(data)
+  }
+
   token: string | null =
     localStorage.getItem('token') || sessionStorage.getItem('token');
 

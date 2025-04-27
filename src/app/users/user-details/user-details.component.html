@@ -3,13 +3,13 @@
   <div
     class="bg-gray-300 dark:bg-gray-700 overflow-hidden shadow rounded-lg border mx-auto max-w-4xl"
   >
-    <div class="px-4 py-5 sm:px-6 bg-gray-400">
+    <div class="px-4 py-5 sm:px-6 bg-gray-500">
       <h3
-        class="text-xl  leading-6 font-medium text-gray-900 dark:text-gray-200 "
+        class="text-xl  leading-6 font-medium text-gray-900 dark:text-gray-200 font-yekanBold"
       >
         مشخصات کاربر
       </h3>
-      <p class="mt-1 max-w-2xl text-sm text-gray-700 dark:text-gray-100 mt-4">
+      <p class=" max-w-2xl text-sm text-gray-900 dark:text-gray-200 mt-4">
         در اینجا تمام اطلاعات کاربر وجود دارد
       </p>
     </div>
@@ -18,24 +18,24 @@
         <div class="py-3 sm:py-5 grid sm:grid-cols-2 gap-4 sm:px-6">
           <div class="flex items-center max-sm:justify-between gap-8">
             <dt
-              class="text-sm font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
+              class=" font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
             >
               ID
             </dt>
             <dd
-              class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400"
+              class="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-300"
             >
               {{mainUser?.id}}
             </dd>
           </div>
           <div class="flex items-center max-sm:justify-between gap-8">
             <dt
-              class="text-sm font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
+              class=" font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
             >
               کد ملی
             </dt>
             <dd
-              class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400"
+              class="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-300"
             >
               {{mainUser?.nationalCode}}
             </dd>
@@ -45,12 +45,12 @@
         <div class="py-3 sm:py-5 grid sm:grid-cols-2 gap-4 sm:px-6">
           <div class="flex items-center max-sm:justify-between gap-8">
             <dt
-              class="text-sm font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
+              class=" font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
             >
               نام
             </dt>
             <dd
-              class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400"
+              class="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-300"
             >
               {{mainUser?.firstName}}
             </dd>
@@ -58,12 +58,12 @@
 
           <div class="flex items-center max-sm:justify-between gap-8">
             <dt
-              class="text-sm font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
+              class=" font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
             >
               نام خانوادگی
             </dt>
             <dd
-              class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400"
+              class="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-300"
             >
           {{mainUser?.lastName}}
             </dd>
@@ -73,24 +73,24 @@
         <div class="py-3 sm:py-5 grid sm:grid-cols-2 gap-4 sm:px-6">
           <div class="flex items-center max-sm:justify-between gap-8">
             <dt
-              class="text-sm font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
+              class=" font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
             >
               اتباع خارجی
             </dt>
             <dd
-              class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400"
+              class="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-300"
             >
               {{mainUser?.isForeigner ? "بله" : "خیر" }}
             </dd>
           </div>
           <div class="flex items-center max-sm:justify-between gap-8">
             <dt
-              class="text-sm font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
+              class=" font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
             >
               نام کاربری
             </dt>
             <dd
-              class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400"
+              class="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-300"
             >
               {{mainUser?.userName}}
             </dd>
@@ -99,24 +99,24 @@
         <div class="py-3 sm:py-5 grid sm:grid-cols-2 gap-4 sm:px-6">
           <div class="flex items-center max-sm:justify-between gap-8">
             <dt
-              class="text-sm font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
+              class=" font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
             >
             شماره تماس
             </dt>
             <dd
-              class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400"
+              class="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-300"
             >
               {{mainUser?.phoneNumber}}
             </dd>
           </div>
           <div class="flex items-center max-sm:justify-between gap-8">
             <dt
-              class="text-sm font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
+              class=" font-medium text-gray-500 dark:text-gray-100 font-iranSansDemiBold text-xl"
             >
               شناسه سازمانی
             </dt>
             <dd
-              class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400"
+              class="mt-1 text-lg text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-300"
             >
               {{mainUser?.organizationId}}
             </dd>
@@ -125,7 +125,7 @@
       </dl>
      
     </div>
-    <div class="px-4 py-5 sm:px-6 border-t-3 border-t-gray-500 bg-gray-400 dark:bg-gray-400  flex items-center justify-center">
+    <div class="px-4 py-5 sm:px-6 border-t-3 border-t-gray-500 bg-gray-400 dark:bg-gray-500  flex items-center justify-center">
       <app-back-button class="w-sm min-w-fit shrink-0"></app-back-button>
     </div>
   </div>

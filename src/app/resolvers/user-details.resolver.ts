@@ -10,7 +10,7 @@ export const userDetailsResolver: ResolveFn<any> = (route : ActivatedRouteSnapsh
   
   
   
-  return userService.GetUserById(id)
+    return userService.GetUserById(id).pipe(delay(2500))
   
   
   

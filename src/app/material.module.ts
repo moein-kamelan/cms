@@ -24,6 +24,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 @NgModule({
   imports: [
     CommonModule,
@@ -40,7 +41,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatSlideToggleModule ,
     MatMenuModule ,
     MatProgressSpinnerModule , 
-    MatSidenavModule
+    MatSidenavModule , 
+    MatProgressBarModule
   ],
   exports: [
     CommonModule,
@@ -57,7 +59,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatSlideToggleModule ,
     MatMenuModule ,
     MatProgressSpinnerModule , 
-    MatSidenavModule
+    MatSidenavModule , 
+    MatProgressBarModule
   ],
 })
 export class MaterialModule {}

@@ -12,3 +12,7 @@ mat-dialog-content,
   font-family: "iranSanc-r" !important;
 
 }
+
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+  background-color: #fff;
+}

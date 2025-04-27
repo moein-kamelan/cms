@@ -3,81 +3,135 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostListener,
+  Input,
   OnDestroy,
+  OnInit,
   Output,
   ViewChild,
-
 } from '@angular/core';
-import { Subscription, debounceTime, distinctUntilChanged, fromEvent, pluck, tap } from 'rxjs';
-import { SearchOptions } from '../../enums/search-options';
-import { MaterialModule } from '../../material.module';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  Subscription,
+  debounceTime,
+  distinctUntilChanged,
+  fromEvent,
+  map,
+  tap,
+} from 'rxjs';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-searchbar',
-  imports: [MaterialModule],
   templateUrl: './searchbar.component.html',
-  styleUrl: './searchbar.component.css',
+  styleUrls: ['./searchbar.component.css'],
+  imports : [ReactiveFormsModule]
 })
-export class SearchbarComponent implements AfterViewInit , OnDestroy {
-  @ViewChild('searchOptionButton') searchOptionButton!: ElementRef;
-  @ViewChild('searchOptionsMenu') searchOptionsMenu!: ElementRef;
-  @ViewChild('searchInput') searchInput!: ElementRef;
-  @Output() changeSearchBar = new EventEmitter<string>();
-  @Output() changeSearchOption = new EventEmitter<string>()
+export class SearchbarComponent implements AfterViewInit, OnDestroy, OnInit {
+  @Output() searchChanged = new EventEmitter<any>();
+  @Input() paginationInfos: any;
+  @ViewChild("searchbarForm") searchbarForm! : ElementRef;
+  @ViewChild('firstNameSearchInput') firstNameSearchInput! : ElementRef;
+  @ViewChild('lastNameSearchInput') lastNameSearchInput!: ElementRef;
+  @ViewChild('userNameSearchInput') userNameSearchInput!: ElementRef;
+  @ViewChild('organizationNameSearchInput')
+  organizationNameSearchInput!: ElementRef;
+  resetTableSubscription! : Subscription
 
-  searchBase: string = 'name';
-  searchOptions = SearchOptions
-  isLoading : boolean = false
-  input$! : Subscription
-  input2$! : Subscription
+  isLoading: { [key: string]: boolean } = {
+    firstName: false,
+    lastName: false,
+    userName: false,
+    organizationName: false,
+  };
+
+  private subscriptions: Subscription[] = [];
+  private searchValues: { [key: string]: string } = {};
+
+  searchbarFormGroup!: FormGroup;
+
+  constructor( private userService : UsersService) {
+
+  }
+  
+
+  ngOnInit(): void {
+    this.searchbarFormGroup = new FormGroup({
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      userName: new FormControl(''),
+      organizationName: new FormControl(''),
+    });
+
+    this.resetTableSubscription = this.userService.$resetTableSub.subscribe((res : boolean) => {
+      if(res) {
+        this.ResetForm()
+        
+      }
+    })
+    
+  }
 
   ngAfterViewInit(): void {
-    this.input$ = fromEvent(this.searchInput.nativeElement, 'keyup')
-      .pipe(
-        debounceTime(2000),
-        pluck('target', 'value'),
-        tap(() => {
-          this.isLoading = false;
-        }),
-      )
-      .subscribe((res: any) => {
-        this.changeSearchBar.emit(res);
+    this.setupSearch(this.firstNameSearchInput, 'firstName');
+    this.setupSearch(this.lastNameSearchInput, 'lastName');
+    this.setupSearch(this.userNameSearchInput, 'userName');
+    this.setupSearch(this.organizationNameSearchInput, 'organizationName');
+  }
 
+  private setupSearch(inputRef: ElementRef, field: string) {
+    const sub = fromEvent(inputRef.nativeElement, 'input') 
+      .pipe(
+        tap(() => (this.isLoading[field] = true)), 
+        map((event: any) => event.target.value.trim()),
+        debounceTime(2000),
+        tap(() => (this.isLoading[field] = false)), 
+        distinctUntilChanged()
+      )
+      .subscribe((value: string) => {
+        if (value) {
+          this.searchValues[field] = value;
+        } else {
+          delete this.searchValues[field];
+        }
+        this.emitSearch();
       });
 
-      this.input2$ = fromEvent(this.searchInput.nativeElement, 'input')
-    .subscribe(() => {
-      const inputValue = this.searchInput.nativeElement.value;
-    if (inputValue.length === 0) {
-      this.isLoading = false;
-    } else {
-      this.isLoading = true;
-    }
-    });
+    this.subscriptions.push(sub);
   }
 
-  toggleSearchOptions(el: HTMLDivElement) {
-    if (el.classList.contains('hidden')) {
-      el.classList.remove('hidden');
-      el.classList.add('block');
+  private emitSearch() {
+    const baseRequest = { ...this.paginationInfos };
+
+    const fields = Object.keys(this.searchValues).map((key) => ({
+      field: key,
+      operator: 7,
+      value: this.searchValues[key],
+    }));
+
+    if (fields.length > 0) {
+      (baseRequest as any).comparisonObjects = [
+        {
+          logicalComparisonOperator: 0,
+          comparisonObjects: fields,
+        },
+      ];
     } else {
-      el.classList.add('hidden');
-      el.classList.remove('block');
+      delete baseRequest?.comparisonObjects;
     }
+
+    this.searchChanged.emit({ ...baseRequest, pageNumber: 1 });
   }
 
-  sortSearch(el: HTMLButtonElement) {
-    this.searchOptionButton.nativeElement.innerHTML = el.innerHTML;
-    this.toggleSearchOptions(this.searchOptionsMenu.nativeElement);
-    this.searchBase = this.searchOptionButton.nativeElement.innerHTML;
-    this.changeSearchOption.emit(this.searchBase)
+  ResetForm() {
+    this.searchbarFormGroup.reset();
+    this.searchValues = {};           
+    this.emitSearch();  
   }
+
+  
 
   ngOnDestroy(): void {
-    this.input$?.unsubscribe()
-    this.input2$?.unsubscribe()
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
+    this.resetTableSubscription.unsubscribe()
   }
-  
-  
 }
