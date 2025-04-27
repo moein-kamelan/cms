@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit , OnDestroy {
           }
 
           setTimeout(() => {
-          this.router.navigate(['/users']);
+          this.router.navigate(['/ump/usersInfo']);
             
           }, 2000);
         }

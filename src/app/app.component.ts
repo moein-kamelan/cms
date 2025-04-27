@@ -70,8 +70,6 @@ export class AppComponent implements OnInit, OnDestroy{
     this.unsubscribe$.complete();
   }
 
-  shouldShowHeader() {
-    return !this.hiddenRoutes.includes(this.router.url)
-  }
+
 
 }

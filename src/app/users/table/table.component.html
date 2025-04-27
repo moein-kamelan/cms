@@ -206,7 +206,7 @@
       >
         <td scope="row">
           <a
-            routerLink="['/users/userDetails' , user.id]"
+            routerLink="['/ump/userDetails' , user.id]"
             class="w-full h-full inline-block px-6 py-4 dark:text-white"
           >
             {{ user.id }}
@@ -214,7 +214,7 @@
         </td>
         <td scope="row">
           <a
-            [routerLink]="['/users/userDetails', user.id]"
+            [routerLink]="['/ump/userDetails', user.id]"
             class="w-full h-full inline-block px-6 py-4 dark:text-white"
           >
             {{ user.firstName }}
@@ -222,7 +222,7 @@
         </td>
         <td scope="row">
           <a
-            [routerLink]="['/users/userDetails', user.id]"
+            [routerLink]="['/ump/userDetails', user.id]"
             class="w-full h-full inline-block px-6 py-4 dark:text-white"
           >
             {{ user.lastName }}
@@ -230,7 +230,7 @@
         </td>
         <td scope="row">
           <a
-            [routerLink]="['/users/userDetails', user.id]"
+            [routerLink]="['/ump/userDetails', user.id]"
             class="w-full h-full inline-block px-6 py-4 dark:text-white"
           >
             {{ user.userName }}
@@ -238,7 +238,7 @@
         </td>
         <td scope="row">
           <a
-            [routerLink]="['/users/userDetails', user.id]"
+            [routerLink]="['/ump/userDetails', user.id]"
             class="w-full h-full inline-block px-6 py-4 dark:text-white"
           >
             {{ user.organizationName }}
@@ -246,7 +246,7 @@
         </td>
         <td scope="row">
           <a
-            [routerLink]="['/users/userDetails', user.id]"
+            [routerLink]="['/ump/userDetails', user.id]"
             class="w-full h-full  px-6 py-4 dark:text-white flex items-center justify-center"
             
           >
@@ -280,7 +280,7 @@
             <mat-icon class="menu-icon dark:!text-white">more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu" class="!divide-y-4 !divide-gray-400 ">
-            <a [routerLink]="['/users/editNewUser', user.id]" mat-menu-item>
+            <a [routerLink]="['/ump/editUser', user.id]" mat-menu-item>
               <mat-icon class="!text-blue-600">edit</mat-icon>
               <span class="menu-text text-blue-600">ویرایش</span>
             </a>
