@@ -61,12 +61,14 @@
             placeholder="شماره همراه را وارد کنید"
             [control]="getEditUserFormControl('mobileNumber')"
             [isMobileNumber]="true"
+            [maxlength]="11"
           ></app-input-feild>
           <app-input-feild
             type="text"
             label="کد ملی"
             placeholder="کد ملی را وارد کنید"
             [control]="getEditUserFormControl('nationalCode')"
+            [maxlength]="10"
           ></app-input-feild>
 
           <section

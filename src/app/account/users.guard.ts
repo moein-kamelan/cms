@@ -7,7 +7,7 @@ const router = inject(Router)
   if(islogin) {
 
 
-    router.navigate(["/users"])
+    router.navigate(["/users/usersInfo"])
     return false
 
   }

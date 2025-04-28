@@ -1,131 +1,25 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges,
-  ViewChild,
-  inject,
-} from '@angular/core';
-import { Subscription, Subject, of } from 'rxjs';
-import { catchError, takeUntil } from 'rxjs/operators';
-
-import { UsersService } from '../services/users.service';
-import { PaginationComponent } from './pagination/pagination.component';
-import { SearchbarComponent } from './searchbar/searchbar.component';
-import { TableComponent } from './table/table.component';
+import { Component, OnInit } from '@angular/core';
 import { MaterialModule } from '../material.module';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { SearchOptions } from '../enums/search-options';
-import { routes } from '../app.routes';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { CreateUserBtnComponent } from "../create-user-btn/create-user-btn.component";
-import { RefreshTableBtnComponent } from "../refresh-table-btn/refresh-table-btn.component";
+import { HeaderComponent } from "../shared/header/header.component";
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-users',
-  standalone: true,
-  imports: [
-    PaginationComponent,
-    SearchbarComponent,
-    TableComponent,
-    MaterialModule,
-    RouterModule,
-    CreateUserBtnComponent,
-    RefreshTableBtnComponent
-],
+  imports: [MaterialModule, HeaderComponent , RouterOutlet],
   templateUrl: './users.component.html',
-  styleUrl: './users.component.css',
+  styleUrl: './users.component.css'
 })
-export class UsersComponent implements OnInit, OnDestroy {
-  @ViewChild("searchbarComp") searchbarComp! : ElementRef
-  users: any = [];
-  pageCount: number = 1;
-  currentPage: number = 1;
-  paginationInfos: { pageNumber: number; pageSize: number } = {
-    pageNumber: 1,
-    pageSize: 5,
-  };
-  loading: boolean = true;
-  private _snackBar = inject(MatSnackBar);
+export class Users implements OnInit{
+  mainUser : any
+  constructor( private route : ActivatedRoute) {
 
-  private destroy$ = new Subject<void>();
-  searchOption: string = 'firstName';
-
-  constructor(
-    private usersService: UsersService,
-    private route: ActivatedRoute
-  ) {}
+  }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      const resolveData = this.route.snapshot.data['usersData'];
-      console.log('resolveData:', resolveData);
+    const resolveData = this.route.snapshot.data["userData"]
 
-      if (resolveData) {
-        this.users = resolveData.data.items;
-        this.currentPage = this.paginationInfos.pageNumber;
-        this.pageCount = Math.ceil(
-          resolveData.data.totalCount / this.paginationInfos.pageSize
-        );
-        console.log('this.pageCount:', this.pageCount);
-      } else {
-        console.log('داده ها بارگزاری نشد');
-      }
-
-      this.loading = false;
-
-    }, 2000);
-
-  console.log(this.searchbarComp);
-      
-    
-  }
-
-  updateTable() {
-    this.usersService
-      .GetAllUsersWithPagination(this.paginationInfos)
-      .subscribe((res: any) => {
-        this.users = res.data.items;
-        this.currentPage = this.paginationInfos.pageNumber;
-        this.pageCount = Math.ceil(
-          res.data.totalCount / this.paginationInfos.pageSize
-        );
-      });
-  }
-
-  onreloadTable() {
-    this.loading = true;
-
-    setTimeout(() => {
-      this.updateTable();
-
-      this.loading = false;
-    }, 2000);
-  }
-
-  onChangeSortOptions(newpaginationInfos: any) {
-   this.paginationInfos = newpaginationInfos;
-    this.updateTable();
-  }
-
-  onchangePagination(newpaginationInfos: any) {
-    this.paginationInfos = newpaginationInfos;
-    this.updateTable();
-  }
-
-  onChangeSearchbar(newpaginationInfos : any) {
-    this.paginationInfos = newpaginationInfos
-    this.updateTable()
-    console.log('newpaginationInfos:', newpaginationInfos)
-    
-    // this.updateTable()
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+    if(resolveData) {
+      this.mainUser = resolveData.data
+    }
   }
 }

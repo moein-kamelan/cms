@@ -65,13 +65,15 @@ export class EditNewUserComponent implements OnInit, OnDestroy {
       mobileNumber: new FormControl(this.mainUser.mobileNumber, [
         Validators.required,
         Validators.pattern(/^09\d{9}$/),
+        Validators.maxLength(11)
       ]),
-      organizationId: new FormControl(1, []),
+      organizationId: new FormControl(1, [Validators.maxLength(5)]),
       nationalCode: new FormControl(this.mainUser.nationalCode, [
         Validators.required,
-        nationalCodeValidator()
+        nationalCodeValidator(),
+        Validators.maxLength(10)
       ]),
-      identifyNumber: new FormControl('', []),
+      identifyNumber: new FormControl('', [Validators.maxLength(5)]),
       isForeigner: new FormControl(this.mainUser.isForeigner, []),
     });
 
@@ -95,7 +97,7 @@ export class EditNewUserComponent implements OnInit, OnDestroy {
           });
 
           setTimeout(() => {
-            this.router.navigate(['/ump/usersInfo']);
+            this.router.navigate(['/users/usersInfo']);
           }, 2000);
         }
       });

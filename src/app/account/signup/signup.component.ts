@@ -61,10 +61,12 @@ export class SignupComponent implements OnInit, OnDestroy {
       nationalCode: new FormControl('', [
         Validators.required,
         nationalCodeValidator(),
+        Validators.maxLength(12)
       ]),
       mobileNumber: new FormControl('', [
         Validators.required,
         Validators.pattern(/^09\d{9}$/),
+        Validators.maxLength(11)
       ]),
       isForeigner: new FormControl(false, []),
       userName: new FormControl('', [
@@ -95,25 +97,32 @@ export class SignupComponent implements OnInit, OnDestroy {
       ]),
       postalCode: new FormControl('', [
         Validators.required,
-
         Validators.pattern(/^\d{10}$/),
+        Validators.maxLength(10)
+        
       ]),
       mobileNumber: new FormControl('', [
         Validators.required,
         Validators.pattern(/^09\d{9}$/),
+        Validators.maxLength(11)
       ]),
       nationalId: new FormControl('', [
         Validators.required,
         Validators.pattern(/^(?!([0-9])\1{10})\d{11}$/),
+        Validators.maxLength(11)
       ]),
       nationalCode: new FormControl('', [
         Validators.required,
         nationalCodeValidator(),
+        Validators.maxLength(10)
+
 
       ]),
       economicCode: new FormControl('', [
         Validators.required,
         Validators.pattern(/^\d{12}$/),
+        Validators.maxLength(12)
+
       ]),
       password: new FormControl('', [
         Validators.required,

@@ -59,6 +59,7 @@
             placeholder="شماره همراه را وارد کنید"
             [control]="getCreateNewUserFormControl('mobileNumber')"
             [isMobileNumber]="true"
+            [maxlength]="11"
           ></app-input-feild>
           <app-input-feild
             type="text"
@@ -66,6 +67,7 @@
             placeholder="کد ملی را وارد کنید"
             [control]="getCreateNewUserFormControl('nationalCode')"
             [exactlength]="10"
+            [maxlength]="10"
           ></app-input-feild>
           <app-input-feild
             type="password"
@@ -74,6 +76,7 @@
             [control]="getCreateNewUserFormControl('password')"
             [minlength]="8"
             [maxlength]="12"
+            
           ></app-input-feild>
 
           <section

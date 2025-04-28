@@ -1,0 +1,33 @@
+
+  
+  <main class="container mx-auto w-full px-20 ">
+    <div class="flex flex-col gap-2 mt-12 ">
+      <app-searchbar #searchbarComp  class="self-start  w-full" (searchChanged)="onChangeSearchbar($event)" [paginationInfos]="paginationInfos"></app-searchbar>
+
+      
+      <div class="table-action-buttons self-end">
+
+        
+        
+   
+          <app-refresh-table-btn (onreloadTable)="onreloadTable()" class="cursor-pointer"></app-refresh-table-btn>
+
+          <app-create-user-btn routerLink="/users/create" class="cursor-pointer"></app-create-user-btn>
+        
+      </div>
+   
+  <app-table  [users]="users" (onDeleteUser)="updateTable()" [loading]="loading" [paginationInfos]="paginationInfos" (onChangeSortOption)="onChangeSortOptions($event)"></app-table>
+      
+  
+      <div class="pagination-container flex items justify-center mb-8">
+        <app-pagination [currentPage]="currentPage" [pageCount]="pageCount" [paginationInfos]="paginationInfos" (newPaginationInfos)="onchangePagination($event)"></app-pagination>
+      </div>
+    </div>
+  </main>
+  
+
+
+
+  
+  
+  

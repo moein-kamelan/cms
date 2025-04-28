@@ -55,11 +55,13 @@ constructor(private usersService : UsersService , private router : Router) {
       mobileNumber: new FormControl('', [
         Validators.required,
         Validators.pattern(/^09\d{9}$/),
+        Validators.maxLength(11)
       ]),
       organizationId: new FormControl(1, []),
       nationalCode: new FormControl('', [
         Validators.required,
-        nationalCodeValidator()
+        nationalCodeValidator(),
+        Validators.maxLength(10)
       ]),
       identifyNumber: new FormControl('', []),
       isForeigner: new FormControl(false, []),

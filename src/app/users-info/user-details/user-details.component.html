@@ -1,0 +1,96 @@
+<div class="container mx-auto mt-20">
+  <div class="bg-gray-300 dark:bg-gray-700 overflow-hidden shadow rounded-lg border mx-auto max-w-4xl">
+    <div class="px-4 py-5 sm:px-6 bg-gray-400 dark:bg-gray-500">
+      <h3 class="text-xl leading-6 font-medium text-gray-900 dark:text-gray-200 font-yekanBold">
+        مشخصات کاربر
+      </h3>
+      <p class="max-w-2xl text-sm text-gray-900 dark:text-gray-200 mt-4">
+        در اینجا تمام اطلاعات کاربر وجود دارد
+      </p>
+    </div>
+
+    <div class="border-t-3 border-gray-500 px-6 py-5">
+      <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-8">
+        
+        <!-- هر سطر -->
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2">
+          <dt class="text-xl font-iranSansDemiBold text-gray-500 dark:text-gray-100">
+            ID
+          </dt>
+          <dd class="text-lg text-gray-900 dark:text-gray-300">
+            {{ mainUser?.id }}
+          </dd>
+        </div>
+
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2">
+          <dt class="text-xl font-iranSansDemiBold text-gray-500 dark:text-gray-100">
+            کد ملی
+          </dt>
+          <dd class="text-lg text-gray-900 dark:text-gray-300">
+            {{ mainUser?.nationalCode }}
+          </dd>
+        </div>
+
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2">
+          <dt class="text-xl font-iranSansDemiBold text-gray-500 dark:text-gray-100">
+            نام
+          </dt>
+          <dd class="text-lg text-gray-900 dark:text-gray-300">
+            {{ mainUser?.firstName }}
+          </dd>
+        </div>
+
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2">
+          <dt class="text-xl font-iranSansDemiBold text-gray-500 dark:text-gray-100">
+            نام خانوادگی
+          </dt>
+          <dd class="text-lg text-gray-900 dark:text-gray-300">
+            {{ mainUser?.lastName }}
+          </dd>
+        </div>
+
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2">
+          <dt class="text-xl font-iranSansDemiBold text-gray-500 dark:text-gray-100">
+            اتباع خارجی
+          </dt>
+          <dd class="text-lg text-gray-900 dark:text-gray-300">
+            {{ mainUser?.isForeigner ? "بله" : "خیر" }}
+          </dd>
+        </div>
+
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2">
+          <dt class="text-xl font-iranSansDemiBold text-gray-500 dark:text-gray-100">
+            نام کاربری
+          </dt>
+          <dd class="text-lg text-gray-900 dark:text-gray-300">
+            {{ mainUser?.userName }}
+          </dd>
+        </div>
+
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2">
+          <dt class="text-xl font-iranSansDemiBold text-gray-500 dark:text-gray-100">
+            شماره تماس
+          </dt>
+          <dd class="text-lg text-gray-900 dark:text-gray-300">
+            {{ mainUser?.phoneNumber }}
+          </dd>
+        </div>
+
+        <div class="grid grid-cols-[150px_1fr] items-center gap-2">
+          <dt class="text-xl font-iranSansDemiBold text-gray-500 dark:text-gray-100">
+            شناسه سازمانی
+          </dt>
+          <dd class="text-lg text-gray-900 dark:text-gray-300">
+            {{ mainUser?.organizationId }}
+          </dd>
+        </div>
+
+      </dl>
+    </div>
+
+    <div class="px-4 py-5 sm:px-6 border-t-3 border-t-gray-500 bg-gray-400 dark:bg-gray-500 flex items-center justify-center">
+      <app-back-button class="w-sm min-w-fit shrink-0"></app-back-button>
+    </div>
+
+  </div>
+</div>

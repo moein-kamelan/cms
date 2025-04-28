@@ -45,24 +45,7 @@ export class AppComponent implements OnInit, OnDestroy{
       } else {
         this.renderer.addClass(document.body , "dark")
       }
-
-      this.router.events.pipe(
-        filter(isNavigationEnd), 
-        filter((event: NavigationEnd) => !this.hiddenRoutes.includes(event.url)),
-        takeUntil(this.unsubscribe$)
-      ).subscribe(() => {
-        
-        const currentUrl = this.router.url;
-  if (!this.hiddenRoutes.includes(currentUrl)) {
-    this.userService.GetCurrentUser().pipe(takeUntil(this.unsubscribe$)).subscribe((res : any) => {
-      if(res) {
-        this.mainUser = res.data;
-        console.log('this.mainUser:', this.mainUser);
-      }
       
-    });
-  }
-      });
   }
 
   ngOnDestroy(): void {

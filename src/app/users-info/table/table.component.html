@@ -6,8 +6,8 @@
       class="text-xs text-gray-700 uppercase bg-gray-500 dark:bg-gray-700 dark:text-gray-400 *:text-white *:dark:text-white whitespace-nowrap"
     >
       <tr class="**:justify-center">
-        <th (click)="onClickResetTable()"  scope="col" class="px-6 py-3 cursor-pointer hover:bg-gray-800"><mat-icon><span class="material-symbols-outlined " >
-          filter_none
+        <th (click)="onClickResetTable()"  scope="col" class="px-6 py-3 cursor-pointer hover:bg-gray-800"><mat-icon><span class="material-symbols-outlined">
+          filter_alt_off
           </span></mat-icon></th>
         <th (click)="sortList('firstName')" scope="col" class="px-6 py-3 hover:bg-gray-800 cursor-pointer ">
           <button
@@ -206,47 +206,47 @@
       >
         <td scope="row">
           <a
-            routerLink="['/ump/userDetails' , user.id]"
-            class="w-full h-full inline-block px-6 py-4 dark:text-white"
+            routerLink="['/users/details' , user.id]"
+            class="max-w-[145px] h-full inline-block px-6 py-4 dark:text-white overflow-hidden text-ellipsis"
           >
             {{ user.id }}
           </a>
         </td>
         <td scope="row">
           <a
-            [routerLink]="['/ump/userDetails', user.id]"
-            class="w-full h-full inline-block px-6 py-4 dark:text-white"
+            [routerLink]="['/users/details', user.id]"
+            class="max-w-[145px] h-full inline-block px-6 py-4 dark:text-white overflow-hidden text-ellipsis"
           >
             {{ user.firstName }}
           </a>
         </td>
         <td scope="row">
           <a
-            [routerLink]="['/ump/userDetails', user.id]"
-            class="w-full h-full inline-block px-6 py-4 dark:text-white"
+            [routerLink]="['/users/details', user.id]"
+            class="max-w-[145px] h-full inline-block px-6 py-4 dark:text-white overflow-hidden text-ellipsis"
           >
             {{ user.lastName }}
           </a>
         </td>
         <td scope="row">
           <a
-            [routerLink]="['/ump/userDetails', user.id]"
-            class="w-full h-full inline-block px-6 py-4 dark:text-white"
+            [routerLink]="['/users/details', user.id]"
+            class="max-w-[145px] inline-block px-6 py-4 dark:text-white overflow-hidden text-ellipsis "
           >
             {{ user.userName }}
           </a>
         </td>
         <td scope="row">
           <a
-            [routerLink]="['/ump/userDetails', user.id]"
-            class="w-full h-full inline-block px-6 py-4 dark:text-white"
+            [routerLink]="['/users/details', user.id]"
+            class="max-w-[145px] h-full inline-block px-6 py-4 dark:text-white overflow-hidden text-ellipsis"
           >
             {{ user.organizationName }}
           </a>
         </td>
         <td scope="row">
           <a
-            [routerLink]="['/ump/userDetails', user.id]"
+            [routerLink]="['/users/details', user.id]"
             class="w-full h-full  px-6 py-4 dark:text-white flex items-center justify-center"
             
           >
@@ -263,7 +263,7 @@
         </td>
         <td scope="row">
           <a
-            [routerLink]="['/users/userDetails', user.id]"
+            [routerLink]="['/users/details', user.id]"
             class="w-full h-full inline-block px-6 py-4 dark:text-white"
             style="direction: ltr;"
           >
@@ -280,7 +280,7 @@
             <mat-icon class="menu-icon dark:!text-white">more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu" class="!divide-y-4 !divide-gray-400 ">
-            <a [routerLink]="['/ump/editUser', user.id]" mat-menu-item>
+            <a [routerLink]="['/users/edit', user.id]" mat-menu-item>
               <mat-icon class="!text-blue-600">edit</mat-icon>
               <span class="menu-text text-blue-600">ویرایش</span>
             </a>

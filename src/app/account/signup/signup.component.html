@@ -50,13 +50,16 @@
                     label="کد ملی"
                     placeholder="کد ملی را وارد کنید"
                     [control]="getPersonalFormControl('nationalCode')"
+                    [maxlength]="10"
                   ></app-input-feild>
                   <app-input-feild
                     type="text"
                     label="شماره همراه"
                     placeholder="شماره همراه را وارد کنید"
                     [control]="getPersonalFormControl('mobileNumber')"
+                    [maxlength]="11"
                     [isMobileNumber]="true"
+
                   ></app-input-feild>
                   <app-input-feild
                     type="text"
@@ -115,6 +118,7 @@
                   placeholder="کد پستی را وارد کنید"
                   [control]="getLegalFormControl('postalCode')"
                   [exactlength]="10"
+                  [maxlength]="10"
                 ></app-input-feild>
                 <app-input-feild
                   class="w-full "
@@ -123,6 +127,7 @@
                   placeholder="مثال : ۰۹۰۳۱۳۵۷۲۶۲"
                   [control]="getLegalFormControl('mobileNumber')"
                   [isMobileNumber]="true"
+                  [maxlength]="11"
                 ></app-input-feild>
 
                 <app-input-feild
@@ -132,6 +137,7 @@
                   placeholder="شناسه ملی را وارد کنید"
                   [control]="getLegalFormControl('nationalId')"
                   [exactlength]="11"
+                  [maxlength]="11"
                 ></app-input-feild>
 
                 <app-input-feild
@@ -181,6 +187,7 @@
                   placeholder="کد اقتصادی را وارد کنید"
                   [control]="getLegalFormControl('economicCode')"
                   [exactlength]="12"
+                  [maxlength]="12"
                 ></app-input-feild>
 
                 <app-input-feild
@@ -189,6 +196,7 @@
                   label="کد ملی"
                   placeholder="کد ملی را وارد کنید"
                   [control]="getLegalFormControl('nationalCode')"
+                  [maxlength]="10"
                 ></app-input-feild>
 
 
@@ -202,6 +210,7 @@
                     placeholder="آدرس را وارد کنید"
                     formControlName="address"
                     class="addressTextarea"
+                    [maxlength]="100"
                   ></textarea>
                   <mat-error>
                     <app-error-message
@@ -223,7 +232,7 @@
               'invalid-btn': !legalFormGroup.valid && !personalFormGroup.valid
             }"
             [disabled]="!legalFormGroup.valid && !personalFormGroup.valid"
-            class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 w-80"
+            class="relative inline-flex cursor-pointer items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 w-80"
           >
             <span
               class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-transparent group-hover:dark:bg-transparent w-full text-black dark:text-white disabled:text-red-500 hover:text-white text-iranSansDemiBold dark:hover:text-gray-900"
@@ -237,7 +246,7 @@
           ایا از قبل حساب کاربری دارید؟
           <a
             routerLink="/account/login"
-            class="font-medium text-primary-600  hover:underline dark:text-orange-400 fontbold"
+            class="font-medium text-primary-600  hover:underline dark:text-orange-400 fontbold "
             >ورود</a
           >
         </p>
