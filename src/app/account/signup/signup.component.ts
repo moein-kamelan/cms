@@ -24,6 +24,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorMessageComponent } from '../../shared/error-message/error-message.component';
 import { InputFeildComponent } from '../../shared/input-feild/input-feild.component';
 import { nationalCodeValidator } from '../../validators/national-code.validator';
+import { passwordsMatchValidator } from '../../validators/password-mathc.validator';
 @Component({
   selector: 'app-signup',
   imports: [
@@ -82,7 +83,14 @@ export class SignupComponent implements OnInit, OnDestroy {
           /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/
         ),
       ]),
-    });
+      confirmPassword: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(12),
+       
+      ]),
+    },
+    {validators : passwordsMatchValidator() }
+    );
 
     this.legalFormGroup = new FormGroup({
       name: new FormControl('', [
@@ -132,6 +140,11 @@ export class SignupComponent implements OnInit, OnDestroy {
           /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/
         ),
       ]),
+      confirmPassword: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(12),
+  
+      ]),
       userName: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
@@ -147,7 +160,10 @@ export class SignupComponent implements OnInit, OnDestroy {
         Validators.minLength(4),
         Validators.maxLength(12),
       ]),
-    });
+    },
+    {validators : passwordsMatchValidator() }
+
+    );
 
     this.personalFormGroup
       .get('nationalCode')
@@ -183,6 +199,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   private createLegalPersonSub!: Subscription;
   onlegalFormSubmit() {
+    delete this.legalFormGroup.value.confirmPassword
     this.createLegalPersonSub = this.authService
       .createLegalAccount(this.legalFormGroup.value).subscribe((res) => {
         if(res) {
@@ -196,8 +213,8 @@ export class SignupComponent implements OnInit, OnDestroy {
   private createPersonalSub!: Subscription;
 
   onPersonalSubmit() {
-    this.createPersonalSub = this.authService
-      .createPersonalAccount(this.personalFormGroup.value).subscribe((res) => {
+    delete this.personalFormGroup.value.confirmPassword
+    this.createPersonalSub = this.authService.createPersonalAccount(this.personalFormGroup.value).subscribe((res) => {
         if(res) {
           this._snackBar.open("کاربر با موفقیت ایجاد شد" , undefined , {
             duration : 2000

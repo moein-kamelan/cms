@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path : "" ,  title : "usersList" ,  loadComponent : () => import("../users/users.component").then(m => m.Users) ,resolve : {userData : currentUserResolver} , children : [
       {
-        path : "usersInfo" , title : "usersInfo" , loadComponent: () => import('../users-info/usersInfo.component').then(m => m.UsersInfoComponent) , resolve : {usersData : usersResolver}
+        path : "info" , title : "info" , loadComponent: () => import('./Info.component').then(m => m.InfoComponent) , resolve : {usersData : usersResolver}
       },
       {
         path : "create" , title : "createNewUser" , loadComponent: () => import('../create-new-user/create-new-user.component').then(m => m.CreateNewUserComponent)

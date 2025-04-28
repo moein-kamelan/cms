@@ -9,7 +9,8 @@
   />
   <mat-error>
     <p class="text-sm relative top-[-18px] text-red-500 dark:text-yellow-600">
-      @if ( control.invalid && (control.touched || control.dirty) ) { @if
+      @if ( control.invalid && (control.touched || control.dirty) ) { 
+        @if
       (control.hasError('required')) {
       <ng-container>مقداری وارد نشده</ng-container>
 
@@ -28,13 +29,18 @@
       <ng-container>باید {{ exactlength }} رقمی باشد</ng-container>
       }@else if(isMobileNumber) {
       <ng-container> فرمت شماره درست نمیباشد </ng-container>
-      } @else {
+      }@else {
       <ng-container
         >رمز باید شامل حداقل یک حرف بزرگ ، یک کاراکتر خاص و یک عدد
         باشد</ng-container
       >
 
-      } } }
+      }
+     }@else if (control.hasError("passwordMismatch")) {
+      <ng-container>رمز عبور و تایید رمز عبور با هم تطابق ندارند</ng-container>
+     }
+
+     }
     </p>
   </mat-error>
 </mat-form-field>

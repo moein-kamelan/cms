@@ -36,10 +36,10 @@ import { PaginationComponent } from './pagination/pagination.component';
     PaginationComponent
     
 ],
-  templateUrl: './usersInfo.component.html',
-  styleUrl: './usersInfo.component.css',
+  templateUrl: './Info.component.html',
+  styleUrl: './Info.component.css',
 })
-export class UsersInfoComponent implements OnInit, OnDestroy {
+export class InfoComponent implements OnInit, OnDestroy {
   @ViewChild("searchbarComp") searchbarComp! : ElementRef
   users: any = [];
   pageCount: number = 1;
@@ -70,7 +70,6 @@ export class UsersInfoComponent implements OnInit, OnDestroy {
         this.pageCount = Math.ceil(
           resolveData.data.totalCount / this.paginationInfos.pageSize
         );
-        console.log('this.pageCount:', this.pageCount);
       } else {
         console.log('داده ها بارگزاری نشد');
       }
@@ -79,7 +78,6 @@ export class UsersInfoComponent implements OnInit, OnDestroy {
 
     }, 2000);
 
-  console.log(this.searchbarComp);
       
     
   }

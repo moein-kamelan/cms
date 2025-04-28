@@ -87,7 +87,6 @@ export class TableComponent implements OnDestroy {
       current === 'none' ? 'desc' : current === 'desc' ? 'asc' : 'none';
 
     this.sortState[column] = newState;
-    console.log(' this.sortState[column]:', this.sortState[column]);
     this.activeSortKey = newState === 'none' ? null : column;
 
     if (this.sortState[column] === SortDirectionOptions.desc) {
@@ -119,7 +118,6 @@ export class TableComponent implements OnDestroy {
     if(this.paginationInfos.orders) {
       delete this.paginationInfos.orders
       delete this.paginationInfos.comparisonObjects
-      console.log('this.paginationInfos:', this.paginationInfos)
       this.onChangeSortOption.emit({...this.paginationInfos })
     }
 

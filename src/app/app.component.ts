@@ -6,7 +6,7 @@ import { MaterialModule } from './material.module';
 import { UsersService } from './services/users.service';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { LoadingService } from './loading.service';
+import { LoadingService } from './services/loading.service';
 
 // Assertion function برای اطمینان از نوع NavigationEnd
 function isNavigationEnd(event: Event): event is NavigationEnd {

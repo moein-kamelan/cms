@@ -52,15 +52,7 @@
                     [control]="getPersonalFormControl('nationalCode')"
                     [maxlength]="10"
                   ></app-input-feild>
-                  <app-input-feild
-                    type="text"
-                    label="شماره همراه"
-                    placeholder="شماره همراه را وارد کنید"
-                    [control]="getPersonalFormControl('mobileNumber')"
-                    [maxlength]="11"
-                    [isMobileNumber]="true"
-
-                  ></app-input-feild>
+              
                   <app-input-feild
                     type="text"
                     label="نام کاربری"
@@ -77,6 +69,25 @@
                     [minlength]="8"
                     [maxlength]="12"
                   ></app-input-feild>
+
+                  <app-input-feild
+                    type="password"
+                    label="تکرار رمز عبور"
+                    placeholder="رمز عبور را وارد کنید"
+                    [control]="getPersonalFormControl('confirmPassword')"
+                    [minlength]="8"
+                    [maxlength]="12"
+                  ></app-input-feild>
+
+                  <app-input-feild
+                  type="text"
+                  label="شماره همراه"
+                  placeholder="شماره همراه را وارد کنید"
+                  [control]="getPersonalFormControl('mobileNumber')"
+                  [maxlength]="11"
+                  [isMobileNumber]="true"
+
+                ></app-input-feild>
 
                   <section
                     class="example-section"
@@ -100,10 +111,10 @@
                 [formGroup]="legalFormGroup"
                 #legalFrom="ngForm"
                 (ngSubmit)="onlegalFormSubmit()"
-                class="grid sm:grid-cols-4  gap-y-2 gap-x-5 mt-5 p-2"
+                class="grid grid-cols-4  gap-y-2 gap-x-5 mt-5 p-2"
               >
                 <app-input-feild
-                  class="w-full "
+                  class="w-full col-span-4 sm:col-span-1"
                   type="text"
                   label="نام سازمان"
                   placeholder="نام سازمان را وارد کنید"
@@ -112,7 +123,7 @@
                   [maxlength]="12"
                 ></app-input-feild>
                 <app-input-feild
-                  class="w-full "
+                  class="w-full col-span-4 sm:col-span-1"
                   type="text"
                   label="کد پستی"
                   placeholder="کد پستی را وارد کنید"
@@ -121,7 +132,7 @@
                   [maxlength]="10"
                 ></app-input-feild>
                 <app-input-feild
-                  class="w-full "
+                  class="w-full col-span-4 sm:col-span-1"
                   type="text"
                   label="شماره همراه"
                   placeholder="مثال : ۰۹۰۳۱۳۵۷۲۶۲"
@@ -131,7 +142,7 @@
                 ></app-input-feild>
 
                 <app-input-feild
-                  class="w-full "
+                  class="w-full col-span-4 sm:col-span-1"
                   type="text"
                   label="شناسه ملی"
                   placeholder="شناسه ملی را وارد کنید"
@@ -139,19 +150,10 @@
                   [exactlength]="11"
                   [maxlength]="11"
                 ></app-input-feild>
+       
 
                 <app-input-feild
-                  class="w-full "
-                  type="password"
-                  label="رمز عبور"
-                  placeholder="رمز عبور را وارد کنید"
-                  [control]="getLegalFormControl('password')"
-                  [minlength]="8"
-                  [maxlength]="12"
-                ></app-input-feild>
-
-                <app-input-feild
-                  class="w-full "
+                  class="w-full col-span-4 sm:col-span-1"
                   type="text"
                   label="نام کاربری"
                   placeholder="نام کاربری را وارد کنید"
@@ -161,7 +163,7 @@
                 ></app-input-feild>
 
                 <app-input-feild
-                  class="w-full "
+                  class="w-full col-span-4 sm:col-span-1"
                   type="text"
                   label="نام"
                   placeholder="نام را وارد کنید"
@@ -171,7 +173,7 @@
                 ></app-input-feild>
 
                 <app-input-feild
-                  class="w-full "
+                  class="w-full col-span-4 sm:col-span-1"
                   type="text"
                   label="نام خانوادگی"
                   placeholder="نام خانوادگی را وارد کنید"
@@ -181,7 +183,7 @@
                 ></app-input-feild>
 
                 <app-input-feild
-                  class="w-full sm:col-span-2 "
+                  class="w-full col-span-4 sm:col-span-1"
                   type="text"
                   label="کد اقتصادی"
                   placeholder="کد اقتصادی را وارد کنید"
@@ -190,19 +192,39 @@
                   [maxlength]="12"
                 ></app-input-feild>
 
+          
+
                 <app-input-feild
-                  class="w-full sm:col-span-2 "
-                  type="text"
-                  label="کد ملی"
-                  placeholder="کد ملی را وارد کنید"
-                  [control]="getLegalFormControl('nationalCode')"
-                  [maxlength]="10"
-                ></app-input-feild>
+                class="w-full col-span-4 sm:col-span-2"
+                type="password"
+                label="رمز عبور"
+                placeholder="رمز عبور را وارد کنید"
+                [control]="getLegalFormControl('password')"
+                [minlength]="8"
+                [maxlength]="12"
+              ></app-input-feild>
 
+              <app-input-feild
+              class="w-full col-span-4 sm:col-span-2"
+              type="password"
+              label="تکرار رمز عبور"
+              placeholder="رمز عبور را وارد کنید"
+              [control]="getLegalFormControl('confirmPassword')"
+              [minlength]="8"
+              [maxlength]="12"
+            ></app-input-feild>
 
+            <app-input-feild
+            class="w-full col-span-4 sm:col-span-2"
+            type="text"
+            label="کد ملی"
+            placeholder="کد ملی را وارد کنید"
+            [control]="getLegalFormControl('nationalCode')"
+            [maxlength]="10"
+          ></app-input-feild>
                 
 
-                <mat-form-field class="w-full sm:col-span-4">
+                <mat-form-field class="w-full col-span-4 sm:col-span-2">
                   <mat-label>آدرس</mat-label>
                   <textarea
                     matInput

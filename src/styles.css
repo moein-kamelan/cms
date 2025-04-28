@@ -122,6 +122,10 @@ background: gray;
   color: white !important;
   background-color: gray;
 }
+.dark textarea , .dark textarea::placeholder {
+  color: white !important;
+  background-color: gray;
+}
 
 .mdc-button__label {
   font-family: "iranSanc-r";

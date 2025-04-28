@@ -77,7 +77,6 @@ export class EditNewUserComponent implements OnInit, OnDestroy {
       isForeigner: new FormControl(this.mainUser.isForeigner, []),
     });
 
-    console.log('this.userID:', this.userID);
   }
 
   updataeUserSub!: Subscription;
@@ -97,7 +96,7 @@ export class EditNewUserComponent implements OnInit, OnDestroy {
           });
 
           setTimeout(() => {
-            this.router.navigate(['/users/usersInfo']);
+            this.router.navigate(['/users/info']);
           }, 2000);
         }
       });

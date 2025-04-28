@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { AccountComponent } from './account/account.component';
 
-import { UsersInfoComponent } from './users-info/usersInfo.component';
+import { InfoComponent } from './users-info/Info.component';
 import { authGuard } from './account/auth.guard';
 import { usersGuard } from './account/users.guard';
 import { LoginComponent } from './account/login/login.component';

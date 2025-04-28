@@ -11,6 +11,7 @@ import { BackButtonComponent } from "../shared/back-button/back-button.component
 import { InputFeildComponent } from "../shared/input-feild/input-feild.component";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { nationalCodeValidator } from '../validators/national-code.validator';
+import { passwordsMatchValidator } from '../validators/password-mathc.validator';
 
 @Component({
   selector: 'app-create-new-user',
@@ -26,12 +27,9 @@ constructor(private usersService : UsersService , private router : Router) {
 
 }
 
-  ngOnInit(): void {
-
-
-    
-    
-    this.createNewUserFormGroup = new FormGroup({
+ngOnInit(): void {
+  this.createNewUserFormGroup = new FormGroup(
+    {
       firstName: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
@@ -55,13 +53,13 @@ constructor(private usersService : UsersService , private router : Router) {
       mobileNumber: new FormControl('', [
         Validators.required,
         Validators.pattern(/^09\d{9}$/),
-        Validators.maxLength(11)
+        Validators.maxLength(11),
       ]),
       organizationId: new FormControl(1, []),
       nationalCode: new FormControl('', [
         Validators.required,
         nationalCodeValidator(),
-        Validators.maxLength(10)
+        Validators.maxLength(10),
       ]),
       identifyNumber: new FormControl('', []),
       isForeigner: new FormControl(false, []),
@@ -73,24 +71,32 @@ constructor(private usersService : UsersService , private router : Router) {
           /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/
         ),
       ]),
-    });
-  }
+      confirmPassword: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(12),
+      ]),
+    },
+    {validators : passwordsMatchValidator() }
+  
+  );
+}
+
+
 
   editUserSub! : Subscription
   onSubmitCreateNewUserForm() {
-    console.log(this.createNewUserFormGroup.value);
+    delete this.createNewUserFormGroup.value.confirmPassword
     const newUserInfos = {...this.createNewUserFormGroup.value }
     this.editUserSub = this.usersService.RegisterNewUser(newUserInfos).subscribe((res) => {
       if(res) {
         
         
-        console.log("created User => " , res);
         this._snackBar.open("کاربر با موفقیت ایجاد شد" , undefined , {
           duration : 2000
         })
 
         setTimeout(() => {
-        this.router.navigate(["/users"])
+        this.router.navigate(["/users/info"])
           
         }, 2000);
 

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { MaterialModule } from '../material.module';
 import { HeaderComponent } from "../shared/header/header.component";
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { GetCurrentUserService } from '../services/get-current-user.service';
 
 @Component({
   selector: 'app-users',
@@ -9,17 +10,24 @@ import { ActivatedRoute, RouterOutlet } from '@angular/router';
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })
-export class Users implements OnInit{
+export class Users implements OnInit , OnChanges{
   mainUser : any
-  constructor( private route : ActivatedRoute) {
+  resolveData : any
+  constructor( private route : ActivatedRoute , private getCurrentUserService : GetCurrentUserService) {
 
   }
 
   ngOnInit(): void {
-    const resolveData = this.route.snapshot.data["userData"]
+    console.log('this.getCurrentUserService.currentUser:', this.getCurrentUserService.currentUser)
+    this.resolveData = this.getCurrentUserService.currentUser || this.route.snapshot.data["userData"]
+    console.log('resolveData:', this.resolveData)
 
-    if(resolveData) {
-      this.mainUser = resolveData.data
+    if(this.resolveData) {
+      this.mainUser = this.resolveData.data
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.mainUser = this.resolveData.data
   }
 }

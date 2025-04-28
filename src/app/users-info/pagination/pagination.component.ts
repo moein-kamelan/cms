@@ -36,7 +36,6 @@ export class PaginationComponent  {
 
 
   onGoPrevPage(currentPageIndex : number) {
-  console.log('currentPageIndex:', currentPageIndex)
   if(currentPageIndex > 1) {
 
     this.newPaginationInfos.emit({...this.paginationInfos , pageNumber : currentPageIndex - 1})
@@ -44,7 +43,6 @@ export class PaginationComponent  {
 
   }
   onGoNextPage(currentPageIndex : number) {
-  console.log('currentPageIndex:', currentPageIndex)
   if(currentPageIndex < this.pageCount) {
 
     this.newPaginationInfos.emit({...this.paginationInfos , pageNumber : currentPageIndex + 1})
@@ -53,14 +51,12 @@ export class PaginationComponent  {
   }
 
   onchangePageIndex(pageIndex: number) {
-    console.log('pageIndex:', pageIndex)
     this.newPaginationInfos.emit({...this.paginationInfos , pageNumber : pageIndex })
 
 
   }
 
   onChangePageSize(newPageSize: number) {
-  console.log('newPageSize:', newPageSize)
   this.newPaginationInfos.emit({...this.paginationInfos , pageSize : newPageSize})
   
   }

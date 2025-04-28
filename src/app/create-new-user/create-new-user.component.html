@@ -79,6 +79,15 @@
             
           ></app-input-feild>
 
+          <app-input-feild
+            type="password"
+            label="تکرار رمز عبور"
+            placeholder="رمز عبور را وارد کنید"
+            [control]="getCreateNewUserFormControl('confirmPassword')"
+            [maxlength]="12"
+            
+          ></app-input-feild>
+
           <section
             class="example-section"
             class="flex items-center w-full gap-4"
