@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { HeaderComponent } from '../shared/header/header.component';
 import { MaterialModule } from '../material.module';
-import { FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { ErrorMessageComponent } from "../shared/error-message/error-message.component";
 import { Router, RouterModule } from '@angular/router';
 import { Subscription, catchError, of } from 'rxjs';
@@ -23,58 +23,58 @@ export class CreateNewUserComponent implements OnInit , OnDestroy{
   createNewUserFormGroup!: FormGroup;
   private _snackBar = inject(MatSnackBar);
 
-constructor(private usersService : UsersService , private router : Router) {
+constructor(private usersService : UsersService , private router : Router , private fb : FormBuilder) {
 
 }
 
 ngOnInit(): void {
-  this.createNewUserFormGroup = new FormGroup(
+  this.createNewUserFormGroup = this.fb.group(
     {
-      firstName: new FormControl('', [
+      firstName: ['', [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
-      ]),
-      lastName: new FormControl('', [
+      ]],
+      lastName: ['', [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
-      ]),
-      fatherName: new FormControl('', [
+      ]],
+      fatherName: ['', [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
-      ]),
-      userName: new FormControl('', [
+      ]],
+      userName: ['', [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
-      ]),
-      mobileNumber: new FormControl('', [
+      ]],
+      mobileNumber: ['', [
         Validators.required,
         Validators.pattern(/^09\d{9}$/),
         Validators.maxLength(11),
-      ]),
-      organizationId: new FormControl(1, []),
-      nationalCode: new FormControl('', [
+      ]],
+      organizationId: [1, []],
+      nationalCode: ['', [
         Validators.required,
         nationalCodeValidator(),
         Validators.maxLength(10),
-      ]),
-      identifyNumber: new FormControl('', []),
-      isForeigner: new FormControl(false, []),
-      password: new FormControl('', [
+      ]],
+      identifyNumber: ['', []],
+      isForeigner: [false, []],
+      password: ['', [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
         Validators.pattern(
           /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/
         ),
-      ]),
-      confirmPassword: new FormControl('', [
+      ]],
+      confirmPassword: ['', [
         Validators.required,
         Validators.maxLength(12),
-      ]),
+      ]],
     },
     {validators : passwordsMatchValidator() }
   

@@ -10,6 +10,7 @@ import {
 import { Router, RouterModule } from '@angular/router';
 import { MaterialModule } from '../../material.module';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   FormsModule,
@@ -46,48 +47,49 @@ export class SignupComponent implements OnInit, OnDestroy {
   personalFormGroup!: FormGroup;
 
   isLegal: boolean = false;
+  constructor(private authService: AuthService, private router: Router , private fb : FormBuilder) {}
 
   ngOnInit(): void {
-    this.personalFormGroup = new FormGroup({
-      firstName: new FormControl('', [
+    this.personalFormGroup = this.fb.group({
+      firstName: ['', [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
-      ]),
-      lastName: new FormControl('', [
+      ]],
+      lastName: ['', [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
-      ]),
-      nationalCode: new FormControl('', [
+      ]],
+      nationalCode: ['', [
         Validators.required,
         nationalCodeValidator(),
         Validators.maxLength(12)
-      ]),
-      mobileNumber: new FormControl('', [
+      ]],
+      mobileNumber: ['', [
         Validators.required,
         Validators.pattern(/^09\d{9}$/),
         Validators.maxLength(11)
-      ]),
-      isForeigner: new FormControl(false, []),
-      userName: new FormControl('', [
+      ]],
+      isForeigner: [false, []],
+      userName: ['', [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
-      ]),
-      password: new FormControl('', [
+      ]],
+      password: ['', [
         Validators.required,
         Validators.minLength(8),
         Validators.maxLength(12),
         Validators.pattern(
           /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/
         ),
-      ]),
-      confirmPassword: new FormControl('', [
+      ]],
+      confirmPassword: ['', [
         Validators.required,
         Validators.maxLength(12),
        
-      ]),
+      ]],
     },
     {validators : passwordsMatchValidator() }
     );
@@ -170,7 +172,6 @@ export class SignupComponent implements OnInit, OnDestroy {
       ?.valueChanges.subscribe((value) => {});
   }
 
-  constructor(private authService: AuthService, private router: Router) {}
 
   getPersonalFormControl(contolName: string) {
     return this.personalFormGroup.get(contolName) as FormControl;

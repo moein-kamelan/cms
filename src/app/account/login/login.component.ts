@@ -11,6 +11,7 @@ import { MaterialModule } from '../../material.module';
 import { inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   FormsModule,
@@ -37,12 +38,12 @@ export class LoginComponent implements OnInit , OnDestroy {
 
   isLegal: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router , private fb : FormBuilder) {}
   private isLoginSub !: Subscription 
   ngOnInit(): void {
-    this.loginFormGroup = new FormGroup({
-      userName: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+    this.loginFormGroup = this.fb.group({
+      userName: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     });
   }
 

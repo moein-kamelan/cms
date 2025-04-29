@@ -15,11 +15,6 @@ export function initCurrentUser() {
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes) , provideHttpClient(withInterceptors([authInterceptor , errorInterceptor])) , 
   provideAppInitializer(initCurrentUser )
-  //  {
-  //   provide: APP_INITIALIZER,
-  //   useFactory: initCurrentUser,
-  //   deps: [GetCurrentUserService],
-  //   multi: true
-  // }
+
 ]
 };

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { HeaderComponent } from '../shared/header/header.component';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ErrorMessageComponent } from '../shared/error-message/error-message.component';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 import { UsersService } from '../services/users.service';
 import { Subscription, catchError, of } from 'rxjs';
@@ -34,47 +34,48 @@ export class EditNewUserComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private usersService: UsersService,
-    private router: Router
+    private router: Router , 
+    private fb : FormBuilder
   ) {}
 
   ngOnInit(): void {
     const resolvedData = this.route.snapshot.data['userData'];
     this.mainUser = resolvedData.data;
 
-    this.editUserFormGroup = new FormGroup({
-      firstName: new FormControl(this.mainUser.firstName, [
+    this.editUserFormGroup = this.fb.group({
+      firstName: [this.mainUser.firstName, [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
-      ]),
-      lastName: new FormControl(this.mainUser.lastName, [
+      ]],
+      lastName: [this.mainUser.lastName, [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
-      ]),
-      fatherName: new FormControl(this.mainUser.fatherName, [
+      ]],
+      fatherName: [this.mainUser.fatherName, [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
-      ]),
-      userName: new FormControl(this.mainUser.userName, [
+      ]],
+      userName: [this.mainUser.userName, [
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(12),
-      ]),
-      mobileNumber: new FormControl(this.mainUser.mobileNumber, [
+      ]],
+      mobileNumber: [this.mainUser.mobileNumber, [
         Validators.required,
         Validators.pattern(/^09\d{9}$/),
         Validators.maxLength(11)
-      ]),
-      organizationId: new FormControl(1, [Validators.maxLength(5)]),
-      nationalCode: new FormControl(this.mainUser.nationalCode, [
+      ]],
+      organizationId: [1, [Validators.maxLength(5)]],
+      nationalCode: [this.mainUser.nationalCode, [
         Validators.required,
         nationalCodeValidator(),
         Validators.maxLength(10)
-      ]),
-      identifyNumber: new FormControl('', [Validators.maxLength(5)]),
-      isForeigner: new FormControl(this.mainUser.isForeigner, []),
+      ]],
+      identifyNumber: ['', [Validators.maxLength(5)]],
+      isForeigner: [this.mainUser.isForeigner, []],
     });
 
   }
