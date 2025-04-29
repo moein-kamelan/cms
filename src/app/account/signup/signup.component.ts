@@ -24,7 +24,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorMessageComponent } from '../../shared/error-message/error-message.component';
 import { InputFeildComponent } from '../../shared/input-feild/input-feild.component';
 import { nationalCodeValidator } from '../../validators/national-code.validator';
-import { passwordsMatchValidator } from '../../validators/password-mathc.validator';
+import { passwordsMatchValidator } from '../../validators/password-match.validator';
 @Component({
   selector: 'app-signup',
   imports: [

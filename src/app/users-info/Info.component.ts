@@ -62,17 +62,13 @@ export class InfoComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     setTimeout(() => {
       const resolveData = this.route.snapshot.data['usersData'];
-      console.log('resolveData:', resolveData);
 
-      if (resolveData) {
         this.users = resolveData.data.items;
         this.currentPage = this.paginationInfos.pageNumber;
         this.pageCount = Math.ceil(
           resolveData.data.totalCount / this.paginationInfos.pageSize
         );
-      } else {
-        console.log('داده ها بارگزاری نشد');
-      }
+      
 
       this.loading = false;
 

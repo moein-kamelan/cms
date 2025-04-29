@@ -20,7 +20,6 @@ export class Users implements OnInit , OnChanges{
   ngOnInit(): void {
     console.log('this.getCurrentUserService.currentUser:', this.getCurrentUserService.currentUser)
     this.resolveData = this.getCurrentUserService.currentUser || this.route.snapshot.data["userData"]
-    console.log('resolveData:', this.resolveData)
 
     if(this.resolveData) {
       this.mainUser = this.resolveData.data

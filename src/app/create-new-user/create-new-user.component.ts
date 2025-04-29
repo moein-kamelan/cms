@@ -11,7 +11,7 @@ import { BackButtonComponent } from "../shared/back-button/back-button.component
 import { InputFeildComponent } from "../shared/input-feild/input-feild.component";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { nationalCodeValidator } from '../validators/national-code.validator';
-import { passwordsMatchValidator } from '../validators/password-mathc.validator';
+import { passwordsMatchValidator } from '../validators/password-match.validator';
 
 @Component({
   selector: 'app-create-new-user',
